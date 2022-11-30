@@ -16,4 +16,6 @@ Green-bay(homework solo project): https://github.com/LukasKacmarcik/LukasKacmarc
 
 ## &rarr; [Interview prep](https://github.com/green-fox-academy/teaching-materials/tree/master/interview)
 
+Codewars: https://www.codewars.com/users/LukasKacmarcik
+
 Hackerrank: https://www.hackerrank.com/1lukaskacmarcik1?hr_r=1
