@@ -11,6 +11,7 @@ Email: 1lukaskacmarcik1@gmail.com
 ## &rarr; [Coding projects](https://github.com/green-fox-academy/definitions/tree/master/project-phase/huli/coding-projects)
 
 Food-bug(main team project): https://github.com/LukasKacmarcik/LukasKacmarcik-bug-busters-project/tree/main/mainProject
+<br />
 Green-bay(homework solo project): https://github.com/LukasKacmarcik/LukasKacmarcik-bug-busters-project/tree/main/myHomework
 
 ## &rarr; [Interview prep](https://github.com/green-fox-academy/teaching-materials/tree/master/interview)
