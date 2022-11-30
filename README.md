@@ -1,4 +1,4 @@
-# {first-name} {last-name}
+# Lukáš Kačmarčík
 
 Welcome to my page, my name is Lukas and I'm a fresh alumni of Green Fox Academy. I'm specializing in full-stack/react and this is my progression in our after-course Huli program, where I'm sharpening my skills to become an even better candidate.
 
