@@ -1,5 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import { getShishas, postShisha } from "../controllers/shisha";
 
 const api = express.Router();
 api.use(express.json());
@@ -36,6 +37,9 @@ const validateOptionalJWT = (req, res, next) => {
     next();
   }
 };
+
+api.get("/shishas", getShishas);
+api.post("/shisha/new", postShisha);
 
 // export the routes
 export default api;
