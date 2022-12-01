@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import { getShishas, postShisha } from "../controllers/shisha";
+import { getShishas, postShisha } from "../controllers/shisha.js";
 
 const api = express.Router();
 api.use(express.json());

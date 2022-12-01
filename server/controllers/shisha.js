@@ -1,4 +1,4 @@
-import Shisha from "../models/shisha";
+import Shisha from "../models/shisha.js";
 
 export const getShishas = async (req, res) => {
   try {
