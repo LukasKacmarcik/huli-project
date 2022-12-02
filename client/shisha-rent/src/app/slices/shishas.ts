@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { api } from "../../api";
+import { NewShishaFormData } from "../../components/forms/newShishaForm/NewShishaForm";
 
 export interface Shisha {
   name: string;
@@ -32,12 +33,28 @@ export const fetchShishas = createAsyncThunk(
   async () => {
     try {
       const response = await api.get("/shishas");
+      // The value we return becomes the `fulfilled` action payload
       return response.data;
     } catch (error: any) {
       throw new Error(JSON.stringify(error.response.data));
     }
+  }
+);
 
-    // The value we return becomes the `fulfilled` action payload
+export const postNewShisha = createAsyncThunk(
+  "shishas/postNewShisha",
+  async (newShisha: NewShishaFormData) => {
+    try {
+      const response = await api.post("/shisha/new", newShisha);
+      console.log(response.status);
+      if (response.status === 201) {
+        const response = await api.get("/shishas");
+        // The value we return becomes the `fulfilled` action payload
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
   }
 );
 
@@ -73,6 +90,18 @@ export const shishasSlice = createSlice({
         state.shishas = action.payload;
       })
       .addCase(fetchShishas.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(postNewShisha.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(postNewShisha.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.shishas = action.payload;
+      })
+      .addCase(postNewShisha.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });

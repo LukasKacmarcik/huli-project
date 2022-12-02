@@ -3,7 +3,6 @@ import Shisha from "../models/shisha.js";
 export const getShishas = async (req, res) => {
   try {
     const shishas = await Shisha.find();
-    console.log(shishas);
     res.status(200).json(shishas);
   } catch (error) {
     console.log(error.message);
