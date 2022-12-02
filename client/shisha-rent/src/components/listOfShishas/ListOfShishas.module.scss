@@ -1,0 +1,10 @@
+.listOfShisha {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-grow: 1;
+
+  li {
+    list-style: none;
+  }
+}
