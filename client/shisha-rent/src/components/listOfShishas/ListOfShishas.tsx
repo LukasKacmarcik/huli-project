@@ -1,17 +1,24 @@
-import React from "react";
-import { useAppSelector } from "../../app/hooks";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import ShishaComponent from "../shisha/Shisha";
-import { Shisha } from "../../app/slices/shishas";
+import { fetchShishas, Shisha } from "../../app/slices/shishas";
 
 const ListOfShishas: React.FC = () => {
   const shishas: Shisha[] = useAppSelector((state) => state.shishas.shishas);
   const listOfShishas = shishas.map((shisha) => {
     return (
-      <li key={shisha.selectedFile}>
+      <li key={shisha.name}>
         <ShishaComponent passedShisha={shisha} />;
       </li>
     );
   });
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchShishas());
+    console.log("ListOfShishas useEffect run");
+  }, [dispatch]);
 
   return <ul>{listOfShishas}</ul>;
 };
