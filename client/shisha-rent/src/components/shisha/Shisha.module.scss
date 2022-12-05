@@ -6,6 +6,11 @@
   text-align: center;
   border-radius: 25px;
   overflow: hidden;
+  transition: all ease-in 0.15s;
+  &:hover {
+    cursor: pointer;
+    transform: translate(0, -10px);
+  }
 }
 
 .imgWrapper {

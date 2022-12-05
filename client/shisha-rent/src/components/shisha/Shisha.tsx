@@ -1,5 +1,9 @@
 import React from "react";
-import { Shisha as ShishaType } from "../../app/slices/shishas";
+import { useAppDispatch } from "../../app/hooks";
+import {
+  setSelectedShisha,
+  Shisha as ShishaType,
+} from "../../app/slices/shishas";
 import styles from "./Shisha.module.scss";
 
 interface Props {
@@ -8,9 +12,20 @@ interface Props {
 
 const Shisha: React.FC<Props> = ({ passedShisha }) => {
   console.log(passedShisha);
+  const dispatch = useAppDispatch();
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log("clickEvent: ", e.currentTarget);
+    console.log("clickEvent dataset: ", e.currentTarget.dataset.shishaid);
+    dispatch(setSelectedShisha(passedShisha._id));
+  };
 
   return (
-    <div className={styles.shisha}>
+    <div
+      className={styles.shisha}
+      onClick={handleClick}
+      data-shishaid={passedShisha._id}
+    >
       <div className={styles.imgWrapper}>
         <img src={passedShisha.selectedFile} alt="shisha" />
       </div>
