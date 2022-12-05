@@ -11,7 +11,7 @@ const ListOfShishas: React.FC = () => {
   const listOfShishas = shishasToShow.map((shisha) => {
     return (
       <li key={shisha["_id"]}>
-        <ShishaComponent passedShisha={shisha} />;
+        <ShishaComponent passedShisha={shisha} />
       </li>
     );
   });

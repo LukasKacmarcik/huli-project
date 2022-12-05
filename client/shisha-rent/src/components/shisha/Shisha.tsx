@@ -14,10 +14,11 @@ const Shisha: React.FC<Props> = ({ passedShisha }) => {
   console.log(passedShisha);
   const dispatch = useAppDispatch();
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log("clickEvent: ", e.currentTarget);
-    console.log("clickEvent dataset: ", e.currentTarget.dataset.shishaid);
-    dispatch(setSelectedShisha(passedShisha._id));
+  const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
+    await dispatch(setSelectedShisha(passedShisha._id));
+    const element = document.getElementById("selectedShisha");
+
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

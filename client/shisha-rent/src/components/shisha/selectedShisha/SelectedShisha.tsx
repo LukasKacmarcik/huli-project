@@ -5,7 +5,7 @@ import styles from "./SelectedShisha.module.scss";
 
 const SelectedShisha: React.FC = () => {
   return (
-    <div className={styles.selectedShisha}>
+    <div id="selectedShisha" className={styles.selectedShisha}>
       <SelectedShishaPreview />
       <ShishasDatePicker />
     </div>
