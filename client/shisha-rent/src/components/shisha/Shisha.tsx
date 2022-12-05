@@ -11,14 +11,12 @@ interface Props {
 }
 
 const Shisha: React.FC<Props> = ({ passedShisha }) => {
-  console.log(passedShisha);
   const dispatch = useAppDispatch();
 
   const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     await dispatch(setSelectedShisha(passedShisha._id));
-    const element = document.getElementById("selectedShisha");
-
-    element?.scrollIntoView({ behavior: "smooth" });
+    const selectedShishaElement = document.getElementById("selectedShisha");
+    selectedShishaElement?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

@@ -20,7 +20,6 @@ const ListOfShishas: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchShishas());
-    console.log("ListOfShishas useEffect run");
   }, [dispatch]);
 
   return <ul className={styles.listOfShisha}>{listOfShishas}</ul>;
