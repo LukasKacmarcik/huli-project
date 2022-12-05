@@ -4,11 +4,12 @@ import { api } from "../../api";
 import { NewShishaFormData } from "../../components/forms/newShishaForm/NewShishaForm";
 
 export interface Shisha {
+  _id: string;
   name: string;
   description: string;
   price: number;
   selectedFile: string;
-  note?: string;
+  show: boolean;
 }
 
 export interface ShishasState {

@@ -5,10 +5,12 @@ import { fetchShishas, Shisha } from "../../app/slices/shishas";
 import styles from "./ListOfShishas.module.scss";
 
 const ListOfShishas: React.FC = () => {
-  const shishas: Shisha[] = useAppSelector((state) => state.shishas.shishas);
-  const listOfShishas = shishas.map((shisha) => {
+  const shishasToShow: Shisha[] = useAppSelector(
+    (state) => state.shishas.shishas
+  ).filter((shisha) => shisha.show === true);
+  const listOfShishas = shishasToShow.map((shisha) => {
     return (
-      <li key={shisha.name}>
+      <li key={shisha["_id"]}>
         <ShishaComponent passedShisha={shisha} />;
       </li>
     );
