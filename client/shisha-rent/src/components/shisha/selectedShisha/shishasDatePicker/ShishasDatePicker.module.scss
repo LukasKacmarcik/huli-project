@@ -1,1 +1,15 @@
+.shishasDatePicker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  h1 {
+    text-align: center;
+  }
+
+  .datePickerWeapper {
+    width: 200px;
+    display: flex;
+  }
+}

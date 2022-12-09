@@ -9,20 +9,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import subDays from "date-fns/subDays";
 
 const ShishasDatePicker: React.FC = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(null);
   const myTime = new Date("2022-12-26T16:00:48.212Z");
   const myDatesArr: Date[] = [myTime, subDays(myTime, -1)];
 
   return (
     <div className={styles.shishasDatePicker}>
       <h1>ShishasDatePicker</h1>
-      <DatePicker
-        selected={startDate}
-        onChange={(date: Date) => setStartDate(date)}
-        minDate={subDays(new Date(), -1)}
-        excludeDates={myDatesArr}
-        placeholderText="Select a date other than today or yesterday"
-      />
+      <div className={styles.datePickerWeapper}>
+        <DatePicker
+          selected={startDate}
+          dateFormat="dd/MM/yyyy"
+          onChange={(date: Date) => setStartDate(date)}
+          minDate={subDays(new Date(), -1)}
+          excludeDates={myDatesArr}
+          placeholderText="Zvol si svoj den"
+        />
+      </div>
     </div>
   );
 };
