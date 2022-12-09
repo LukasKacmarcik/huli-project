@@ -13,10 +13,20 @@ interface Props {
 const Shisha: React.FC<Props> = ({ passedShisha }) => {
   const dispatch = useAppDispatch();
 
+  ////This is async function bc selectedShishaElement returns null for the first time when clicked if not async
+  const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
+    await dispatch(setSelectedShisha(passedShisha._id));
+    const selectedShishaElement = document.getElementById("selectedShisha");
+    console.log(selectedShishaElement);
+    selectedShishaElement?.scrollIntoView({
+      behavior: "auto",
+    });
+  };
+
   return (
     <div
       className={styles.shisha}
-      onClick={() => dispatch(setSelectedShisha(passedShisha._id))}
+      onClick={handleClick}
       data-shishaid={passedShisha._id}
     >
       <div className={styles.imgWrapper}>
