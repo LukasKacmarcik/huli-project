@@ -57,10 +57,10 @@ const NewOrderForm: React.FC = () => {
     orderData.shishaId = selectedShisha?._id;
     orderData.extras = selectedExtras;
     orderData.dateOfDelivery = dateOfDelivery;
-    console.log(orderData);
+    // console.log(orderData);
 
-    // dispatch(postNewOrder(orderData));
-    console.log("handlling submit");
+    dispatch(postNewOrder(orderData));
+    // console.log("handlling submit");
   };
 
   const calcTotal = (

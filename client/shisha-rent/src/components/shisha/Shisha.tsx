@@ -17,7 +17,7 @@ const Shisha: React.FC<Props> = ({ passedShisha }) => {
   const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     await dispatch(setSelectedShisha(passedShisha._id));
     const selectedShishaElement = document.getElementById("selectedShisha");
-    console.log(selectedShishaElement);
+    //// behaviour smoth is buggy
     selectedShishaElement?.scrollIntoView({
       behavior: "auto",
     });
