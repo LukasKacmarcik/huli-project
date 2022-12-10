@@ -37,8 +37,6 @@ const Extras: React.FC = () => {
     const filteredSelectedExtras: Extra[] = offeredExtras.filter((extra) =>
       currentlySelectedExtras.includes(extra.name)
     );
-    console.log(filteredSelectedExtras);
-
     dispatch(updateSelectedExtras(filteredSelectedExtras));
   }, [extras]);
 

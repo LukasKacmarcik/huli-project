@@ -13,6 +13,7 @@ export interface NewOrderFormData {
   userTelNumber: string;
   extras: Extra[];
   total: number;
+  userNote?: string;
 }
 
 const NewOrderForm: React.FC = () => {
@@ -126,8 +127,17 @@ const NewOrderForm: React.FC = () => {
             setFormData({ ...formData, userTelNumber: e.target.value })
           }
         />
-
-        <button type="submit">Submit</button>
+        <label htmlFor="userNote">Poznámka k objednávke</label>
+        <textarea
+          id="userNote"
+          name="userNote"
+          value={formData.userNote}
+          placeholder="Sem môžte uviesť svoju poznámku k objednávke"
+          onChange={(e) =>
+            setFormData({ ...formData, userNote: e.target.value })
+          }
+        ></textarea>
+        <button type="submit">Objednať</button>
       </form>
       <label htmlFor="rememberMe">Pametaj si ma</label>
       <input
