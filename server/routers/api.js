@@ -1,7 +1,12 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import { getShishas, postShisha } from "../controllers/shisha.js";
-import { getOrders, postOrder } from "../controllers/order.js";
+import {
+  getOrders,
+  postOrder,
+  getExtras,
+  getDeliveryHours,
+} from "../controllers/order.js";
 
 const api = express.Router();
 api.use(express.json());
@@ -46,6 +51,12 @@ api.post("/shisha/new", postShisha);
 ////////ORDERS/////////
 api.get("/orders", getOrders);
 api.post("/order/new", postOrder);
+
+////////Extras/////////
+api.get("/extras", getExtras);
+
+////////DeliveryHours/////////
+api.get("/deliveryHours", getDeliveryHours);
 
 // export the routes
 export default api;
