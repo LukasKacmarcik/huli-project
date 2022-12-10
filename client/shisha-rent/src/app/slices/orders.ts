@@ -4,16 +4,17 @@ import { api } from "../../api";
 import { NewOrderFormData } from "../../components/forms/newOrderForm/NewOrderForm";
 
 export interface Order {
-  _id: string;
+  _id?: string;
+  shishaId: string | undefined;
   userFullName: string;
   userAddress: string;
-  dateOfDelivery: Date;
+  dateOfDelivery: string;
   timeOfDelivery: string;
   userTelNumber: string;
   extras?: string[];
   total: number;
   userNote?: string;
-  createdAt?: Date;
+  createdAt?: string;
   done?: boolean;
   ownerNote?: string;
 }

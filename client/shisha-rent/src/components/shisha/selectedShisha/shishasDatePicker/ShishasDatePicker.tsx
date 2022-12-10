@@ -7,20 +7,52 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import subDays from "date-fns/subDays";
-import { useAppDispatch } from "../../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { updateNewOrderDate } from "../../../../app/slices/orders";
 
 const ShishasDatePicker: React.FC = () => {
+  // const validHourOptions = useAppSelector((state) => state.orders.hourOptions);
+  const validHourOptions = [7, 8, 9, 10, 11];
   const dispatch = useAppDispatch();
   const [startDate, setStartDate] = useState<Date | null>(null);
   const myTime = new Date("2022-12-26T16:00:48.212Z");
   const myDatesArr: Date[] = [myTime, subDays(myTime, -1)];
 
+  const handleSetHours = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setStartDate((ps) => {
+      if (ps instanceof Date) {
+        const isoDate = ps.toISOString();
+        const updatedDate: Date = new Date(isoDate);
+        updatedDate.setHours(parseInt(e.target.value));
+        return updatedDate;
+      } else {
+        console.log("startDate is null and we cant set hours to that");
+        return ps;
+      }
+    });
+  };
+
+  const hourOptions = (
+    <select
+      onChange={handleSetHours}
+      disabled={startDate !== null ? false : true}
+    >
+      <option value={undefined}>Zvoľ čas donášky</option>
+      {validHourOptions.map((option: number) => {
+        return (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        );
+      })}
+    </select>
+  );
+
   useEffect(() => {
     if (startDate) {
       dispatch(updateNewOrderDate(startDate.toISOString()));
     }
-  }, [startDate]);
+  }, [startDate, dispatch]);
 
   return (
     <div className={styles.shishasDatePicker}>
@@ -35,6 +67,7 @@ const ShishasDatePicker: React.FC = () => {
           placeholderText="Zvol si svoj den"
         />
       </div>
+      {hourOptions}
     </div>
   );
 };
