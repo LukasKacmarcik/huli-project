@@ -38,8 +38,13 @@ const validateOptionalJWT = (req, res, next) => {
   }
 };
 
+////////SHISHAS/////////
 api.get("/shishas", getShishas);
 api.post("/shisha/new", postShisha);
+
+////////ORDERS/////////
+api.get("/orders", getOrders);
+api.post("/order/new", postOrder);
 
 // export the routes
 export default api;
