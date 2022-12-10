@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import ShishasDatePicker from "../../shisha/selectedShisha/shishasDatePicker/ShishasDatePicker";
 
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { Extra, postNewOrder } from "../../../app/slices/orders";
+import {
+  Extra,
+  fetchDeliveryHours,
+  fetchExtras,
+  postNewOrder,
+} from "../../../app/slices/orders";
 import Extras from "./extras/Extras";
 
 export interface NewOrderFormData {
@@ -73,6 +78,11 @@ const NewOrderForm: React.FC = () => {
       selectedShishaPrice || 0
     );
   };
+
+  useEffect(() => {
+    dispatch(fetchExtras());
+    dispatch(fetchDeliveryHours());
+  }, [selectedShisha, dispatch]);
 
   useEffect(() => {
     setFormData((ps) => {

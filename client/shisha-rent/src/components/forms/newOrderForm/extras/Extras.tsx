@@ -5,13 +5,13 @@ import { Extra, updateSelectedExtras } from "../../../../app/slices/orders";
 const Extras: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  // const offeredExtras: Extra[] = useAppSelector(
-  //   (state) => state.orders.offeredExtras
-  // );
-  const offeredExtras: Extra[] = [
-    { name: "uhliky", price: 5 },
-    { name: "alobal", price: 3 },
-  ];
+  const offeredExtras: Extra[] = useAppSelector(
+    (state) => state.orders.offeredExtras
+  );
+  // const offeredExtras: Extra[] = [
+  //   { name: "uhliky", price: 5 },
+  //   { name: "alobal", price: 3 },
+  // ];
 
   const initialExtrasState: { [key: string]: boolean } = {};
   offeredExtras.forEach((extra) => {
@@ -38,7 +38,7 @@ const Extras: React.FC = () => {
       currentlySelectedExtras.includes(extra.name)
     );
     dispatch(updateSelectedExtras(filteredSelectedExtras));
-  }, [extras]);
+  }, [extras, dispatch, offeredExtras]);
 
   const listOfOfferedExtras = (
     <form>

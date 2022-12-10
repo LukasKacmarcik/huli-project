@@ -11,7 +11,7 @@ export interface Order {
   dateOfDelivery: string;
   timeOfDelivery: string;
   userTelNumber: string;
-  extras?: string[];
+  extras?: Extra[];
   total: number;
   userNote?: string;
   createdAt?: string;
@@ -26,11 +26,16 @@ export interface OrdersState {
   newOrderDate: string | null;
   offeredExtras: Extra[];
   selectedExtras: Extra[];
+  deliveryHours: DeliveryHours[];
 }
 
 export interface Extra {
   name: string;
   price: number;
+}
+
+export interface DeliveryHours {
+  hour: number;
 }
 
 const initialState: OrdersState = {
@@ -40,6 +45,7 @@ const initialState: OrdersState = {
   newOrderDate: null,
   offeredExtras: [],
   selectedExtras: [],
+  deliveryHours: [],
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -67,6 +73,27 @@ export const postNewOrder = createAsyncThunk(
         // The value we return becomes the `fulfilled` action payload
         return response.data;
       }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const fetchExtras = createAsyncThunk("extras/fetchExtras", async () => {
+  try {
+    const response = await api.get("/extras");
+    return response.data;
+  } catch (error: any) {
+    throw new Error(JSON.stringify(error.response.data));
+  }
+});
+
+export const fetchDeliveryHours = createAsyncThunk(
+  "deliveryHours/fetchDeliveryHours",
+  async () => {
+    try {
+      const response = await api.get("/deliveryHours");
+      return response.data;
     } catch (error: any) {
       throw new Error(JSON.stringify(error.response.data));
     }
@@ -116,6 +143,30 @@ export const ordersSlice = createSlice({
         state.orders = action.payload;
       })
       .addCase(postNewOrder.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(fetchExtras.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchExtras.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredExtras = action.payload;
+      })
+      .addCase(fetchExtras.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(fetchDeliveryHours.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchDeliveryHours.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.deliveryHours = action.payload;
+      })
+      .addCase(fetchDeliveryHours.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });

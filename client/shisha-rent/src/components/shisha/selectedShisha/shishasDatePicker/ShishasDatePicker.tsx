@@ -8,11 +8,16 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import subDays from "date-fns/subDays";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
-import { updateNewOrderDate } from "../../../../app/slices/orders";
+import {
+  DeliveryHours,
+  updateNewOrderDate,
+} from "../../../../app/slices/orders";
 
 const ShishasDatePicker: React.FC = () => {
-  // const validHourOptions = useAppSelector((state) => state.orders.hourOptions);
-  const validHourOptions = [7, 8, 9, 10, 11];
+  const validHourOptions = useAppSelector(
+    (state) => state.orders.deliveryHours
+  );
+  // const validHourOptions = [7, 8, 9, 10, 11];
   const dispatch = useAppDispatch();
   const [startDate, setStartDate] = useState<Date | null>(null);
   const myTime = new Date("2022-12-26T16:00:48.212Z");
@@ -38,10 +43,10 @@ const ShishasDatePicker: React.FC = () => {
       disabled={startDate !== null ? false : true}
     >
       <option value={undefined}>Zvoľ čas donášky</option>
-      {validHourOptions.map((option: number) => {
+      {validHourOptions.map((option: DeliveryHours) => {
         return (
-          <option key={option} value={option}>
-            {option}
+          <option key={option.hour} value={option.hour}>
+            {option.hour}
           </option>
         );
       })}
