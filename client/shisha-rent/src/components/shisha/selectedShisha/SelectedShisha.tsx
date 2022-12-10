@@ -1,12 +1,12 @@
 import SelectedShishaPreview from "./selectedShishaPreview/SelectedShishaPreview";
-import ShishasDatePicker from "./shishasDatePicker/ShishasDatePicker";
+import NewOrderForm from "../../forms/newOrderForm/NewOrderForm";
 import styles from "./SelectedShisha.module.scss";
 
 const SelectedShisha: React.FC = () => {
   return (
     <div id="selectedShisha" className={styles.selectedShisha}>
       <SelectedShishaPreview />
-      <ShishasDatePicker />
+      <NewOrderForm />
     </div>
   );
 };
