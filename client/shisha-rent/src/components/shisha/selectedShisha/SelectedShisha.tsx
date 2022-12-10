@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import SelectedShishaPreview from "./selectedShishaPreview/SelectedShishaPreview";
 import ShishasDatePicker from "./shishasDatePicker/ShishasDatePicker";
 import styles from "./SelectedShisha.module.scss";

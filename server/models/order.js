@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const orderSchema = mongoose.Schema({
   userFullName: String,
   userAddress: String,
-  dateOfDelivery: String,
+  dateOfDelivery: Date,
   timeOfDelivery: String,
   userTelNumber: String,
   extras: [String],
@@ -23,10 +23,6 @@ const orderSchema = mongoose.Schema({
   ownerNote: {
     type: String,
     default: "",
-  },
-  show: {
-    type: Boolean,
-    default: true,
   },
 });
 
