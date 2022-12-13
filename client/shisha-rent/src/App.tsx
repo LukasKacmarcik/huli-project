@@ -1,21 +1,15 @@
 import React from "react";
-import NewShishaForm from "./components/forms/newShishaForm/NewShishaForm";
-import ListOfShishas from "./components/listOfShishas/ListOfShishas";
-import SelectedShisha from "./components/shisha/selectedShisha/SelectedShisha";
-import { useAppSelector } from "./app/hooks";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import Home from "./components/home/Home";
 
 const App: React.FC = () => {
-  const selectedShisha = useAppSelector(
-    (state) => state.shishas.selectedShisha
-  );
-
   return (
-    <>
-      <h1>Hi</h1>
-      <NewShishaForm />
-      <ListOfShishas />
-      {selectedShisha ? <SelectedShisha /> : null}
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Home />} />
+      </Route>
+    </Routes>
   );
 };
 export default App;
