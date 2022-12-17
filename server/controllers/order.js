@@ -12,6 +12,16 @@ export const getOrders = async (req, res) => {
   }
 };
 
+export const getOpenOrders = async (req, res) => {
+  try {
+    const response = await Order.find({ done: false });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const postOrder = async (req, res) => {
   const order = req.body;
   console.log(order);

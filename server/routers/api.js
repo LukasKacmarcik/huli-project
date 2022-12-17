@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { getShishas, postShisha } from "../controllers/shisha.js";
 import {
   getOrders,
+  getOpenOrders,
   postOrder,
   getExtras,
   getDeliveryHours,
@@ -50,6 +51,7 @@ api.post("/shisha/new", postShisha);
 
 ////////ORDERS/////////
 api.get("/orders", getOrders);
+api.get("/orders/open", getOpenOrders);
 api.post("/order/new", postOrder);
 
 ////////Extras/////////

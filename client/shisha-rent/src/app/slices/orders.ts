@@ -21,6 +21,7 @@ export interface Order {
 
 export interface OrdersState {
   orders: Order[];
+  openOrders: Order[] | null;
   status: "idle" | "loading" | "successful" | "failed";
   messages: { [key: string]: string };
   newOrderDate: string | null;
@@ -41,6 +42,7 @@ export interface DeliveryHours {
 const initialState: OrdersState = {
   status: "idle",
   orders: [],
+  openOrders: null,
   messages: {},
   newOrderDate: null,
   offeredExtras: [],
@@ -62,6 +64,18 @@ export const fetchOrders = createAsyncThunk("orders/fetchOrders", async () => {
     throw new Error(JSON.stringify(error.response.data));
   }
 });
+
+export const fetchOpenOrders = createAsyncThunk(
+  "orders/fetchOpenOrders",
+  async () => {
+    try {
+      const response = await api.get("/orders/open");
+      return response.data;
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
 
 export const postNewOrder = createAsyncThunk(
   "orders/postNewOrder",
@@ -131,6 +145,18 @@ export const ordersSlice = createSlice({
         state.orders = action.payload;
       })
       .addCase(fetchOrders.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(fetchOpenOrders.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchOpenOrders.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.openOrders = action.payload;
+      })
+      .addCase(fetchOpenOrders.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });
