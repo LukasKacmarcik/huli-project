@@ -7,7 +7,7 @@ const ListOfOpenOrders: React.FC = () => {
   const dispatch = useAppDispatch();
   const openOrders = useAppSelector((state) => state.orders.openOrders);
   const mapedOpenOrders = openOrders?.map((order) => {
-    return <OpenOrderRow order={order} />;
+    return <OpenOrderRow key={order._id} order={order} />;
   });
   useEffect(() => {
     dispatch(fetchOpenOrders());

@@ -7,7 +7,7 @@ interface OrderProps {
 
 const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
   return (
-    <tr>
+    <tr data-order_id={order._id}>
       <th>{order.userFullName}</th>
       <th>{order.userAddress}</th>
       <th>{order.userTelNumber}</th>
