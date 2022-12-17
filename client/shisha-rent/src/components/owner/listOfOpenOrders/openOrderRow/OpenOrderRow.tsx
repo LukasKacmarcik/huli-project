@@ -19,6 +19,7 @@ const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
       <th>{order.userFullName}</th>
       <th>{order.userAddress}</th>
       <th>{order.userTelNumber}</th>
+      <th>{order.shishaName}</th>
       <th>{extrasInString}</th>
       <th>{order.total}</th>
       <th>{order.userNote}</th>

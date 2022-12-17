@@ -11,7 +11,7 @@ import {
 import Extras from "./extras/Extras";
 
 export interface NewOrderFormData {
-  shishaId: string | undefined;
+  shishaName: string | undefined;
   userFullName: string;
   userAddress: string;
   dateOfDelivery: string | null;
@@ -45,7 +45,7 @@ const NewOrderForm: React.FC = () => {
 
   //// Form data state
   const [formData, setFormData] = useState<NewOrderFormData>({
-    shishaId: selectedShisha?._id,
+    shishaName: selectedShisha?.name,
     userFullName: userData?.userFullName || "",
     userAddress: userData?.userAddress || "",
     dateOfDelivery: dateOfDelivery,
@@ -60,10 +60,10 @@ const NewOrderForm: React.FC = () => {
       window.localStorage.setItem("userData", JSON.stringify(formData));
     }
     const orderData = formData;
-    orderData.shishaId = selectedShisha?._id;
+    orderData.shishaName = selectedShisha?.name;
     orderData.extras = selectedExtras;
     orderData.dateOfDelivery = dateOfDelivery;
-    // console.log(orderData);
+    //console.log(orderData);
 
     dispatch(postNewOrder(orderData));
     // console.log("handlling submit");

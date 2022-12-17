@@ -5,7 +5,7 @@ import { NewOrderFormData } from "../../components/forms/newOrderForm/NewOrderFo
 
 export interface Order {
   _id?: string;
-  shishaId: string | undefined;
+  shishaName: string;
   userFullName: string;
   userAddress: string;
   dateOfDelivery: string;
