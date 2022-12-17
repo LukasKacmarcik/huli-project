@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { fetchOpenOrders } from "../../../app/slices/orders";
 import OpenOrderRow from "./openOrderRow/OpenOrderRow";
+import styles from "./ListOfOpenOrders.module.scss";
 
 const ListOfOpenOrders: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +15,7 @@ const ListOfOpenOrders: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.tableWrapper}>
       <table>
         <thead>
           <tr>
