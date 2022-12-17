@@ -14,7 +14,9 @@ export const getOrders = async (req, res) => {
 
 export const getOpenOrders = async (req, res) => {
   try {
-    const response = await Order.find({ done: false });
+    const response = await Order.find({ done: false }).sort({
+      dateOfDelivery: 1,
+    });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
