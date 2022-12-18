@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { api } from "../../api";
 import { NewOrderFormData } from "../../components/forms/newOrderForm/NewOrderForm";
+import { OrderSwitchDoneBody } from "../../components/owner/listOfOpenOrders/openOrderRow/OpenOrderRow";
 
 export interface Order {
   _id?: string;
@@ -93,6 +94,22 @@ export const postNewOrder = createAsyncThunk(
   }
 );
 
+export const switchOrderDoneStatus = createAsyncThunk(
+  "orders/switchOrderDoneStatus",
+  async (orderIdAndStatus: OrderSwitchDoneBody) => {
+    try {
+      const response = await api.patch("/order/done", orderIdAndStatus);
+      if (response.status === 200) {
+        const response = await api.get("/orders/open");
+        // The value we return becomes the `fulfilled` action payload
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
 export const fetchExtras = createAsyncThunk("extras/fetchExtras", async () => {
   try {
     const response = await api.get("/extras");
@@ -169,6 +186,18 @@ export const ordersSlice = createSlice({
         state.orders = action.payload;
       })
       .addCase(postNewOrder.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(switchOrderDoneStatus.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(switchOrderDoneStatus.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.openOrders = action.payload;
+      })
+      .addCase(switchOrderDoneStatus.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });

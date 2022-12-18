@@ -26,7 +26,6 @@ export const getOpenOrders = async (req, res) => {
 
 export const postOrder = async (req, res) => {
   const order = req.body;
-  console.log(order);
 
   const newOrder = new Order(order);
 
@@ -37,6 +36,18 @@ export const postOrder = async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.status(409).json({ message: error.message });
+  }
+};
+
+export const switchOrderDoneStatus = async (req, res) => {
+  try {
+    await Order.findOneAndUpdate({ _id: req.body._id }, [
+      { $set: { done: !req.body.done } },
+    ]);
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
   }
 };
 

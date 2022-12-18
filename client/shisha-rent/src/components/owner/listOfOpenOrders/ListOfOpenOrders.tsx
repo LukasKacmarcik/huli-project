@@ -29,7 +29,7 @@ const ListOfOpenOrders: React.FC = () => {
             <th>Owner Note</th>
             <th>Date Of Delivery</th>
             <th>Hour Of Delivery</th>
-            <th>Done</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>{mapedOpenOrders}</tbody>

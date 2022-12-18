@@ -5,6 +5,7 @@ import {
   getOrders,
   getOpenOrders,
   postOrder,
+  switchOrderDoneStatus,
   getExtras,
   getDeliveryHours,
 } from "../controllers/order.js";
@@ -53,6 +54,7 @@ api.post("/shisha/new", postShisha);
 api.get("/orders", getOrders);
 api.get("/orders/open", getOpenOrders);
 api.post("/order/new", postOrder);
+api.patch("/order/done", switchOrderDoneStatus);
 
 ////////Extras/////////
 api.get("/extras", getExtras);

@@ -1,11 +1,18 @@
 import React from "react";
-import { Order } from "../../../../app/slices/orders";
+import { useAppDispatch } from "../../../../app/hooks";
+import { Order, switchOrderDoneStatus } from "../../../../app/slices/orders";
 
 interface OrderProps {
   order: Order;
 }
 
+export interface OrderSwitchDoneBody {
+  _id: string;
+  done: boolean;
+}
+
 const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
+  const dispatch = useAppDispatch();
   const extrasInString = order.extras
     ?.reduce((str, extra, idx) => {
       return (str += ` ${
@@ -13,6 +20,16 @@ const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
       }`);
     }, "")
     .trim();
+
+  const markAsDone = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (order._id !== undefined && order.done !== undefined) {
+      const switchBody: OrderSwitchDoneBody = {
+        _id: order._id,
+        done: order.done,
+      };
+      dispatch(switchOrderDoneStatus(switchBody));
+    }
+  };
 
   return (
     <tr data-order_id={order._id}>
@@ -26,7 +43,10 @@ const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
       <th>{order.ownerNote}</th>
       <th>{new Date(order.dateOfDelivery).toLocaleDateString()}</th>
       <th>{new Date(order.dateOfDelivery).getHours()}</th>
-      <th>{order.done}</th>
+      <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+        <button onClick={markAsDone}>Done</button>
+        <button>Update</button>
+      </th>
     </tr>
   );
 };
