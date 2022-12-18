@@ -12,6 +12,7 @@ import {
   DeliveryHours,
   updateNewOrderDate,
 } from "../../../../app/slices/orders";
+import { fetchExcludedDates } from "../../../../app/slices/shishas";
 
 const ShishasDatePicker: React.FC = () => {
   const validHourOptions = useAppSelector(
@@ -20,6 +21,9 @@ const ShishasDatePicker: React.FC = () => {
   // const validHourOptions = [7, 8, 9, 10, 11];
   const dispatch = useAppDispatch();
   const [startDate, setStartDate] = useState<Date | null>(null);
+  const selectedShishaName = useAppSelector(
+    (state) => state.shishas.selectedShisha?.name
+  );
   const myTime = new Date("2022-12-26T16:00:48.212Z");
   const myDatesArr: Date[] = [myTime, subDays(myTime, -1)];
 
@@ -52,6 +56,9 @@ const ShishasDatePicker: React.FC = () => {
       })}
     </select>
   );
+  useEffect(() => {
+    dispatch(fetchExcludedDates(selectedShishaName));
+  }, [dispatch, selectedShishaName]);
 
   useEffect(() => {
     if (startDate) {

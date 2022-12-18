@@ -1,6 +1,10 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import { getShishas, postShisha } from "../controllers/shisha.js";
+import {
+  getShishas,
+  postShisha,
+  getShishaExcludedDates,
+} from "../controllers/shisha.js";
 import {
   getOrders,
   getOpenOrders,
@@ -48,6 +52,7 @@ const validateOptionalJWT = (req, res, next) => {
 
 ////////SHISHAS/////////
 api.get("/shishas", getShishas);
+api.get("/shisha/excludedDates/:selectedShishaName", getShishaExcludedDates);
 api.post("/shisha/new", postShisha);
 
 ////////ORDERS/////////

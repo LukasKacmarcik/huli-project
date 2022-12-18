@@ -17,6 +17,8 @@ export interface ShishasState {
   status: "idle" | "loading" | "successful" | "failed";
   messages: { [key: string]: string };
   selectedShisha: Shisha | undefined;
+  excludedDates: any;
+  //excludedDates: string[] | null;
 }
 
 const initialState: ShishasState = {
@@ -24,6 +26,7 @@ const initialState: ShishasState = {
   shishas: [],
   messages: {},
   selectedShisha: undefined,
+  excludedDates: null,
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -37,6 +40,23 @@ export const fetchShishas = createAsyncThunk(
     try {
       const response = await api.get("/shishas");
       // The value we return becomes the `fulfilled` action payload
+      return response.data;
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const fetchExcludedDates = createAsyncThunk(
+  "shishas/fetchExcludedDates",
+  async (selectedShishaName: string | undefined) => {
+    try {
+      const response = await api.get(
+        `/shisha/excludedDates/${selectedShishaName}`
+      );
+      // The value we return becomes the `fulfilled` action payload
+      console.log(response.data);
+
       return response.data;
     } catch (error: any) {
       throw new Error(JSON.stringify(error.response.data));
@@ -95,6 +115,18 @@ export const shishasSlice = createSlice({
         state.shishas = action.payload;
       })
       .addCase(fetchShishas.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(fetchExcludedDates.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchExcludedDates.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.excludedDates = action.payload;
+      })
+      .addCase(fetchExcludedDates.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });
