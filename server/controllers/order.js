@@ -41,8 +41,12 @@ export const postOrder = async (req, res) => {
 
 export const switchOrderDoneStatus = async (req, res) => {
   try {
+    //// Find original order by id
+    const originalOrder = await Order.findOne({ _id: req.body._id });
+
+    //// Switch order done status base on original value
     await Order.findOneAndUpdate({ _id: req.body._id }, [
-      { $set: { done: !req.body.done } },
+      { $set: { done: !originalOrder.done } },
     ]);
     res.sendStatus(200);
   } catch (error) {

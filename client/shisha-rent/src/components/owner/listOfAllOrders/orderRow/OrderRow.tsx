@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { useAppDispatch } from "../../../../app/hooks";
 import {
   fetchOrders,
   Order,
@@ -12,11 +12,11 @@ interface OrderProps {
 
 export interface OrderSwitchDoneBody {
   _id: string;
+  done: boolean;
 }
 
-const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
+const OrderRow: React.FC<OrderProps> = ({ order }) => {
   const dispatch = useAppDispatch();
-  const showAllOrders = useAppSelector((state) => state.orders.showAllOrders);
   const extrasInString = order.extras
     ?.reduce((str, extra, idx) => {
       return (str += ` ${
@@ -31,10 +31,10 @@ const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
     if (order._id !== undefined && order.done !== undefined) {
       const switchBody: OrderSwitchDoneBody = {
         _id: order._id,
+        done: order.done,
       };
       await dispatch(switchOrderDoneStatus(switchBody));
-      //// Only fetch all orders if we want to display them otherwise does not fetch because it is unnecessary
-      if (showAllOrders) await dispatch(fetchOrders());
+      await dispatch(fetchOrders());
     }
   };
 
@@ -50,12 +50,13 @@ const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
       <th>{order.ownerNote}</th>
       <th>{new Date(order.dateOfDelivery).toLocaleDateString()}</th>
       <th>{new Date(order.dateOfDelivery).getHours()}</th>
+      <th>{order.done ? "Yes" : "No"}</th>
       <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <button onClick={switchDoneState}>Done</button>
+        <button onClick={switchDoneState}>Switch done status</button>
         <button>Update</button>
       </th>
     </tr>
   );
 };
 
-export default OpenOrderRow;
+export default OrderRow;
