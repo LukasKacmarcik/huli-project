@@ -14,6 +14,11 @@ import {
 } from "../../../../app/slices/orders";
 import { fetchExcludedDates } from "../../../../app/slices/shishas";
 
+interface ExcludedDateObject {
+  _id: string;
+  dateOfDelivery: string;
+}
+
 const ShishasDatePicker: React.FC = () => {
   const validHourOptions = useAppSelector(
     (state) => state.orders.deliveryHours
@@ -24,8 +29,18 @@ const ShishasDatePicker: React.FC = () => {
   const selectedShishaName = useAppSelector(
     (state) => state.shishas.selectedShisha?.name
   );
-  const myTime = new Date("2022-12-26T16:00:48.212Z");
-  const myDatesArr: Date[] = [myTime, subDays(myTime, -1)];
+  /////////////// These comments can be deleted
+  //const myTime = new Date("2022-12-26T16:00:48.212Z");
+  //const myDatesArr: Date[] = [myTime, subDays(myTime, -1)];
+  const myDatesArr: Date[] = useAppSelector(
+    (state) => state.shishas.excludedDates
+  )?.reduce((acc: Date[], excludedDateObj: ExcludedDateObject) => {
+    //// Push date of delivery
+    acc.push(new Date(excludedDateObj.dateOfDelivery));
+    //// Push day after date of delivery
+    acc.push(subDays(new Date(excludedDateObj.dateOfDelivery), -1));
+    return acc;
+  }, []);
 
   const handleSetHours = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setStartDate((ps) => {

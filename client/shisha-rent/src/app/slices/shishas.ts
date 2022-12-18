@@ -54,9 +54,6 @@ export const fetchExcludedDates = createAsyncThunk(
       const response = await api.get(
         `/shisha/excludedDates/${selectedShishaName}`
       );
-      // The value we return becomes the `fulfilled` action payload
-      console.log(response.data);
-
       return response.data;
     } catch (error: any) {
       throw new Error(JSON.stringify(error.response.data));
