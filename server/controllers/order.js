@@ -4,7 +4,9 @@ import Order from "../models/order.js";
 
 export const getOrders = async (req, res) => {
   try {
-    const response = await Order.find();
+    const response = await Order.find().sort({
+      dateOfDelivery: 1,
+    });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
