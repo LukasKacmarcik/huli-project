@@ -163,9 +163,9 @@ export const ordersSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchOrders.fulfilled, (state, action) => {
-        const openOrdersOnly = action.payload.filter(
-          (order: Order) => order.done === false
-        );
+        const openOrdersOnly = action.payload
+          .filter((order: Order) => order.done === false)
+          .reverse();
         state.status = "successful";
         state.orders = action.payload;
         state.openOrders = openOrdersOnly;
