@@ -41,6 +41,27 @@ export const postOrder = async (req, res) => {
   }
 };
 
+export const updateOrder = async (req, res) => {
+  console.log(req.body);
+  try {
+    await Order.findOneAndUpdate({ _id: req.body._id }, [
+      {
+        $set: {
+          ownerNote: req.body.ownerNote,
+          userAddress: req.body.userAddress,
+          userFullName: req.body.userFullName,
+          userNote: req.body.userNote,
+          userTelNumber: req.body.userTelNumber,
+        },
+      },
+    ]);
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const switchOrderDoneStatus = async (req, res) => {
   try {
     //// Find original order by id

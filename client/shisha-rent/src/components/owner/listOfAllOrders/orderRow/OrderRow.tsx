@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../../app/hooks";
 import {
   fetchOrders,
@@ -16,6 +17,7 @@ export interface OrderSwitchDoneBody {
 }
 
 const OrderRow: React.FC<OrderProps> = ({ order }) => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const extrasInString = order.extras
     ?.reduce((str, extra, idx) => {
@@ -38,6 +40,10 @@ const OrderRow: React.FC<OrderProps> = ({ order }) => {
     }
   };
 
+  const redirect = () => {
+    navigate(`/owner/order/update/${order._id}`);
+  };
+
   return (
     <tr data-order_id={order._id}>
       <th>{order.userFullName}</th>
@@ -53,7 +59,7 @@ const OrderRow: React.FC<OrderProps> = ({ order }) => {
       <th>{order.done ? "Yes" : "No"}</th>
       <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <button onClick={switchDoneState}>Switch done status</button>
-        <button>Update</button>
+        <button onClick={redirect}>Update</button>
       </th>
     </tr>
   );

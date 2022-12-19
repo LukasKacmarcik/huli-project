@@ -96,6 +96,21 @@ export const postNewOrder = createAsyncThunk(
   }
 );
 
+export const updateOrder = createAsyncThunk(
+  "orders/updateOrder",
+  async (updateOrderBody: any) => {
+    try {
+      const response = await api.patch("/order/update", updateOrderBody);
+      if (response.status === 200) {
+        const response = await api.get("/orders");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
 export const switchOrderDoneStatus = createAsyncThunk(
   "orders/switchOrderDoneStatus",
   async (orderIdAndStatus: OrderSwitchDoneBody) => {
@@ -195,6 +210,18 @@ export const ordersSlice = createSlice({
         state.orders = action.payload;
       })
       .addCase(postNewOrder.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(updateOrder.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateOrder.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.openOrders = action.payload;
+      })
+      .addCase(updateOrder.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });

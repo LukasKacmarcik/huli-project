@@ -9,6 +9,7 @@ import {
   getOrders,
   getOpenOrders,
   postOrder,
+  updateOrder,
   switchOrderDoneStatus,
   getExtras,
   getDeliveryHours,
@@ -59,6 +60,7 @@ api.post("/shisha/new", postShisha);
 api.get("/orders", getOrders);
 api.get("/orders/open", getOpenOrders);
 api.post("/order/new", postOrder);
+api.patch("/order/update", updateOrder);
 api.patch("/order/done", switchOrderDoneStatus);
 
 ////////Extras/////////
