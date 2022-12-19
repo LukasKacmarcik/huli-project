@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ShishasDatePicker from "../../shisha/selectedShisha/shishasDatePicker/ShishasDatePicker";
+import ShishasDatePicker from "../../customer/shisha/selectedShisha/shishasDatePicker/ShishasDatePicker";
 
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {

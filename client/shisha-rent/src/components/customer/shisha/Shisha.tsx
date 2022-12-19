@@ -1,9 +1,9 @@
 import React from "react";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch } from "../../../app/hooks";
 import {
   setSelectedShisha,
   Shisha as ShishaType,
-} from "../../app/slices/shishas";
+} from "../../../app/slices/shishas";
 import styles from "./Shisha.module.scss";
 
 interface Props {

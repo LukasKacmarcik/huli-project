@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import Home from "./components/home/Home";
+import Home from "./components/customer/home/Home";
 import OwnerView from "./components/owner/ownerView/OwnerView";
 
 const App: React.FC = () => {

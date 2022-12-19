@@ -1,5 +1,5 @@
 import SelectedShishaPreview from "./selectedShishaPreview/SelectedShishaPreview";
-import NewOrderForm from "../../forms/newOrderForm/NewOrderForm";
+import NewOrderForm from "../../../forms/newOrderForm/NewOrderForm";
 import styles from "./SelectedShisha.module.scss";
 
 const SelectedShisha: React.FC = () => {

@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../../app/hooks";
 import ListOfShishas from "../listOfShishas/ListOfShishas";
 import SelectedShisha from "../shisha/selectedShisha/SelectedShisha";
 
