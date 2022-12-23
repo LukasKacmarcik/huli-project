@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import {
   fetchOrders,
   Order,
   switchOrderDoneStatus,
-} from "../../../../app/slices/orders";
+} from "../../../../../app/slices/orders";
 
 interface OrderProps {
   order: Order;

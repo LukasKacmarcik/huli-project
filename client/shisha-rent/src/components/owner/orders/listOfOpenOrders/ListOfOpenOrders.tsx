@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { fetchOrders } from "../../../app/slices/orders";
-import OrderRow from "./orderRow/OrderRow";
-import styles from "./ListOfAllOrders.module.scss";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { fetchOpenOrders } from "../../../../app/slices/orders";
+import OpenOrderRow from "./openOrderRow/OpenOrderRow";
+import styles from "./ListOfOpenOrders.module.scss";
 
-const ListOfAllOrders: React.FC = () => {
+const ListOfOpenOrders: React.FC = () => {
   const dispatch = useAppDispatch();
-  const allOrders = useAppSelector((state) => state.orders.orders);
-  const mapedAllOrders = allOrders?.map((order) => {
-    return <OrderRow key={order._id} order={order} />;
+  const openOrders = useAppSelector((state) => state.orders.openOrders);
+  const mapedOpenOrders = openOrders?.map((order) => {
+    return <OpenOrderRow key={order._id} order={order} />;
   });
   useEffect(() => {
-    dispatch(fetchOrders());
+    dispatch(fetchOpenOrders());
   }, [dispatch]);
 
   return (
@@ -29,14 +29,13 @@ const ListOfAllOrders: React.FC = () => {
             <th>Owner Note</th>
             <th>Date Of Delivery</th>
             <th>Hour Of Delivery</th>
-            <th>Done</th>
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>{mapedAllOrders}</tbody>
+        <tbody>{mapedOpenOrders}</tbody>
       </table>
     </div>
   );
 };
 
-export default ListOfAllOrders;
+export default ListOfOpenOrders;

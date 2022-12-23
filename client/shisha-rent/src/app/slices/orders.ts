@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { api } from "../../api";
 import { NewOrderFormData } from "../../components/forms/newOrderForm/NewOrderForm";
-import { OrderSwitchDoneBody } from "../../components/owner/listOfOpenOrders/openOrderRow/OpenOrderRow";
+import { OrderSwitchDoneBody } from "../../components/owner/orders/listOfOpenOrders/openOrderRow/OpenOrderRow";
 
 export interface Order {
   _id?: string;
