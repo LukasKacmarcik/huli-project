@@ -12,6 +12,8 @@ import {
   updateOrder,
   switchOrderDoneStatus,
   getExtras,
+  updateExtra,
+  deleteExtra,
   getDeliveryHours,
 } from "../controllers/order.js";
 
@@ -65,6 +67,8 @@ api.patch("/order/done", switchOrderDoneStatus);
 
 ////////Extras/////////
 api.get("/extras", getExtras);
+api.patch("/extra/update", updateExtra);
+api.patch("/extra/delete", deleteExtra);
 
 ////////DeliveryHours/////////
 api.get("/deliveryHours", getDeliveryHours);

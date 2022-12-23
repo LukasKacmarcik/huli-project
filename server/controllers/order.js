@@ -88,6 +88,32 @@ export const getExtras = async (req, res) => {
   }
 };
 
+export const updateExtra = async (req, res) => {
+  try {
+    const response = await Extra.findOneAndUpdate(
+      { _id: req.body._id },
+      {
+        name: req.body.name,
+        price: req.body.price,
+      }
+    );
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const deleteExtra = async (req, res) => {
+  try {
+    const response = await Extra.findOneAndRemove({ _id: req.body._id });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const getDeliveryHours = async (req, res) => {
   try {
     const response = await DeliveryHour.find();
