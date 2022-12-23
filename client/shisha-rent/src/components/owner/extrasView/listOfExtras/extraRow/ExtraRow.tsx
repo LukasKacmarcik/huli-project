@@ -10,7 +10,7 @@ const ExtraRow: React.FC<ExtraProps> = ({ extra }) => {
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteExtra(extra._id));
+    if (extra._id) dispatch(deleteExtra(extra._id));
   };
 
   return (

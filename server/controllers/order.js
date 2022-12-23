@@ -88,19 +88,18 @@ export const getExtras = async (req, res) => {
   }
 };
 
-export const updateExtra = async (req, res) => {
+export const postExtra = async (req, res) => {
+  const extra = req.body;
+  console.log(extra);
+  const newExtra = new Extra(extra);
+
   try {
-    const response = await Extra.findOneAndUpdate(
-      { _id: req.body._id },
-      {
-        name: req.body.name,
-        price: req.body.price,
-      }
-    );
-    res.status(200).json(response);
+    await newExtra.save();
+
+    res.status(201).json(newExtra);
   } catch (error) {
     console.log(error.message);
-    res.status(404).json({ message: error.message });
+    res.status(409).json({ message: error.message });
   }
 };
 
@@ -117,6 +116,33 @@ export const deleteExtra = async (req, res) => {
 export const getDeliveryHours = async (req, res) => {
   try {
     const response = await DeliveryHour.find();
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const postDeliveryHour = async (req, res) => {
+  const deliveryHour = req.body;
+  console.log(deliveryHour);
+  const newDeliveryHour = new DeliveryHour(deliveryHour);
+
+  try {
+    await newDeliveryHour.save();
+
+    res.status(201).json(newDeliveryHour);
+  } catch (error) {
+    console.log(error.message);
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const deleteDeliveryHour = async (req, res) => {
+  try {
+    const response = await DeliveryHour.findOneAndRemove({
+      _id: req.params.deliveryHourId,
+    });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);

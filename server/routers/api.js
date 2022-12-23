@@ -12,9 +12,11 @@ import {
   updateOrder,
   switchOrderDoneStatus,
   getExtras,
-  updateExtra,
+  postExtra,
   deleteExtra,
   getDeliveryHours,
+  postDeliveryHour,
+  deleteDeliveryHour,
 } from "../controllers/order.js";
 
 const api = express.Router();
@@ -67,11 +69,13 @@ api.patch("/order/done", switchOrderDoneStatus);
 
 ////////Extras/////////
 api.get("/extras", getExtras);
-api.patch("/extra/update", updateExtra);
+api.post("/extra/new", postExtra);
 api.delete("/extra/delete/:extraId", deleteExtra);
 
 ////////DeliveryHours/////////
 api.get("/deliveryHours", getDeliveryHours);
+api.post("/deliveryHour/new", postDeliveryHour);
+api.delete("/deliveryHour/delete/:deliveryHourId", deleteDeliveryHour);
 
 // export the routes
 export default api;

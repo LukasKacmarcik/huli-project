@@ -1,9 +1,11 @@
 import React from "react";
 import ListOfExtras from "./listOfExtras/ListOfExtras";
+import NewExtra from "./newExtra/NewExtra";
 
 const ExtrasView = () => {
   return (
-    <div>
+    <div style={{ marginTop: "50px" }}>
+      <NewExtra />
       <ListOfExtras />
     </div>
   );

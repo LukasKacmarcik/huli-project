@@ -3,6 +3,8 @@ import { RootState } from "../store";
 import { api } from "../../api";
 import { NewOrderFormData } from "../../components/forms/newOrderForm/NewOrderForm";
 import { OrderSwitchDoneBody } from "../../components/owner/orders/listOfOpenOrders/openOrderRow/OpenOrderRow";
+import { NewExtraFormData } from "../../components/owner/extrasView/newExtra/NewExtra";
+import { NewDeliveryHourFormData } from "../../components/owner/deliveryHoursView/newDeliveryHour/NewDeliveryHour";
 
 export interface Order {
   _id?: string;
@@ -29,7 +31,7 @@ export interface OrdersState {
   newOrderDate: string | null;
   offeredExtras: Extra[];
   selectedExtras: Extra[];
-  deliveryHours: DeliveryHours[];
+  deliveryHours: DeliveryHour[];
 }
 
 export interface Extra {
@@ -38,7 +40,8 @@ export interface Extra {
   price: number;
 }
 
-export interface DeliveryHours {
+export interface DeliveryHour {
+  _id?: string;
   hour: number;
 }
 
@@ -137,9 +140,24 @@ export const fetchExtras = createAsyncThunk("extras/fetchExtras", async () => {
   }
 });
 
+export const postNewExtra = createAsyncThunk(
+  "orders/postNewExtra",
+  async (newExtra: NewExtraFormData) => {
+    try {
+      const response = await api.post(`/extra/new`, newExtra);
+      if (response.status === 201) {
+        const response = await api.get("/extras");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
 export const deleteExtra = createAsyncThunk(
   "orders/deleteExtra",
-  async (extraId: any) => {
+  async (extraId: string) => {
     try {
       const response = await api.delete(`/extra/delete/${extraId}`);
       if (response.status === 200) {
@@ -158,6 +176,38 @@ export const fetchDeliveryHours = createAsyncThunk(
     try {
       const response = await api.get("/deliveryHours");
       return response.data;
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const postNewDeliveryHour = createAsyncThunk(
+  "orders/postNewDeliveryHour",
+  async (deliveryHour: NewDeliveryHourFormData) => {
+    try {
+      const response = await api.post(`/deliveryHour/new`, deliveryHour);
+      if (response.status === 201) {
+        const response = await api.get("/deliveryHours");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const deleteDeliveryHour = createAsyncThunk(
+  "orders/deleteDeliveryHour",
+  async (deliveryHourId: string) => {
+    try {
+      const response = await api.delete(
+        `/deliveryHour/delete/${deliveryHourId}`
+      );
+      if (response.status === 200) {
+        const response = await api.get("/deliveryHours");
+        return response.data;
+      }
     } catch (error: any) {
       throw new Error(JSON.stringify(error.response.data));
     }
@@ -266,6 +316,18 @@ export const ordersSlice = createSlice({
         state.messages = JSON.parse(action.error.message);
       });
     builder
+      .addCase(postNewExtra.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(postNewExtra.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredExtras = action.payload;
+      })
+      .addCase(postNewExtra.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
       .addCase(deleteExtra.pending, (state) => {
         state.status = "loading";
       })
@@ -286,6 +348,30 @@ export const ordersSlice = createSlice({
         state.deliveryHours = action.payload;
       })
       .addCase(fetchDeliveryHours.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(postNewDeliveryHour.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(postNewDeliveryHour.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.deliveryHours = action.payload;
+      })
+      .addCase(postNewDeliveryHour.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(deleteDeliveryHour.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteDeliveryHour.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.deliveryHours = action.payload;
+      })
+      .addCase(deleteDeliveryHour.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });

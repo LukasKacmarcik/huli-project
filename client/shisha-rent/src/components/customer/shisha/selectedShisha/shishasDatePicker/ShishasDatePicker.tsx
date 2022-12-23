@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import subDays from "date-fns/subDays";
 import { useAppDispatch, useAppSelector } from "../../../../../app/hooks";
 import {
-  DeliveryHours,
+  DeliveryHour,
   updateNewOrderDate,
 } from "../../../../../app/slices/orders";
 import { fetchExcludedDates } from "../../../../../app/slices/shishas";
@@ -62,7 +62,7 @@ const ShishasDatePicker: React.FC = () => {
       disabled={startDate !== null ? false : true}
     >
       <option value={undefined}>Zvoľ čas donášky</option>
-      {validHourOptions.map((option: DeliveryHours) => {
+      {validHourOptions.map((option: DeliveryHour) => {
         return (
           <option key={option.hour} value={option.hour}>
             {option.hour}
