@@ -115,7 +115,9 @@ export const deleteExtra = async (req, res) => {
 
 export const getDeliveryHours = async (req, res) => {
   try {
-    const response = await DeliveryHour.find();
+    const response = await DeliveryHour.find().sort({
+      hour: 1,
+    });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
