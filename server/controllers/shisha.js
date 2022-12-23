@@ -41,3 +41,36 @@ export const postShisha = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const updateShisha = async (req, res) => {
+  console.log(req.body);
+  try {
+    await Shisha.findOneAndUpdate({ _id: req.body._id }, [
+      {
+        $set: {
+          name: req.body.ownerNote,
+          description: req.body.userAddress,
+          price: req.body.userFullName,
+          show: req.body.userTelNumber,
+          selectedFile: req.body.userNote,
+        },
+      },
+    ]);
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const deleteShisha = async (req, res) => {
+  try {
+    const response = await Shisha.findOneAndRemove({
+      _id: req.params.shishaId,
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};

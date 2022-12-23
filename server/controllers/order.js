@@ -127,7 +127,6 @@ export const getDeliveryHours = async (req, res) => {
 
 export const postDeliveryHour = async (req, res) => {
   const deliveryHour = req.body;
-  console.log(deliveryHour);
   const newDeliveryHour = new DeliveryHour(deliveryHour);
 
   try {

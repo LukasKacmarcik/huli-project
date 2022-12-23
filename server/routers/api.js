@@ -4,6 +4,8 @@ import {
   getShishas,
   postShisha,
   getShishaExcludedDates,
+  updateShisha,
+  deleteShisha,
 } from "../controllers/shisha.js";
 import {
   getOrders,
@@ -59,6 +61,8 @@ const validateOptionalJWT = (req, res, next) => {
 api.get("/shishas", getShishas);
 api.get("/shisha/excludedDates/:selectedShishaName", getShishaExcludedDates);
 api.post("/shisha/new", postShisha);
+api.patch("/shisha/update", updateShisha);
+api.delete("/shisha/delete/:shishaId", deleteShisha);
 
 ////////ORDERS/////////
 api.get("/orders", getOrders);

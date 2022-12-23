@@ -78,6 +78,36 @@ export const postNewShisha = createAsyncThunk(
   }
 );
 
+export const updateShisha = createAsyncThunk(
+  "orders/updateShisha",
+  async (updateShishaBody: any) => {
+    try {
+      const response = await api.patch("/shisha/update", updateShishaBody);
+      if (response.status === 200) {
+        const response = await api.get("/shishas");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const deleteShisha = createAsyncThunk(
+  "orders/deleteShisha",
+  async (shishaId: string) => {
+    try {
+      const response = await api.delete(`/shisha/delete/${shishaId}`);
+      if (response.status === 200) {
+        const response = await api.get("/shishas");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
 export const shishasSlice = createSlice({
   name: "shishas",
   initialState,
@@ -136,6 +166,30 @@ export const shishasSlice = createSlice({
         state.shishas = action.payload;
       })
       .addCase(postNewShisha.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(updateShisha.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateShisha.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.shishas = action.payload;
+      })
+      .addCase(updateShisha.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(deleteShisha.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteShisha.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.shishas = action.payload;
+      })
+      .addCase(deleteShisha.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });
