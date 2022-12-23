@@ -33,6 +33,7 @@ export interface OrdersState {
 }
 
 export interface Extra {
+  _id?: string;
   name: string;
   price: number;
 }
@@ -135,6 +136,21 @@ export const fetchExtras = createAsyncThunk("extras/fetchExtras", async () => {
     throw new Error(JSON.stringify(error.response.data));
   }
 });
+
+export const deleteExtra = createAsyncThunk(
+  "orders/deleteExtra",
+  async (extraId: any) => {
+    try {
+      const response = await api.delete(`/extra/delete/${extraId}`);
+      if (response.status === 200) {
+        const response = await api.get("/extras");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
 
 export const fetchDeliveryHours = createAsyncThunk(
   "deliveryHours/fetchDeliveryHours",
@@ -246,6 +262,18 @@ export const ordersSlice = createSlice({
         state.offeredExtras = action.payload;
       })
       .addCase(fetchExtras.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(deleteExtra.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteExtra.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredExtras = action.payload;
+      })
+      .addCase(deleteExtra.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });

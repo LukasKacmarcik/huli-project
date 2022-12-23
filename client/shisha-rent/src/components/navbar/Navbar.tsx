@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div>
-        <a href="#">LOGO</a>
+        <Link to="/">LOGO</Link>
       </div>
 
       <input
@@ -43,6 +43,9 @@ const Navbar: React.FC = () => {
       <ul>
         <li>
           <Link to="owner">Owner View</Link>
+        </li>
+        <li>
+          <Link to="owner/extras">Extras</Link>
         </li>
         <li>
           <Link to="/">Home</Link>

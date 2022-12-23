@@ -106,7 +106,7 @@ export const updateExtra = async (req, res) => {
 
 export const deleteExtra = async (req, res) => {
   try {
-    const response = await Extra.findOneAndRemove({ _id: req.body._id });
+    const response = await Extra.findOneAndRemove({ _id: req.params.extraId });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);

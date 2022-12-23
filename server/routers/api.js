@@ -68,7 +68,7 @@ api.patch("/order/done", switchOrderDoneStatus);
 ////////Extras/////////
 api.get("/extras", getExtras);
 api.patch("/extra/update", updateExtra);
-api.patch("/extra/delete", deleteExtra);
+api.delete("/extra/delete/:extraId", deleteExtra);
 
 ////////DeliveryHours/////////
 api.get("/deliveryHours", getDeliveryHours);
