@@ -48,11 +48,11 @@ export const updateShisha = async (req, res) => {
     await Shisha.findOneAndUpdate({ _id: req.body._id }, [
       {
         $set: {
-          name: req.body.ownerNote,
-          description: req.body.userAddress,
-          price: req.body.userFullName,
-          show: req.body.userTelNumber,
-          selectedFile: req.body.userNote,
+          name: req.body.name,
+          description: req.body.description,
+          price: req.body.price,
+          show: req.body.show,
+          selectedFile: req.body.selectedFile,
         },
       },
     ]);
