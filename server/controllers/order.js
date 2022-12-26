@@ -52,6 +52,7 @@ export const updateOrder = async (req, res) => {
           userFullName: req.body.userFullName,
           userNote: req.body.userNote,
           userTelNumber: req.body.userTelNumber,
+          userEmailAddress: req.body.userEmailAddress,
         },
       },
     ]);

@@ -31,6 +31,7 @@ const OrderUpdate: React.FC = () => {
     userFullName: "",
     userNote: "",
     userTelNumber: "",
+    userEmailAddress: "",
   };
   const [formData, setFormData] = useState(defaultFrormData);
 
@@ -50,6 +51,7 @@ const OrderUpdate: React.FC = () => {
         userFullName: orderToUpdate.userFullName,
         userNote: orderToUpdate.userNote,
         userTelNumber: orderToUpdate.userTelNumber,
+        userEmailAddress: orderToUpdate.userEmailAddress,
       });
   }, [orderToUpdate]);
 
@@ -63,15 +65,16 @@ const OrderUpdate: React.FC = () => {
     });
   };
 
+  //// When update is saved
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await dispatch(updateOrder(formData));
     if (Object.keys(errMessages).length === 0) {
-      console.log("Order sucessfully updated");
       navigate(-1);
     }
   };
 
+  //// When update is canceled
   const onCancel = () => {
     navigate(-1);
   };
@@ -103,6 +106,14 @@ const OrderUpdate: React.FC = () => {
           value={formData.userTelNumber}
           onChange={handleChange}
         />
+        <label htmlFor="userEmailAddress">Email</label>
+        <input
+          type="text"
+          id="userEmailAddress"
+          name="userEmailAddress"
+          value={formData.userEmailAddress}
+          onChange={handleChange}
+        />
         <label htmlFor="userNote">User Note</label>
         <input
           type="text"
@@ -116,7 +127,7 @@ const OrderUpdate: React.FC = () => {
           type="text"
           id="ownerNote"
           name="ownerNote"
-          value={formData.ownerNote}
+          value={formData.userEmailAddress}
           onChange={handleChange}
         />
         <div>

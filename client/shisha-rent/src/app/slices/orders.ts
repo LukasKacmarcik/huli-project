@@ -14,6 +14,7 @@ export interface Order {
   dateOfDelivery: string;
   timeOfDelivery: string;
   userTelNumber: string;
+  userEmailAddress: string;
   extras?: Extra[];
   total: number;
   userNote?: string;

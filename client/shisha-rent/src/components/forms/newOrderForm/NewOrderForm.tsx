@@ -16,6 +16,7 @@ export interface NewOrderFormData {
   userAddress: string;
   dateOfDelivery: string | null;
   userTelNumber: string;
+  userEmailAddress: string;
   extras: Extra[];
   total: number;
   userNote?: string;
@@ -26,9 +27,10 @@ const NewOrderForm: React.FC = () => {
   const selectedShisha = useAppSelector(
     (state) => state.shishas.selectedShisha
   );
-  const selectedShishaPrice = useAppSelector(
-    (state) => state.shishas.selectedShisha?.price
-  );
+  const selectedShishaPrice = selectedShisha?.price;
+  // const selectedShishaPrice = useAppSelector(
+  //   (state) => state.shishas.selectedShisha?.price
+  // );
   const dateOfDelivery = useAppSelector((state) => state.orders.newOrderDate);
 
   const dispatch = useAppDispatch();
@@ -50,6 +52,7 @@ const NewOrderForm: React.FC = () => {
     userAddress: userData?.userAddress || "",
     dateOfDelivery: dateOfDelivery,
     userTelNumber: userData?.userTelNumber || "",
+    userEmailAddress: userData?.userEmailAddress || "",
     extras: [],
     total: 0,
   });
@@ -135,6 +138,16 @@ const NewOrderForm: React.FC = () => {
           value={formData.userTelNumber}
           onChange={(e) =>
             setFormData({ ...formData, userTelNumber: e.target.value })
+          }
+        />
+        <label htmlFor="userEmailAddress">Email</label>
+        <input
+          id="userEmailAddress"
+          type="text"
+          name="userEmailAddress"
+          value={formData.userEmailAddress}
+          onChange={(e) =>
+            setFormData({ ...formData, userEmailAddress: e.target.value })
           }
         />
         <label htmlFor="userNote">Poznámka k objednávke</label>
