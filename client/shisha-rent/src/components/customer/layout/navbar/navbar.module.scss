@@ -11,6 +11,10 @@
   color: black;
   transition: 0.4s ease-out;
 
+  img {
+    max-height: 45px;
+  }
+
   &.scrolled {
     height: 50px;
     background-color: black;

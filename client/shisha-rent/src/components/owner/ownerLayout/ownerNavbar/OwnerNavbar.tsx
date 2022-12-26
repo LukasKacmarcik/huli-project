@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./OwnerNavbar.module.scss";
 import { Link } from "react-router-dom";
+import darkLogo from "../../../../images/logo-cierna.png";
+import brightLogo from "../../../../images/logo-biela.png";
 
 const OwnerNavbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -27,7 +29,13 @@ const OwnerNavbar: React.FC = () => {
       }`}
     >
       <div>
-        <Link to="/">LOGO</Link>
+        <Link to="/">
+          {isScrolled ? (
+            <img src={brightLogo} alt="logo" />
+          ) : (
+            <img src={darkLogo} alt="logo" />
+          )}
+        </Link>
       </div>
 
       <input

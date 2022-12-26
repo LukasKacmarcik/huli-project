@@ -111,7 +111,7 @@ const NewOrderForm: React.FC = () => {
       <ShishasDatePicker />
       <Extras />
       <div className={formStyle.formWrapper}>
-        <h1>New Order</h1>
+        <h1>Objednávka</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="userFullName">Meno a priezvisko</label>
           <input
