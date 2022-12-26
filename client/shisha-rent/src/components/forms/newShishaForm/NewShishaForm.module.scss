@@ -1,0 +1,38 @@
+.formWrapper {
+  background-color: rgb(228, 222, 222);
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 15px;
+  form {
+    font-size: x-large;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin: 0 auto;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 70%;
+      margin: 5px auto 15px;
+      font-size: large;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      &:focus {
+        outline: 2px solid red;
+      }
+    }
+
+    button {
+      margin: 0 auto;
+      padding: 10px;
+      width: 30%;
+    }
+  }
+}

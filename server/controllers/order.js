@@ -42,7 +42,6 @@ export const postOrder = async (req, res) => {
 };
 
 export const updateOrder = async (req, res) => {
-  console.log(req.body);
   try {
     await Order.findOneAndUpdate({ _id: req.body._id }, [
       {

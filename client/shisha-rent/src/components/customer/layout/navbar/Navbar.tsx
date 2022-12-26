@@ -42,19 +42,7 @@ const Navbar: React.FC = () => {
 
       <ul>
         <li>
-          <Link to="owner">Owner View</Link>
-        </li>
-        <li>
-          <Link to="owner/shishas">Shishas</Link>
-        </li>
-        <li>
-          <Link to="owner/extras">Extras</Link>
-        </li>
-        <li>
-          <Link to="owner/deliveryHours">Delivery Hours</Link>
-        </li>
-        <li>
-          <Link to="/">Home</Link>
+          <Link to="/owner/orders">Owner View</Link>
         </li>
       </ul>
     </header>

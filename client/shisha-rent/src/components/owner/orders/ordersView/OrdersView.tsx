@@ -1,15 +1,16 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { switchShowAllOrders } from "../../../app/slices/orders";
-import ListOfAllOrders from "../orders/listOfAllOrders/ListOfAllOrders";
-import ListOfOpenOrders from "../orders/listOfOpenOrders/ListOfOpenOrders";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { switchShowAllOrders } from "../../../../app/slices/orders";
+import ListOfAllOrders from "../listOfAllOrders/ListOfAllOrders";
+import ListOfOpenOrders from "../listOfOpenOrders/ListOfOpenOrders";
+import styles from "./OrdersView.module.scss";
 
-const OwnerView: React.FC = () => {
+const OrdersView: React.FC = () => {
   const dispatch = useAppDispatch();
   const showAllOrders = useAppSelector((state) => state.orders.showAllOrders);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <br />
       <br />
       <br />
@@ -23,4 +24,4 @@ const OwnerView: React.FC = () => {
   );
 };
 
-export default OwnerView;
+export default OrdersView;
