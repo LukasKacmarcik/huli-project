@@ -6,6 +6,7 @@ import FileBase from "react-file-base64";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { fetchShishas, updateShisha } from "../../../../app/slices/shishas";
+import formStyles from "../../../forms/form.module.scss";
 
 const ShishaUpdate: React.FC = () => {
   const params = useParams();
@@ -77,7 +78,8 @@ const ShishaUpdate: React.FC = () => {
   };
 
   return (
-    <div style={{ marginTop: "50px" }}>
+    <div className={formStyles.formWrapper}>
+      <h1>Update Shisha</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor="name">Name</label>
         <input
@@ -129,7 +131,7 @@ const ShishaUpdate: React.FC = () => {
             setFormData({ ...formData, selectedFile: base64 })
           }
         />
-        <div>
+        <div className={formStyles.actions}>
           <button>Save</button>
           <button type="button" onClick={onCancel}>
             Cancel

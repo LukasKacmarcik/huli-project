@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
 import { postNewDeliveryHour } from "../../../../app/slices/orders";
+import formStyles from "../../../forms/form.module.scss";
 
 export interface NewDeliveryHourFormData {
   hour: string;
@@ -18,7 +19,7 @@ const NewDeliveryHour: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={formStyles.formWrapper}>
       <h1>New Delivery Hour (0 - 23)</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="deliveryHour">DeliveryHour</label>

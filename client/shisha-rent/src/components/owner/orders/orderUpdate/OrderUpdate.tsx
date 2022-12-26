@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { fetchOrders, updateOrder } from "../../../../app/slices/orders";
+import formStyles from "../../../forms/form.module.scss";
 
 const OrderUpdate: React.FC = () => {
   const params = useParams();
@@ -80,7 +81,8 @@ const OrderUpdate: React.FC = () => {
   };
 
   return (
-    <div style={{ marginTop: "50px" }}>
+    <div className={formStyles.formWrapper}>
+      <h1>Update Order</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor="userFullName">Customer</label>
         <input
@@ -130,7 +132,7 @@ const OrderUpdate: React.FC = () => {
           value={formData.userEmailAddress}
           onChange={handleChange}
         />
-        <div>
+        <div className={formStyles.actions}>
           <button>Save</button>
           <button type="button" onClick={onCancel}>
             Cancel

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
 import { postNewExtra } from "../../../../app/slices/orders";
+import formStyles from "../../../forms/form.module.scss";
 
 export interface NewExtraFormData {
   name: string;
@@ -20,7 +21,7 @@ const NewExtra: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={formStyles.formWrapper}>
       <h1>New Extra</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import FileBase from "react-file-base64";
 import { useAppDispatch } from "../../../app/hooks";
 import { postNewShisha } from "../../../app/slices/shishas";
-import styles from "./NewShishaForm.module.scss";
+import formStyles from "../form.module.scss";
 
 export interface NewShishaFormData {
   name: string;
@@ -31,7 +31,8 @@ const NewShishaForm: React.FC = () => {
   };
 
   return (
-    <div className={styles.formWrapper}>
+    <div className={formStyles.formWrapper}>
+      <h1>New Shisha</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
