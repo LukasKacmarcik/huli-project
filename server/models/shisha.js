@@ -5,6 +5,7 @@ const shishaSchema = mongoose.Schema({
   description: String,
   price: Number,
   selectedFile: String,
+  amount: Number,
   show: {
     type: Boolean,
     default: true,

@@ -129,7 +129,7 @@ const OrderUpdate: React.FC = () => {
           type="text"
           id="ownerNote"
           name="ownerNote"
-          value={formData.userEmailAddress}
+          value={formData.ownerNote}
           onChange={handleChange}
         />
         <div className={formStyles.actions}>

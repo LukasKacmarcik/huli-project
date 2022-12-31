@@ -24,6 +24,7 @@ const ShishaUpdate: React.FC = () => {
     name: "",
     description: "",
     price: "",
+    amount: "0",
     show: false,
     selectedFile: "",
   };
@@ -45,6 +46,7 @@ const ShishaUpdate: React.FC = () => {
           ? shishaToUpdate.description
           : "",
         price: shishaToUpdate.price ? shishaToUpdate.price : "",
+        amount: shishaToUpdate.amount ? shishaToUpdate.amount : "0",
         show: shishaToUpdate.show === true ? shishaToUpdate.show : false,
         selectedFile: shishaToUpdate.selectedFile
           ? shishaToUpdate.selectedFile
@@ -53,7 +55,9 @@ const ShishaUpdate: React.FC = () => {
   }, [shishaToUpdate]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     const { name, value } = e.currentTarget;
     setFormData((ps: any) => {
@@ -90,8 +94,7 @@ const ShishaUpdate: React.FC = () => {
           onChange={handleChange}
         />
         <label htmlFor="description">Description</label>
-        <input
-          type="text"
+        <textarea
           id="description"
           name="description"
           value={formData.description}
@@ -105,14 +108,15 @@ const ShishaUpdate: React.FC = () => {
           value={formData.price}
           onChange={handleChange}
         />
-        <label htmlFor="show">Show</label>
-        {/* <input
+        <label htmlFor="amount">Amount</label>
+        <input
           type="text"
-          id="show"
-          name="show"
-          value={formData.show}
+          id="amount"
+          name="amount"
+          value={formData.amount}
           onChange={handleChange}
-        /> */}
+        />
+        <label htmlFor="show">Show</label>
         <select
           name="show"
           id="show"

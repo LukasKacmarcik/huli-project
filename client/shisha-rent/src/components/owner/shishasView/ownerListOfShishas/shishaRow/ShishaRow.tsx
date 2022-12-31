@@ -26,7 +26,7 @@ const ShishaRow: React.FC<ShishaProps> = ({ shisha }) => {
       <th>{shisha.price}</th>
       <th>{shisha.show ? "Yes" : "No"}</th>
       {/* <th>{shisha.selectedFile}</th> */}
-      <th>Image here</th>
+      <th>{shisha.amount}</th>
       <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <button onClick={redirect}>Update</button>
         <button onClick={handleDelete}>Delete</button>

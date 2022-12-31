@@ -13,6 +13,7 @@ import {
   updateNewOrderDate,
 } from "../../../../../app/slices/orders";
 import { fetchExcludedDates } from "../../../../../app/slices/shishas";
+import { getReservedDates } from "../../../../../functions";
 
 interface ExcludedDateObject {
   _id: string;
@@ -29,9 +30,10 @@ const ShishasDatePicker: React.FC = () => {
   const selectedShishaName = useAppSelector(
     (state) => state.shishas.selectedShisha?.name
   );
-  /////////////// These comments can be deleted
-  //const myTime = new Date("2022-12-26T16:00:48.212Z");
-  //const myDatesArr: Date[] = [myTime, subDays(myTime, -1)];
+  const selectedShishaAmount = useAppSelector(
+    (state) => state.shishas.selectedShisha?.amount
+  );
+  //// Array of all dates when selected shisha is already ordered plus day before and day after an order
   const myDatesArr: Date[] = useAppSelector(
     (state) => state.shishas.excludedDates
   )?.reduce((acc: Date[], excludedDateObj: ExcludedDateObject) => {
@@ -39,8 +41,16 @@ const ShishasDatePicker: React.FC = () => {
     acc.push(new Date(excludedDateObj.dateOfDelivery));
     //// Push day after date of delivery
     acc.push(subDays(new Date(excludedDateObj.dateOfDelivery), -1));
+    //// Push day before date of delivery
+    acc.push(subDays(new Date(excludedDateObj.dateOfDelivery), 1));
     return acc;
   }, []);
+
+  //// Returns only dates at witch it is not possible to order selected shisha due to matched or exeeded limit of orders of that shisha for particular date. In other words there is not another shisha of this type in warehouse to be ordered.
+  const reservedDates =
+    myDatesArr && selectedShishaAmount
+      ? getReservedDates(myDatesArr, selectedShishaAmount)
+      : [];
 
   const handleSetHours = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setStartDate((ps) => {
@@ -90,7 +100,7 @@ const ShishasDatePicker: React.FC = () => {
           dateFormat="dd/MM/yyyy"
           onChange={(date: Date) => setStartDate(date)}
           minDate={subDays(new Date(), -1)}
-          excludeDates={myDatesArr}
+          excludeDates={reservedDates}
           placeholderText="Zvol si svoj den"
         />
       </div>

@@ -43,7 +43,6 @@ export const postShisha = async (req, res) => {
 };
 
 export const updateShisha = async (req, res) => {
-  console.log(req.body);
   try {
     await Shisha.findOneAndUpdate({ _id: req.body._id }, [
       {
@@ -53,6 +52,7 @@ export const updateShisha = async (req, res) => {
           price: req.body.price,
           show: req.body.show,
           selectedFile: req.body.selectedFile,
+          amount: req.body.amount,
         },
       },
     ]);

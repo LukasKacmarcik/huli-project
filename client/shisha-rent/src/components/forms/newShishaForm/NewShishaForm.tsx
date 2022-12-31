@@ -12,6 +12,7 @@ export interface NewShishaFormData {
   description: string;
   price: string;
   selectedFile: string;
+  amount: string;
 }
 
 const NewShishaForm: React.FC = () => {
@@ -22,6 +23,7 @@ const NewShishaForm: React.FC = () => {
     description: "",
     price: "",
     selectedFile: "",
+    amount: "0",
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,6 +60,14 @@ const NewShishaForm: React.FC = () => {
           name="price"
           value={formData.price}
           onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+        />
+        <label htmlFor="amount">Amount</label>
+        <input
+          id="amount"
+          type="text"
+          name="amount"
+          value={formData.amount}
+          onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
         />
         <label htmlFor="file">File</label>
         <FileBase

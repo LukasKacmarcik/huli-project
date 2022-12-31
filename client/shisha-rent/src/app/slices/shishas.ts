@@ -9,6 +9,7 @@ export interface Shisha {
   description: string;
   price: number;
   selectedFile: string;
+  amount: number;
   show: boolean;
 }
 
