@@ -7,6 +7,7 @@
   padding: 15px;
   border: 2px solid rgba(0, 128, 0, 0.774);
   border-radius: 10px;
+  text-align: center;
 
   h1 {
     text-align: center;
@@ -20,6 +21,10 @@
     margin: 20px auto;
     display: flex;
     flex-direction: column;
+
+    fieldset {
+      padding: 15px;
+    }
 
     label {
       margin: 0 auto;
@@ -72,6 +77,39 @@
         &:nth-child(2):hover,
         &:nth-child(2):focus {
           background-color: orange;
+        }
+      }
+    }
+  }
+
+  .tableWrapper {
+    overflow: hidden;
+    max-width: 400px;
+    margin: 20px auto;
+    border: 2px solid rgb(181, 211, 175);
+    border-radius: 20px;
+
+    table {
+      border: 0;
+      width: 100%;
+      border-collapse: collapse;
+      padding: 15px;
+
+      thead {
+        tr:nth-child(1) {
+          background-color: rgb(127, 185, 230);
+        }
+      }
+
+      tbody {
+        tr:nth-child(2n) {
+          background-color: rgb(255, 195, 168);
+          text-align: center;
+        }
+
+        tr:nth-child(2n -1) {
+          background-color: rgb(225, 75, 50);
+          text-align: center;
         }
       }
     }

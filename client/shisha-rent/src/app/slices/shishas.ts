@@ -9,8 +9,14 @@ export interface Shisha {
   description: string;
   price: number;
   selectedFile: string;
+  shishaExtras: ShishaExtra[];
   amount: number;
   show: boolean;
+}
+
+export interface ShishaExtra {
+  name: string;
+  price: number;
 }
 
 export interface ShishasState {

@@ -1,7 +1,6 @@
 import { useAppSelector } from "../../../app/hooks";
 import ListOfShishas from "../listOfShishas/ListOfShishas";
 import SelectedShisha from "../shisha/selectedShisha/SelectedShisha";
-import heroImage from "../../../images/background-smoke.jpg";
 
 export default function Home() {
   const selectedShisha = useAppSelector(
@@ -10,9 +9,7 @@ export default function Home() {
 
   return (
     <>
-      <div style={{ maxWidth: "100vw" }}>
-        <img src={heroImage} alt="hero baner" width="100%" />
-      </div>
+      <div style={{ maxWidth: "100vw", minHeight: "100vh" }}></div>
       <ListOfShishas />
       {selectedShisha ? <SelectedShisha /> : null}
     </>
