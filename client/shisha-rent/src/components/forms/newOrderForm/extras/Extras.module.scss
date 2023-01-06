@@ -1,0 +1,42 @@
+.extrasForm {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+
+  input {
+    display: none;
+  }
+
+  label {
+    transition: 0.2s ease-in;
+    padding: 5px;
+    border-radius: 15px;
+    border: 1px solid green;
+    line-height: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.listOfAllOfferedExtras {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+
+  h2,
+  p {
+    display: inline;
+  }
+}
+
+.selected {
+  label {
+    background-color: green;
+    border-color: rgb(0, 69, 0);
+    color: rgba(240, 248, 255, 0.846);
+  }
+}

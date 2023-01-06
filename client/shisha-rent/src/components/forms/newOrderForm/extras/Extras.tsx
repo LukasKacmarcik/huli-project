@@ -1,9 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { Extra, updateSelectedExtras } from "../../../../app/slices/orders";
+import styles from "./Extras.module.scss";
 
 const Extras: React.FC = () => {
   const dispatch = useAppDispatch();
+
+  const selectedExtras = useAppSelector((state) => state.orders.selectedExtras);
+  const selectedShisha = useAppSelector(
+    (state) => state.shishas.selectedShisha
+  );
+
   const selectedShishaExtras = useAppSelector(
     (state) => state.shishas.selectedShisha?.shishaExtras
   );
@@ -17,7 +24,11 @@ const Extras: React.FC = () => {
       : offeredExtras;
   }, [offeredExtras, selectedShishaExtras]);
 
-  const initialExtrasState: { [key: string]: boolean } = {};
+  const initialExtrasState: { [key: string]: boolean } =
+    allOfferedExtras.reduce((acc: any, extra) => {
+      acc[extra.name] = false;
+      return acc;
+    }, {});
 
   //// This can be removed if everything works fine.
   // if (selectedShishaExtras) {
@@ -38,7 +49,7 @@ const Extras: React.FC = () => {
     setExtras((ps) => {
       return {
         ...ps,
-        [name]: e.target.checked,
+        [name]: !ps[name],
       };
     });
   };
@@ -55,11 +66,31 @@ const Extras: React.FC = () => {
     dispatch(updateSelectedExtras(filteredSelectedExtras));
   }, [extras, dispatch, allOfferedExtras]);
 
-  const listOfAllOfferedExtras = (
-    <form>
+  useEffect(() => {
+    const refreshedExtra = allOfferedExtras.reduce((acc: any, extra) => {
+      acc[extra.name] = false;
+      return acc;
+    }, {});
+    console.log("refreshedExtra: ", refreshedExtra);
+
+    setExtras(refreshedExtra);
+    dispatch(updateSelectedExtras([]));
+  }, [dispatch, selectedShisha, allOfferedExtras]);
+  console.log("extras:", extras);
+  console.log("allOfferedExtras:", allOfferedExtras);
+
+  const listOfAllOfferedExtras = offeredExtras ? (
+    <form className={styles.extrasForm}>
       {allOfferedExtras.map((extra, index) => {
         return (
-          <div key={index}>
+          <div
+            key={index}
+            className={
+              selectedExtras?.find((oneExtra) => oneExtra.name === extra.name)
+                ? styles.selected
+                : ""
+            }
+          >
             <label htmlFor={extra.name}>
               {extra.name} {extra.price}
             </label>
@@ -67,7 +98,7 @@ const Extras: React.FC = () => {
               type="checkbox"
               id={extra.name}
               name={extra.name}
-              value={extra.name}
+              checked={extras[extra.name]}
               data-price={extra.price}
               onChange={handleChange}
             />
@@ -75,9 +106,15 @@ const Extras: React.FC = () => {
         );
       })}
     </form>
-  );
+  ) : null;
 
-  return <>{listOfAllOfferedExtras}</>;
+  return (
+    <div className={styles.listOfAllOfferedExtras}>
+      <h2>Extra </h2>
+      <p>(€)</p>
+      {listOfAllOfferedExtras}
+    </div>
+  );
 };
 
 export default Extras;
