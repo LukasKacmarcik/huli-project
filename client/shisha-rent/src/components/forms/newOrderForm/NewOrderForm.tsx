@@ -163,18 +163,18 @@ const NewOrderForm: React.FC = () => {
               setFormData({ ...formData, userNote: e.target.value })
             }
           ></textarea>
+          <label htmlFor="rememberMe">Pametaj si ma</label>
+          <input
+            checked={rememberMe}
+            onChange={() => setRememberMe((ps) => !ps)}
+            type="checkbox"
+            name="rememberMe"
+            id="rememberMe"
+          />
+          <h3>TOTAL: {formData.total}</h3>
           <button type="submit">Objednať</button>
         </form>
       </div>
-      <label htmlFor="rememberMe">Pametaj si ma</label>
-      <input
-        checked={rememberMe}
-        onChange={() => setRememberMe((ps) => !ps)}
-        type="checkbox"
-        name="rememberMe"
-        id="rememberMe"
-      />
-      <h3>TOTAL: {formData.total}</h3>
     </>
   );
 };
