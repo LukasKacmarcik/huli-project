@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Footer from "../../footer/Footer";
+import OwnerFooter from "./ownerFooter/OwnerFooter";
 import OwnerNavbar from "./ownerNavbar/OwnerNavbar";
 
 const OwnerLayout: React.FC = () => {
@@ -9,7 +9,7 @@ const OwnerLayout: React.FC = () => {
       <div style={{ paddingBottom: "40px", paddingTop: "40px" }}>
         <Outlet />
       </div>
-      <Footer />
+      <OwnerFooter />
     </>
   );
 };

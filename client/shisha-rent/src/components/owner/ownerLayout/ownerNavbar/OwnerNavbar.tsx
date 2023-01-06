@@ -1,40 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./OwnerNavbar.module.scss";
 import { Link } from "react-router-dom";
-import darkLogo from "../../../../images/logo-cierna.png";
 import brightLogo from "../../../../images/logo-biela.png";
 
 const OwnerNavbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isScrolled]);
 
   return (
-    <header
-      className={`${styles.header} ${isOpen ? styles.open : ""} ${
-        isScrolled ? styles.scrolled : ""
-      }`}
-    >
+    <header className={`${styles.header} ${isOpen ? styles.open : ""}`}>
       <div>
         <Link to="/">
-          {isScrolled ? (
-            <img src={brightLogo} alt="logo" />
-          ) : (
-            <img src={darkLogo} alt="logo" />
-          )}
+          <img src={brightLogo} alt="logo" />
         </Link>
       </div>
 

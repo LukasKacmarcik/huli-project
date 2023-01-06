@@ -33,8 +33,7 @@ const Shisha: React.FC<Props> = ({ passedShisha }) => {
         <img src={passedShisha.selectedFile} alt="shisha" />
       </div>
       <h2>{passedShisha.name}</h2>
-      <p>{passedShisha.description}</p>
-      <h4>{passedShisha.price}</h4>
+      <h4>{passedShisha.price} €</h4>
     </div>
   );
 };

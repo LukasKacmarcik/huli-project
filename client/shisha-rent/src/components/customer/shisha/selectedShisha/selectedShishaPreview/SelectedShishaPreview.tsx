@@ -13,11 +13,9 @@ const SelectedShishaPreview: React.FC = () => {
         <img src={selectedShisha?.selectedFile} alt="selected shisha" />
       </div>
       <div className={styles.shishaDetails}>
-        {selectedShisha?.name && <h1>Name: {selectedShisha?.name}</h1>}
-        {selectedShisha?.description && (
-          <h3>Description: {selectedShisha?.description}</h3>
-        )}
-        {selectedShisha?.price && <h2>Price: {selectedShisha?.price}</h2>}
+        {selectedShisha?.name && <h1>{selectedShisha?.name}</h1>}
+        {selectedShisha?.description && <p>{selectedShisha?.description}</p>}
+        {selectedShisha?.price && <h2>{selectedShisha?.price} €</h2>}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@
 
 .imgWrapper {
   width: 40%;
-  // height: 350px;
+  max-height: 350px;
 
   img {
     width: 100%;
@@ -22,4 +22,8 @@
   flex-direction: column;
   justify-content: space-evenly;
   width: 100%;
+
+  p {
+    margin: 3% 10% 3%;
+  }
 }

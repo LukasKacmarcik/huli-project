@@ -5,29 +5,15 @@
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: 65px;
+  height: 10%;
   padding: 0 10vw;
   z-index: 10;
-  color: black;
+  color: white;
   transition: 0.4s ease-out;
+  background-color: black;
 
   img {
-    max-height: 45px;
-  }
-
-  &.scrolled {
-    height: 50px;
-    background-color: black;
-    opacity: 0.9;
-    color: white;
-
-    label {
-      span,
-      span::after,
-      span::before {
-        background-color: white;
-      }
-    }
+    max-height: 8vh;
   }
 
   &.open {
