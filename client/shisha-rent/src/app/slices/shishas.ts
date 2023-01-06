@@ -86,7 +86,7 @@ export const postNewShisha = createAsyncThunk(
 );
 
 export const updateShisha = createAsyncThunk(
-  "orders/updateShisha",
+  "shishas/updateShisha",
   async (updateShishaBody: any) => {
     try {
       const response = await api.patch("/shisha/update", updateShishaBody);
@@ -101,7 +101,7 @@ export const updateShisha = createAsyncThunk(
 );
 
 export const deleteShisha = createAsyncThunk(
-  "orders/deleteShisha",
+  "shishas/deleteShisha",
   async (shishaId: string) => {
     try {
       const response = await api.delete(`/shisha/delete/${shishaId}`);

@@ -5,7 +5,11 @@ import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
-import { fetchShishas, updateShisha } from "../../../../app/slices/shishas";
+import {
+  fetchShishas,
+  ShishaExtra,
+  updateShisha,
+} from "../../../../app/slices/shishas";
 import formStyles from "../../../forms/form.module.scss";
 
 const ShishaUpdate: React.FC = () => {
@@ -27,10 +31,15 @@ const ShishaUpdate: React.FC = () => {
     amount: "0",
     show: false,
     selectedFile: "",
+    shishaExtras: [],
   };
   const [formData, setFormData] = useState(defaultFormData);
 
-  //// If page is reloaded we fetch orders so we can prefill form with actual data
+  const [shishaExtrasForm, setShishaExtrasForm] = useState({
+    name: "",
+    price: "",
+  });
+  //// If page is reloaded we fetch shishas so we can prefill form with actual data
   useEffect(() => {
     if (shishaStatus === "idle") {
       dispatch(fetchShishas());
@@ -38,7 +47,7 @@ const ShishaUpdate: React.FC = () => {
   }, [dispatch, shishaStatus]);
 
   useEffect(() => {
-    if (shishaToUpdate !== undefined)
+    if (shishaToUpdate !== undefined) {
       setFormData({
         _id: shishaToUpdate._id,
         name: shishaToUpdate.name ? shishaToUpdate.name : "",
@@ -51,7 +60,9 @@ const ShishaUpdate: React.FC = () => {
         selectedFile: shishaToUpdate.selectedFile
           ? shishaToUpdate.selectedFile
           : "",
+        shishaExtras: shishaToUpdate.shishaExtras,
       });
+    }
   }, [shishaToUpdate]);
 
   const handleChange = (
@@ -80,6 +91,47 @@ const ShishaUpdate: React.FC = () => {
   const onCancel = () => {
     navigate(-1);
   };
+
+  const handleAddExtra = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormData((ps: any) => {
+      return {
+        ...ps,
+        shishaExtras: [
+          ...ps.shishaExtras,
+          {
+            name: shishaExtrasForm.name,
+            price: parseInt(shishaExtrasForm.price),
+          },
+        ],
+      };
+    });
+  };
+
+  const rowsOfShishaExtras = formData.shishaExtras.map(
+    (shishaExtra: ShishaExtra) => {
+      return (
+        <tr key={shishaExtra.name}>
+          <td>{shishaExtra.name}</td>
+          <td>{shishaExtra.price}</td>
+          <td>
+            <button
+              onClick={() =>
+                setFormData((ps: any) => {
+                  const filteredExtras = ps.shishaExtras.filter(
+                    (extra: any) => extra.name !== shishaExtra.name
+                  );
+                  return { ...ps, shishaExtras: filteredExtras };
+                })
+              }
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      );
+    }
+  );
 
   return (
     <div className={formStyles.formWrapper}>
@@ -142,6 +194,58 @@ const ShishaUpdate: React.FC = () => {
           </button>
         </div>
       </form>
+      <div>
+        <h2>ShishaExtras:</h2>
+        {formData.shishaExtras && (
+          <div className={formStyles.tableWrapper}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Extra Name</th>
+                  <th>Extra Price</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>{rowsOfShishaExtras}</tbody>
+            </table>
+          </div>
+        )}
+        <form onSubmit={handleAddExtra}>
+          <fieldset>
+            <legend>Add New Extra</legend>
+            <label htmlFor="name">Extra Name</label>
+            <br />
+            <input
+              id="name"
+              type="text"
+              name="name"
+              value={shishaExtrasForm.name}
+              onChange={(e) =>
+                setShishaExtrasForm({
+                  ...shishaExtrasForm,
+                  name: e.target.value,
+                })
+              }
+            />
+            <br />
+            <label htmlFor="price">Extra Price</label>
+            <br />
+            <input
+              id="price"
+              type="text"
+              name="price"
+              value={shishaExtrasForm.price}
+              onChange={(e) =>
+                setShishaExtrasForm({
+                  ...shishaExtrasForm,
+                  price: e.target.value,
+                })
+              }
+            />
+            <button>Add new extra</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
   );
 };

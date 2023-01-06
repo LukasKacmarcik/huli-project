@@ -53,6 +53,7 @@ export const updateShisha = async (req, res) => {
           show: req.body.show,
           selectedFile: req.body.selectedFile,
           amount: req.body.amount,
+          shishaExtras: req.body.shishaExtras,
         },
       },
     ]);
