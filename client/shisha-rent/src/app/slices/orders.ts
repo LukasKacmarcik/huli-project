@@ -223,7 +223,7 @@ export const ordersSlice = createSlice({
     updateSelectedExtras: (state, action: PayloadAction<Extra[]>) => {
       state.selectedExtras = action.payload || [];
     },
-    updateNewOrderDate: (state, action: PayloadAction<string>) => {
+    updateNewOrderDate: (state, action: PayloadAction<string | null>) => {
       state.newOrderDate = action.payload;
     },
     switchShowAllOrders: (state) => {

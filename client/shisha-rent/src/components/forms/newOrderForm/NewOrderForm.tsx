@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ShishasDatePicker from "../../customer/shisha/selectedShisha/shishasDatePicker/ShishasDatePicker";
 import formStyle from "../form.module.scss";
+import styles from "./NewOrderForm.module.scss";
 
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
@@ -107,75 +108,77 @@ const NewOrderForm: React.FC = () => {
   }, [rememberMe]);
 
   return (
-    <>
+    <div className={styles.newOrderFormWrapper}>
       <ShishasDatePicker />
       <Extras />
-      <div className={formStyle.formWrapper}>
-        <h1>Objednávka</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="userFullName">Meno a priezvisko</label>
-          <input
-            id="userFullName"
-            type="text"
-            name="userFullName"
-            value={formData.userFullName}
-            onChange={(e) =>
-              setFormData({ ...formData, userFullName: e.target.value })
-            }
-          />
-          <label htmlFor="userAddress">Adresa</label>
-          <input
-            id="userAddress"
-            type="text"
-            name="userAddress"
-            value={formData.userAddress}
-            onChange={(e) =>
-              setFormData({ ...formData, userAddress: e.target.value })
-            }
-          />
-          <label htmlFor="userTelNumber">Tel. cislo</label>
-          <input
-            id="userTelNumber"
-            type="text"
-            name="userTelNumber"
-            value={formData.userTelNumber}
-            onChange={(e) =>
-              setFormData({ ...formData, userTelNumber: e.target.value })
-            }
-          />
-          <label htmlFor="userEmailAddress">Email</label>
-          <input
-            id="userEmailAddress"
-            type="text"
-            name="userEmailAddress"
-            value={formData.userEmailAddress}
-            onChange={(e) =>
-              setFormData({ ...formData, userEmailAddress: e.target.value })
-            }
-          />
-          <label htmlFor="userNote">Poznámka k objednávke</label>
-          <textarea
-            id="userNote"
-            name="userNote"
-            value={formData.userNote}
-            placeholder="Sem môžte uviesť svoju poznámku k objednávke"
-            onChange={(e) =>
-              setFormData({ ...formData, userNote: e.target.value })
-            }
-          ></textarea>
-          <label htmlFor="rememberMe">Pametaj si ma</label>
-          <input
-            checked={rememberMe}
-            onChange={() => setRememberMe((ps) => !ps)}
-            type="checkbox"
-            name="rememberMe"
-            id="rememberMe"
-          />
-          <h3>TOTAL: {formData.total}</h3>
-          <button type="submit">Objednať</button>
-        </form>
+      <div className={styles.wrapper}>
+        <div className={formStyle.formWrapper}>
+          <h1>Objednávka</h1>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="userFullName">Meno a priezvisko</label>
+            <input
+              id="userFullName"
+              type="text"
+              name="userFullName"
+              value={formData.userFullName}
+              onChange={(e) =>
+                setFormData({ ...formData, userFullName: e.target.value })
+              }
+            />
+            <label htmlFor="userAddress">Adresa</label>
+            <input
+              id="userAddress"
+              type="text"
+              name="userAddress"
+              value={formData.userAddress}
+              onChange={(e) =>
+                setFormData({ ...formData, userAddress: e.target.value })
+              }
+            />
+            <label htmlFor="userTelNumber">Tel. cislo</label>
+            <input
+              id="userTelNumber"
+              type="text"
+              name="userTelNumber"
+              value={formData.userTelNumber}
+              onChange={(e) =>
+                setFormData({ ...formData, userTelNumber: e.target.value })
+              }
+            />
+            <label htmlFor="userEmailAddress">Email</label>
+            <input
+              id="userEmailAddress"
+              type="text"
+              name="userEmailAddress"
+              value={formData.userEmailAddress}
+              onChange={(e) =>
+                setFormData({ ...formData, userEmailAddress: e.target.value })
+              }
+            />
+            <label htmlFor="userNote">Poznámka k objednávke</label>
+            <textarea
+              id="userNote"
+              name="userNote"
+              value={formData.userNote}
+              placeholder="Sem môžte uviesť svoju poznámku k objednávke"
+              onChange={(e) =>
+                setFormData({ ...formData, userNote: e.target.value })
+              }
+            ></textarea>
+            <label htmlFor="rememberMe">Pametaj si ma</label>
+            <input
+              checked={rememberMe}
+              onChange={() => setRememberMe((ps) => !ps)}
+              type="checkbox"
+              name="rememberMe"
+              id="rememberMe"
+            />
+            <h3>TOTAL: {formData.total}</h3>
+            <button type="submit">Objednať</button>
+          </form>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

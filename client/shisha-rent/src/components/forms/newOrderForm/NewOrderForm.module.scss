@@ -1,0 +1,8 @@
+.newOrderFormWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.wrapper {
+  grid-column: 1/3;
+}

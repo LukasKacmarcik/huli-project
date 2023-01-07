@@ -24,15 +24,19 @@ const ShishasDatePicker: React.FC = () => {
   const validHourOptions = useAppSelector(
     (state) => state.orders.deliveryHours
   );
-  // const validHourOptions = [7, 8, 9, 10, 11];
   const dispatch = useAppDispatch();
   const [startDate, setStartDate] = useState<Date | null>(null);
   const selectedShishaName = useAppSelector(
     (state) => state.shishas.selectedShisha?.name
   );
+
+  const selectedShisha = useAppSelector(
+    (state) => state.shishas.selectedShisha
+  );
   const selectedShishaAmount = useAppSelector(
     (state) => state.shishas.selectedShisha?.amount
   );
+
   //// Array of all dates when selected shisha is already ordered plus day before and day after an order
   const myDatesArr: Date[] = useAppSelector(
     (state) => state.shishas.excludedDates
@@ -69,9 +73,12 @@ const ShishasDatePicker: React.FC = () => {
   const hourOptions = (
     <select
       onChange={handleSetHours}
+      defaultValue="default"
       disabled={startDate !== null ? false : true}
     >
-      <option value={undefined}>Zvoľ čas donášky</option>
+      <option id="defaultOption" value="default" disabled>
+        Zvoľ čas donášky
+      </option>
       {validHourOptions.map((option: DeliveryHour) => {
         return (
           <option key={option.hour} value={option.hour}>
@@ -81,6 +88,16 @@ const ShishasDatePicker: React.FC = () => {
       })}
     </select>
   );
+
+  //// When selectedShisha is switched this will reset startDate to null and select tag for selecting hours to default.
+  useEffect(() => {
+    setStartDate(null);
+    dispatch(updateNewOrderDate(null));
+    const defaultOption: HTMLOptionElement | null =
+      document.querySelector("#defaultOption");
+    if (defaultOption) defaultOption.selected = true;
+  }, [selectedShisha, dispatch]);
+
   useEffect(() => {
     dispatch(fetchExcludedDates(selectedShishaName));
   }, [dispatch, selectedShishaName]);

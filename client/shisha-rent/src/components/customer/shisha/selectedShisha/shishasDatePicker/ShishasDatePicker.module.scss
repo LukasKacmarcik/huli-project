@@ -3,12 +3,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 40%;
+
+  input,
+  select {
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    -webkit-box-shadow: -1px 8px 25px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 8px 25px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 8px 25px -4px rgba(0, 0, 0, 0.75);
+  }
 
   h1 {
     text-align: center;
   }
 
   .datePickerWeapper {
+    margin-left: 3%;
     width: 200px;
     display: flex;
   }
