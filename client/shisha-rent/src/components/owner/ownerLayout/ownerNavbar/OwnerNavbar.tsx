@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./OwnerNavbar.module.scss";
 import { Link } from "react-router-dom";
 import brightLogo from "../../../../images/logo-biela.png";
 
-const OwnerNavbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+interface Props {
+  isOpen: boolean;
+  setIsOpen: any;
+}
 
+const OwnerNavbar: React.FC<Props> = ({ isOpen, setIsOpen }) => {
   return (
     <header className={`${styles.header} ${isOpen ? styles.open : ""}`}>
       <div>
@@ -18,7 +21,7 @@ const OwnerNavbar: React.FC = () => {
         type="checkbox"
         id="menu-btn"
         checked={isOpen}
-        onChange={() => setIsOpen((ps) => !ps)}
+        onChange={() => setIsOpen((ps: boolean) => !ps)}
       />
       <label htmlFor="menu-btn">
         <span></span>

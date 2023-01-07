@@ -1,8 +1,10 @@
 .tableWrapper {
   overflow: hidden;
-  margin: 20px auto;
+  margin: 0px auto;
   border: 2px solid rgb(181, 211, 175);
   border-radius: 20px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 
   table {
     border: 0;

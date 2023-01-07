@@ -4,7 +4,7 @@ import NewExtra from "./newExtra/NewExtra";
 
 const ExtrasView = () => {
   return (
-    <div style={{ marginTop: "50px" }}>
+    <div>
       <NewExtra />
       <ListOfExtras />
     </div>

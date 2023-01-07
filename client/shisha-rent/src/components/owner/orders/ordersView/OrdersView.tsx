@@ -11,10 +11,6 @@ const OrdersView: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <br />
-      <br />
-      <br />
-      <br />
       <ListOfOpenOrders />
       <button onClick={() => dispatch(switchShowAllOrders())}>
         {showAllOrders ? "Hide all orders" : "Show all orders"}

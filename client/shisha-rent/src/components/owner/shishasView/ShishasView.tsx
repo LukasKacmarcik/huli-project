@@ -4,7 +4,7 @@ import OwnerListOfShishas from "./ownerListOfShishas/OwnerListOfShishas";
 
 const ShishasView = () => {
   return (
-    <div style={{ marginTop: "50px" }}>
+    <div>
       <NewShishaForm />
       <OwnerListOfShishas />
     </div>

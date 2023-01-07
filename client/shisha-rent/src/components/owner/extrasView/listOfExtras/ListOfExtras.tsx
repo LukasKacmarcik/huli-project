@@ -16,19 +16,17 @@ const ListOfExtras: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <div className={styles.tableWrapper}>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{mapedAllExtras}</tbody>
-        </table>
-      </div>
+    <div className={styles.tableWrapper}>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>{mapedAllExtras}</tbody>
+      </table>
     </div>
   );
 };

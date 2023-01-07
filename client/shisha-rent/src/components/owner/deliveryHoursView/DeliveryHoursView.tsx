@@ -4,7 +4,7 @@ import NewDeliveryHour from "./newDeliveryHour/NewDeliveryHour";
 
 const DeliveryHoursView: React.FC = () => {
   return (
-    <div style={{ marginTop: "50px" }}>
+    <div>
       <NewDeliveryHour />
       <ListOfDeliveryHours />
     </div>
