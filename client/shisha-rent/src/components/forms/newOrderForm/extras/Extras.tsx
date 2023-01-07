@@ -6,7 +6,9 @@ import styles from "./Extras.module.scss";
 const Extras: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const selectedExtras = useAppSelector((state) => state.orders.selectedExtras);
+  const { selectedExtras, offeredExtras } = useAppSelector(
+    (state) => state.orders
+  );
   const selectedShisha = useAppSelector(
     (state) => state.shishas.selectedShisha
   );
@@ -14,8 +16,6 @@ const Extras: React.FC = () => {
   const selectedShishaExtras = useAppSelector(
     (state) => state.shishas.selectedShisha?.shishaExtras
   );
-
-  const offeredExtras = useAppSelector((state) => state.orders.offeredExtras);
 
   //// Add selectedShishaExtras and shared extras to one array, base on this render checkboxes.
   const allOfferedExtras: Extra[] = useMemo(() => {
@@ -29,18 +29,6 @@ const Extras: React.FC = () => {
       acc[extra.name] = false;
       return acc;
     }, {});
-
-  //// This can be removed if everything works fine.
-  // if (selectedShishaExtras) {
-  //   console.log(selectedShishaExtras);
-  //   [...offeredExtras, ...selectedShishaExtras].forEach((extra) => {
-  //     initialExtrasState[extra.name] = false;
-  //   });
-  // } else {
-  //   offeredExtras.forEach((extra) => {
-  //     initialExtrasState[extra.name] = false;
-  //   });
-  // }
 
   const [extras, setExtras] = useState(initialExtrasState);
 
@@ -66,18 +54,17 @@ const Extras: React.FC = () => {
     dispatch(updateSelectedExtras(filteredSelectedExtras));
   }, [extras, dispatch, allOfferedExtras]);
 
+  //// On selecting of shisha or selecting another one this will reset all alredy selected extras (global state)
+  //// and create new local extras state that control checkboxes.
   useEffect(() => {
     const refreshedExtra = allOfferedExtras.reduce((acc: any, extra) => {
       acc[extra.name] = false;
       return acc;
     }, {});
-    console.log("refreshedExtra: ", refreshedExtra);
 
     setExtras(refreshedExtra);
     dispatch(updateSelectedExtras([]));
   }, [dispatch, selectedShisha, allOfferedExtras]);
-  console.log("extras:", extras);
-  console.log("allOfferedExtras:", allOfferedExtras);
 
   const listOfAllOfferedExtras = offeredExtras ? (
     <form className={styles.extrasForm}>
