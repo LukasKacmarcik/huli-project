@@ -1,8 +1,11 @@
 .galeryWrapper {
   width: 90%;
-  margin: 50px auto 0px;
+  margin: 0px auto 0px;
   text-align: center;
   font-size: x-large;
-  height: 400px;
-  background-color: rgba(0, 255, 255, 0.295);
+
+  h1 {
+    color: rgb(151, 3, 3);
+    line-height: 8rem;
+  }
 }

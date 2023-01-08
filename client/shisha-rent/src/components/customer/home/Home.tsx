@@ -35,14 +35,21 @@ export default function Home() {
           <div className={styles.rentImgWrapper}>
             <img src={rentImg} alt="Shisha rent" />
           </div>
-          <p>
-            Dovezieme Vám Vami vybraný typ vodnej fajky so všetkým potrebným
-            príslušenstvom priamo k Vašim dverám. Už bude treba len rozpáliť
-            uhlíky a môžete si užiť session v pohodlí domova. Počas jedného
-            nájmu (do 24 hod.) môžete vodnú fajku využiť hneď niekoľkokrát.
-            Môžete si doobjednať nápoje, snacky, extra korunky s príchuťami,
-            poprípade iné zaujímavé doplnky
-          </p>
+          <div>
+            <p>
+              Dovezieme Vám Vami vybraný typ vodnej fajky so všetkým potrebným
+              príslušenstvom priamo k Vašim dverám. Už bude treba len rozpáliť
+              uhlíky a môžete si užiť session v pohodlí domova.
+            </p>
+            <p>
+              Počas jedného nájmu (do 24 hod.) môžete vodnú fajku využiť hneď
+              niekoľkokrát.
+            </p>
+            <p>
+              Môžete si doobjednať nápoje, snacky, extra korunky s príchuťami,
+              poprípade iné zaujímavé doplnky.
+            </p>
+          </div>
         </div>
       </div>
       <ListOfShishas />
