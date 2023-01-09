@@ -5,11 +5,27 @@ import logo from "../../../images/logo-biela.png";
 import rentImg from "../../../images/box.png";
 import styles from "./Home.module.scss";
 import Galery from "../galery/Galery";
+import { useRef } from "react";
+import useElementOnScreen from "../../../hooks/useElementOnScreen";
 
 export default function Home() {
   const selectedShisha = useAppSelector(
     (state) => state.shishas.selectedShisha
   );
+
+  //// Observables
+  const aboutUsRef = useRef(null);
+  const rentWrapperRef = useRef(null);
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    treshold: 0,
+  };
+
+  const aboutUsInView = useElementOnScreen(options, aboutUsRef);
+  const rentWrapperInView = useElementOnScreen(options, rentWrapperRef);
+  ///////////////////////////////////////////////////////////////////////
 
   return (
     <>
@@ -17,25 +33,37 @@ export default function Home() {
         <div className={styles.logoWrapper}>
           <img src={logo} alt="logo" />
         </div>
-        <div className={styles.aboutUsWrapper}>
+        <div
+          className={`${styles.aboutUsWrapper} ${
+            aboutUsInView ? styles.aboutUsInView : ""
+          }`}
+          ref={aboutUsRef}
+        >
           <h1>O NÁS</h1>
-          <p>
-            Čajovňa sa nachádza v historickom centre mesta Kežmarok, so
-            zachovanými historickymi prvkami a príjemným prostredím. Pripravíme
-            Vám skvelý čaj, výbornú belgickú čokoládu alebo vodnú fajku podľa
-            chuti.
-          </p>
-          <p>
-            Počas letných dní Vás radi privítame aj na našej záhradnej terase.
-          </p>
+          <div>
+            <p>
+              Čajovňa sa nachádza v historickom centre mesta Kežmarok, so
+              zachovanými historickymi prvkami a príjemným prostredím.
+              Pripravíme Vám skvelý čaj, výbornú belgickú čokoládu alebo vodnú
+              fajku podľa chuti.
+            </p>
+            <p>
+              Počas letných dní Vás radi privítame aj na našej záhradnej terase.
+            </p>
+          </div>
         </div>
         <Galery />
-        <div className={styles.rentWrapper}>
+        <div
+          ref={rentWrapperRef}
+          className={`${styles.rentWrapper} ${
+            rentWrapperInView ? styles.rentWrappersInView : ""
+          }`}
+        >
           <h1>PRENÁJOM VODNEJ FAJKY</h1>
           <div className={styles.rentImgWrapper}>
             <img src={rentImg} alt="Shisha rent" />
           </div>
-          <div>
+          <div className={styles.rentTextWrapper}>
             <p>
               Dovezieme Vám Vami vybraný typ vodnej fajky so všetkým potrebným
               príslušenstvom priamo k Vašim dverám. Už bude treba len rozpáliť

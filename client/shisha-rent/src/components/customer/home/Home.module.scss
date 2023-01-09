@@ -24,8 +24,21 @@
       color: rgb(151, 3, 3);
     }
 
+    div {
+      transition: 1s ease-in;
+      transform: translateY(50%);
+      opacity: 0;
+    }
+
     p {
       color: whitesmoke;
+    }
+  }
+
+  .aboutUsWrapper.aboutUsInView {
+    div {
+      opacity: 1;
+      transform: translateY(0%);
     }
   }
 
@@ -50,14 +63,23 @@
     font-size: x-large;
 
     .rentImgWrapper {
+      transition: 1s ease-in;
       margin: 10px auto 0px;
       max-width: 100%;
       grid-column: 1/2;
+      opacity: 0;
+      transform: translateX(-50%);
 
       img {
         width: 100%;
         border-radius: 50px;
       }
+    }
+
+    .rentTextWrapper {
+      transition: 1s ease-in;
+      opacity: 0;
+      transform: translateX(50%);
     }
 
     h1 {
@@ -68,6 +90,18 @@
     p {
       color: whitesmoke;
       grid-column: 2/3;
+    }
+  }
+
+  .rentWrapper.rentWrappersInView {
+    .rentImgWrapper {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+
+    .rentTextWrapper {
+      opacity: 1;
+      transform: translateX(0%);
     }
   }
 }
