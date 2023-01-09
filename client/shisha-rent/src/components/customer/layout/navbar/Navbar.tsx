@@ -26,6 +26,15 @@ const Navbar: React.FC = () => {
 
       <ul>
         <li>
+          <Link to="#aboutUs">O NAS</Link>
+        </li>
+        <li>
+          <Link to="#rent">PRENAJOM</Link>
+        </li>
+        <li>
+          <Link to="Contact"></Link>
+        </li>
+        <li>
           <Link to="/owner/orders">Owner View</Link>
         </li>
       </ul>

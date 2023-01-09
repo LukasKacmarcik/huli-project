@@ -42,15 +42,6 @@
     }
   }
 
-  .galeryWrapper {
-    width: 80%;
-    margin: 50px auto 0px;
-    text-align: center;
-    font-size: x-large;
-    height: 400px;
-    background-color: rgba(0, 255, 255, 0.295);
-  }
-
   .rentWrapper {
     display: grid;
     gap: 15px;
@@ -104,4 +95,19 @@
       transform: translateX(0%);
     }
   }
+}
+
+.mapWrapper {
+  width: 90%;
+  max-width: 900px;
+  height: 400px;
+  margin: 0 auto 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: 0.5s ease-in;
+  opacity: 0;
+}
+
+.mapWrapper.mapWrapperInWiew {
+  opacity: 1;
 }

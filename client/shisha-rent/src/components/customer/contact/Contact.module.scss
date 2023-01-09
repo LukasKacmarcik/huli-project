@@ -1,0 +1,29 @@
+.contactWrapper {
+  font-size: x-large;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: whitesmoke;
+
+  h1 {
+    color: rgb(151, 3, 3);
+    grid-column: 1/4;
+  }
+
+  h4 {
+    margin-bottom: 0.3rem;
+  }
+
+  .address {
+    grid-column: 1/2;
+  }
+  .hours {
+    grid-column: 2/3;
+  }
+  .telNumber {
+    grid-column: 3/4;
+  }
+}

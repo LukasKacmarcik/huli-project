@@ -7,6 +7,8 @@ import styles from "./Home.module.scss";
 import Galery from "../galery/Galery";
 import { useRef } from "react";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
+import Contact from "../contact/Contact";
+import Map from "../map/Map";
 
 export default function Home() {
   const selectedShisha = useAppSelector(
@@ -16,6 +18,7 @@ export default function Home() {
   //// Observables
   const aboutUsRef = useRef(null);
   const rentWrapperRef = useRef(null);
+  const mapWrapperRef = useRef(null);
 
   const options = {
     root: null,
@@ -25,6 +28,7 @@ export default function Home() {
 
   const aboutUsInView = useElementOnScreen(options, aboutUsRef);
   const rentWrapperInView = useElementOnScreen(options, rentWrapperRef);
+  const mapWrapperInWiew = useElementOnScreen(options, mapWrapperRef);
   ///////////////////////////////////////////////////////////////////////
 
   return (
@@ -39,7 +43,7 @@ export default function Home() {
           }`}
           ref={aboutUsRef}
         >
-          <h1>O NÁS</h1>
+          <h1 id="aboutUs">O NÁS</h1>
           <div>
             <p>
               Čajovňa sa nachádza v historickom centre mesta Kežmarok, so
@@ -59,7 +63,7 @@ export default function Home() {
             rentWrapperInView ? styles.rentWrappersInView : ""
           }`}
         >
-          <h1>PRENÁJOM VODNEJ FAJKY</h1>
+          <h1 id="rent">PRENÁJOM VODNEJ FAJKY</h1>
           <div className={styles.rentImgWrapper}>
             <img src={rentImg} alt="Shisha rent" />
           </div>
@@ -82,6 +86,15 @@ export default function Home() {
       </div>
       <ListOfShishas />
       {selectedShisha ? <SelectedShisha /> : null}
+      <Contact />
+      <div
+        ref={mapWrapperRef}
+        className={`${styles.mapWrapper} ${
+          mapWrapperInWiew ? styles.mapWrapperInWiew : ""
+        }`}
+      >
+        <Map />
+      </div>
     </>
   );
 }

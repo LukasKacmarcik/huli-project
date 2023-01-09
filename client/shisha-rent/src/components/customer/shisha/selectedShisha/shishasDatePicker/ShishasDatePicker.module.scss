@@ -18,6 +18,11 @@
     box-shadow: -1px 8px 25px -4px rgba(0, 0, 0, 0.75);
   }
 
+  select,
+  option {
+    cursor: pointer;
+  }
+
   h1 {
     text-align: center;
   }
