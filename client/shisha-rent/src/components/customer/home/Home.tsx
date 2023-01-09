@@ -3,12 +3,12 @@ import ListOfShishas from "../listOfShishas/ListOfShishas";
 import SelectedShisha from "../shisha/selectedShisha/SelectedShisha";
 import logo from "../../../images/logo-biela.png";
 import rentImg from "../../../images/box.png";
-import styles from "./Home.module.scss";
 import Galery from "../galery/Galery";
 import { useRef } from "react";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
 import Contact from "../contact/Contact";
 import Map from "../map/Map";
+import styles from "./Home.module.scss";
 
 export default function Home() {
   const selectedShisha = useAppSelector(
@@ -34,36 +34,40 @@ export default function Home() {
   return (
     <>
       <div className={styles.hero}>
-        <div className={styles.logoWrapper}>
-          <img src={logo} alt="logo" />
-        </div>
-        <div
-          className={`${styles.aboutUsWrapper} ${
-            aboutUsInView ? styles.aboutUsInView : ""
-          }`}
-          ref={aboutUsRef}
-        >
-          <h1 id="aboutUs">O NÁS</h1>
-          <div>
-            <p>
-              Čajovňa sa nachádza v historickom centre mesta Kežmarok, so
-              zachovanými historickymi prvkami a príjemným prostredím.
-              Pripravíme Vám skvelý čaj, výbornú belgickú čokoládu alebo vodnú
-              fajku podľa chuti.
-            </p>
-            <p>
-              Počas letných dní Vás radi privítame aj na našej záhradnej terase.
-            </p>
+        <div id="aboutUs">
+          <div className={styles.logoWrapper}>
+            <img src={logo} alt="logo" />
           </div>
+          <div
+            className={`${styles.aboutUsWrapper} ${
+              aboutUsInView ? styles.aboutUsInView : ""
+            }`}
+            ref={aboutUsRef}
+          >
+            <div>
+              <h1>O NÁS</h1>
+              <p>
+                Čajovňa sa nachádza v historickom centre mesta Kežmarok, so
+                zachovanými historickymi prvkami a príjemným prostredím.
+                Pripravíme Vám skvelý čaj, výbornú belgickú čokoládu alebo vodnú
+                fajku podľa chuti.
+              </p>
+              <p>
+                Počas letných dní Vás radi privítame aj na našej záhradnej
+                terase.
+              </p>
+            </div>
+          </div>
+          <Galery />
         </div>
-        <Galery />
         <div
+          id="rent"
           ref={rentWrapperRef}
           className={`${styles.rentWrapper} ${
             rentWrapperInView ? styles.rentWrappersInView : ""
           }`}
         >
-          <h1 id="rent">PRENÁJOM VODNEJ FAJKY</h1>
+          <h1>PRENÁJOM VODNEJ FAJKY</h1>
           <div className={styles.rentImgWrapper}>
             <img src={rentImg} alt="Shisha rent" />
           </div>
@@ -86,14 +90,16 @@ export default function Home() {
       </div>
       <ListOfShishas />
       {selectedShisha ? <SelectedShisha /> : null}
-      <Contact />
-      <div
-        ref={mapWrapperRef}
-        className={`${styles.mapWrapper} ${
-          mapWrapperInWiew ? styles.mapWrapperInWiew : ""
-        }`}
-      >
-        <Map />
+      <div id="contact">
+        <Contact />
+        <div
+          ref={mapWrapperRef}
+          className={`${styles.mapWrapper} ${
+            mapWrapperInWiew ? styles.mapWrapperInWiew : ""
+          }`}
+        >
+          <Map />
+        </div>
       </div>
     </>
   );

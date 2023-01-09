@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import styles from "./navbar.module.scss";
-import { Link } from "react-router-dom";
+//// Solution from https://bobbyhadz.com/blog/typescript-could-not-find-a-declaration-file-for-module-react
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { Link as AncorLink } from "react-scroll";
 import brightLogo from "../../../../images/logo-biela.png";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -26,13 +31,41 @@ const Navbar: React.FC = () => {
 
       <ul>
         <li>
-          <Link to="#aboutUs">O NAS</Link>
+          <AncorLink
+            // activeStyle={{ borderTop: "1px solid green" }}
+            to="aboutUs"
+            isDinamic={true}
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={800}
+          >
+            O NAS
+          </AncorLink>
         </li>
         <li>
-          <Link to="#rent">PRENAJOM</Link>
+          <AncorLink
+            to="rent"
+            isDinamic={true}
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={800}
+          >
+            PRENAJOM
+          </AncorLink>
         </li>
         <li>
-          <Link to="Contact"></Link>
+          <AncorLink
+            to="contact"
+            isDinamic={true}
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={800}
+          >
+            KONTAKT
+          </AncorLink>
         </li>
         <li>
           <Link to="/owner/orders">Owner View</Link>
