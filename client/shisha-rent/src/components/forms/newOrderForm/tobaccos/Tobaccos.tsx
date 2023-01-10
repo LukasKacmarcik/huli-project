@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
-import { fetchTobaccos } from "../../../../app/slices/orders";
+import {
+  fetchTobaccos,
+  updateTobaccoPrice,
+} from "../../../../app/slices/orders";
 import styles from "./Tobaccos.module.scss";
 
 const Tobaccos: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const { offeredTobaccos } = useAppSelector((state) => state.orders);
+  const tobacoPrice =
+    offeredTobaccos.length !== 0
+      ? offeredTobaccos[offeredTobaccos.length - 1].price
+      : 0;
 
   const classicTobaccos = offeredTobaccos.filter(
     (tobacco) => tobacco.type === "tobacco"
@@ -20,7 +27,8 @@ const Tobaccos: React.FC = () => {
     (state) => state.shishas.selectedShisha
   );
 
-  const [selectedTobacco, setSelectedTobacco] = useState("defaultTobacco");
+  const defaultTobacco = "defaultTobacco";
+  const [selectedTobacco, setSelectedTobacco] = useState(defaultTobacco);
 
   const isTabaccoSelected = (value: string): boolean =>
     value === selectedTobacco;
@@ -88,12 +96,17 @@ const Tobaccos: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setSelectedTobacco("defaultTabacco");
+    setSelectedTobacco(defaultTobacco);
   }, [selectedShisha]);
+
+  useEffect(() => {
+    if (selectedTobacco !== defaultTobacco)
+      dispatch(updateTobaccoPrice(tobacoPrice));
+  }, [dispatch, tobacoPrice, selectedTobacco]);
 
   return offeredTobaccos.length !== 0 ? (
     <div className={styles.listOfAllOfferedTobaccos}>
-      <h2>Tabaky {offeredTobaccos[offeredTobaccos.length - 1].price} (€)</h2>
+      <h2>Tabaky {tobacoPrice} (€)</h2>
       <form className={styles.tobaccosForm}>
         <div className={styles.classicTobaccosDiv}>
           <h2>Klasika</h2>

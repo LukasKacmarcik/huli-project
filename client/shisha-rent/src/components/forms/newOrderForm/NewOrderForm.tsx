@@ -75,13 +75,16 @@ const NewOrderForm: React.FC = () => {
     // console.log("handlling submit");
   };
 
+  const tobaccoPrice = useAppSelector((state) => state.orders.tobaccoPrice);
+
   const calcTotal = (
     arrOfExtras: Extra[],
-    selectedShishaPrice: number | undefined
+    selectedShishaPrice: number | undefined,
+    tobaccoPrice: number
   ) => {
     return arrOfExtras.reduce(
       (total: number, extra: Extra) => (total += extra.price),
-      selectedShishaPrice || 0
+      (selectedShishaPrice || 0) + tobaccoPrice
     );
   };
 
@@ -94,10 +97,10 @@ const NewOrderForm: React.FC = () => {
     setFormData((ps) => {
       return {
         ...ps,
-        total: calcTotal(selectedExtras, selectedShishaPrice),
+        total: calcTotal(selectedExtras, selectedShishaPrice, tobaccoPrice),
       };
     });
-  }, [selectedExtras, selectedShishaPrice]);
+  }, [selectedExtras, selectedShishaPrice, tobaccoPrice]);
 
   useEffect(() => {
     if (rememberMe === true) {

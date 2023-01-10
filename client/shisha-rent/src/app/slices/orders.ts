@@ -34,6 +34,7 @@ export interface OrdersState {
   offeredExtras: Extra[];
   selectedExtras: Extra[];
   offeredTobaccos: Tobacco[];
+  tobaccoPrice: number;
   deliveryHours: DeliveryHour[];
 }
 
@@ -65,6 +66,7 @@ const initialState: OrdersState = {
   offeredExtras: [],
   selectedExtras: [],
   offeredTobaccos: [],
+  tobaccoPrice: 0,
   deliveryHours: [],
 };
 
@@ -281,6 +283,9 @@ export const ordersSlice = createSlice({
     switchShowAllOrders: (state) => {
       state.showAllOrders = !state.showAllOrders;
     },
+    updateTobaccoPrice: (state, action: PayloadAction<number>) => {
+      state.tobaccoPrice = action.payload;
+    },
     // decrement: (state) => {
     //   state.value -= 1;
     // },
@@ -467,8 +472,12 @@ export const ordersSlice = createSlice({
   },
 });
 
-export const { updateSelectedExtras, updateNewOrderDate, switchShowAllOrders } =
-  ordersSlice.actions;
+export const {
+  updateSelectedExtras,
+  updateNewOrderDate,
+  switchShowAllOrders,
+  updateTobaccoPrice,
+} = ordersSlice.actions;
 
 // // The function below is called a selector and allows us to select a value from
 // // the state. Selectors can also be defined inline where they're used instead of
