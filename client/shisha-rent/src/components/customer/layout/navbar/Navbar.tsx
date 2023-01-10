@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
           <AncorLink
             // activeStyle={{ borderTop: "1px solid green" }}
             to="aboutUs"
-            isDinamic={true}
+            isDynamic={true}
             spy={true}
             smooth={true}
             offset={-100}
@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
         <li>
           <AncorLink
             to="rent"
-            isDinamic={true}
+            isDynamic={true}
             spy={true}
             smooth={true}
             offset={-100}
@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
         <li>
           <AncorLink
             to="contact"
-            isDinamic={true}
+            isDynamic={true}
             spy={true}
             smooth={true}
             offset={-100}

@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  background-image: url("../src/images/background-smoke.jpg");
+  background-image: url("../src/images/background-smoke-small.jpg");
   background-size: cover;
   background-attachment: fixed;
   font-size: large;

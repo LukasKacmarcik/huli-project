@@ -5,6 +5,8 @@ import {
   Shisha as ShishaType,
 } from "../../../app/slices/shishas";
 import styles from "./Shisha.module.scss";
+var Scroll = require("react-scroll");
+var scroller = Scroll.scroller;
 
 interface Props {
   passedShisha: ShishaType;
@@ -16,10 +18,10 @@ const Shisha: React.FC<Props> = ({ passedShisha }) => {
   ////This is async function bc selectedShishaElement returns null for the first time when clicked if not async
   const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     await dispatch(setSelectedShisha(passedShisha._id));
-    const selectedShishaElement = document.getElementById("selectedShisha");
-    //// behaviour smoth is buggy
-    selectedShishaElement?.scrollIntoView({
-      behavior: "auto",
+    scroller.scrollTo("selectedShishaElement", {
+      duration: 500,
+      smooth: true,
+      offset: -100,
     });
   };
 
