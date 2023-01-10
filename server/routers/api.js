@@ -19,6 +19,9 @@ import {
   getDeliveryHours,
   postDeliveryHour,
   deleteDeliveryHour,
+  getTobaccos,
+  postTobacco,
+  deleteTobacco,
 } from "../controllers/order.js";
 
 const api = express.Router();
@@ -80,6 +83,11 @@ api.delete("/extra/delete/:extraId", deleteExtra);
 api.get("/deliveryHours", getDeliveryHours);
 api.post("/deliveryHour/new", postDeliveryHour);
 api.delete("/deliveryHour/delete/:deliveryHourId", deleteDeliveryHour);
+
+////////Extras/////////
+api.get("/tobaccos", getTobaccos);
+api.post("/tobacco/new", postTobacco);
+api.delete("/tobacco/delete/:tobaccoId", deleteTobacco);
 
 // export the routes
 export default api;

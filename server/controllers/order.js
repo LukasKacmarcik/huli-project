@@ -1,7 +1,9 @@
 import DeliveryHour from "../models/deliveryHour.js";
 import Extra from "../models/extra.js";
 import Order from "../models/order.js";
+import Tobacco from "../models/tobacco.js";
 
+//// Orders ////////////////////////////////////////////
 export const getOrders = async (req, res) => {
   try {
     const response = await Order.find().sort({
@@ -78,6 +80,7 @@ export const switchOrderDoneStatus = async (req, res) => {
   }
 };
 
+//// Extras ///////////////////////////////////////////
 export const getExtras = async (req, res) => {
   try {
     const response = await Extra.find();
@@ -113,6 +116,7 @@ export const deleteExtra = async (req, res) => {
   }
 };
 
+//// Delivery Hours ///////////////////////////////////
 export const getDeliveryHours = async (req, res) => {
   try {
     const response = await DeliveryHour.find().sort({
@@ -143,6 +147,43 @@ export const deleteDeliveryHour = async (req, res) => {
   try {
     const response = await DeliveryHour.findOneAndRemove({
       _id: req.params.deliveryHourId,
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+//// Tobaccos ///////////////////////////////////////////
+export const getTobaccos = async (req, res) => {
+  try {
+    const response = await Tobacco.find();
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const postTobacco = async (req, res) => {
+  const tobacco = req.body;
+  console.log(tobacco);
+  const newTobacco = new Tobacco(tobacco);
+
+  try {
+    await newTobacco.save();
+
+    res.status(201).json(newTobacco);
+  } catch (error) {
+    console.log(error.message);
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const deleteTobacco = async (req, res) => {
+  try {
+    const response = await Tobacco.findOneAndRemove({
+      _id: req.params.tobaccoId,
     });
     res.status(200).json(response);
   } catch (error) {
