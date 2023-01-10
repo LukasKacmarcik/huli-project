@@ -93,7 +93,6 @@ export const getExtras = async (req, res) => {
 
 export const postExtra = async (req, res) => {
   const extra = req.body;
-  console.log(extra);
   const newExtra = new Extra(extra);
 
   try {
@@ -167,7 +166,6 @@ export const getTobaccos = async (req, res) => {
 
 export const postTobacco = async (req, res) => {
   const tobacco = req.body;
-  console.log(tobacco);
   const newTobacco = new Tobacco(tobacco);
 
   try {

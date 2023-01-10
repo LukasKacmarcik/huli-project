@@ -5,6 +5,7 @@ import { NewOrderFormData } from "../../components/forms/newOrderForm/NewOrderFo
 import { OrderSwitchDoneBody } from "../../components/owner/orders/listOfOpenOrders/openOrderRow/OpenOrderRow";
 import { NewExtraFormData } from "../../components/owner/extrasView/newExtra/NewExtra";
 import { NewDeliveryHourFormData } from "../../components/owner/deliveryHoursView/newDeliveryHour/NewDeliveryHour";
+import { NewTobaccoFormData } from "../../components/owner/tobaccosView/newTobacco/NewTobacco";
 
 export interface Order {
   _id?: string;
@@ -32,11 +33,19 @@ export interface OrdersState {
   newOrderDate: string | null;
   offeredExtras: Extra[];
   selectedExtras: Extra[];
+  offeredTobaccos: Tobacco[];
   deliveryHours: DeliveryHour[];
 }
 
 export interface Extra {
   _id?: string;
+  name: string;
+  price: number;
+}
+
+export interface Tobacco {
+  _id?: string;
+  type: string;
   name: string;
   price: number;
 }
@@ -55,6 +64,7 @@ const initialState: OrdersState = {
   newOrderDate: null,
   offeredExtras: [],
   selectedExtras: [],
+  offeredTobaccos: [],
   deliveryHours: [],
 };
 
@@ -163,6 +173,48 @@ export const deleteExtra = createAsyncThunk(
       const response = await api.delete(`/extra/delete/${extraId}`);
       if (response.status === 200) {
         const response = await api.get("/extras");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const fetchTobaccos = createAsyncThunk(
+  "extras/fetchTobaccos",
+  async () => {
+    try {
+      const response = await api.get("/tobaccos");
+      return response.data;
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const postNewTobacco = createAsyncThunk(
+  "orders/postNewTobacco",
+  async (newTobacco: NewTobaccoFormData) => {
+    try {
+      const response = await api.post(`/tobacco/new`, newTobacco);
+      if (response.status === 201) {
+        const response = await api.get("/tobaccos");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const deleteTobacco = createAsyncThunk(
+  "orders/deleteTobacco",
+  async (tobaccoId: string) => {
+    try {
+      const response = await api.delete(`/tobacco/delete/${tobaccoId}`);
+      if (response.status === 200) {
+        const response = await api.get("/tobaccos");
         return response.data;
       }
     } catch (error: any) {
@@ -337,6 +389,42 @@ export const ordersSlice = createSlice({
         state.offeredExtras = action.payload;
       })
       .addCase(deleteExtra.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(fetchTobaccos.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchTobaccos.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredTobaccos = action.payload;
+      })
+      .addCase(fetchTobaccos.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(postNewTobacco.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(postNewTobacco.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredTobaccos = action.payload;
+      })
+      .addCase(postNewTobacco.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(deleteTobacco.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteTobacco.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredTobaccos = action.payload;
+      })
+      .addCase(deleteTobacco.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });

@@ -43,6 +43,14 @@ const OwnerSidebar: React.FC<Props> = ({ isOpen, setIsOpen }) => {
             Delivery Hours
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.active : "")}
+            to="/owner/tobaccos"
+          >
+            Tobaccos
+          </NavLink>
+        </li>
       </ul>
     </header>
   );
