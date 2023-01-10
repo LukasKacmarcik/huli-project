@@ -35,6 +35,7 @@ export interface OrdersState {
   selectedExtras: Extra[];
   offeredTobaccos: Tobacco[];
   tobaccoPrice: number;
+  selectedTobacco: Tobacco | null;
   deliveryHours: DeliveryHour[];
 }
 
@@ -67,6 +68,7 @@ const initialState: OrdersState = {
   selectedExtras: [],
   offeredTobaccos: [],
   tobaccoPrice: 0,
+  selectedTobacco: null,
   deliveryHours: [],
 };
 
@@ -286,6 +288,9 @@ export const ordersSlice = createSlice({
     updateTobaccoPrice: (state, action: PayloadAction<number>) => {
       state.tobaccoPrice = action.payload;
     },
+    updateSelectedTobacco: (state, action: PayloadAction<Tobacco | null>) => {
+      state.selectedTobacco = action.payload;
+    },
     // decrement: (state) => {
     //   state.value -= 1;
     // },
@@ -477,6 +482,7 @@ export const {
   updateNewOrderDate,
   switchShowAllOrders,
   updateTobaccoPrice,
+  updateSelectedTobacco,
 } = ordersSlice.actions;
 
 // // The function below is called a selector and allows us to select a value from

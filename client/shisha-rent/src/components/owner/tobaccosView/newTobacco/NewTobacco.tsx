@@ -26,7 +26,7 @@ const NewTobacco: React.FC = () => {
     <div className={formStyles.formWrapper}>
       <h1>New Tobacco</h1>
       <p>
-        Cena posledného tabaku bude nastavená ako cena pre vsetky tabaky a
+        Cena najdrahsieho tabaku bude nastavená ako cena pre vsetky tabaky a
         zákaznik ju uvidí !!!
       </p>
       <form onSubmit={handleSubmit}>

@@ -9,6 +9,7 @@ import {
   fetchDeliveryHours,
   fetchExtras,
   postNewOrder,
+  Tobacco,
 } from "../../../app/slices/orders";
 import Extras from "./extras/Extras";
 import Tobaccos from "./tobaccos/Tobaccos";
@@ -21,6 +22,7 @@ export interface NewOrderFormData {
   userTelNumber: string;
   userEmailAddress: string;
   extras: Extra[];
+  tobacoo: Tobacco | null;
   total: number;
   userNote?: string;
 }
@@ -31,9 +33,10 @@ const NewOrderForm: React.FC = () => {
     (state) => state.shishas.selectedShisha
   );
   const selectedShishaPrice = selectedShisha?.price;
-  // const selectedShishaPrice = useAppSelector(
-  //   (state) => state.shishas.selectedShisha?.price
-  // );
+
+  const selectedTobacoo = useAppSelector(
+    (state) => state.orders.selectedTobacco
+  );
   const dateOfDelivery = useAppSelector((state) => state.orders.newOrderDate);
 
   const dispatch = useAppDispatch();
@@ -57,6 +60,7 @@ const NewOrderForm: React.FC = () => {
     userTelNumber: userData?.userTelNumber || "",
     userEmailAddress: userData?.userEmailAddress || "",
     extras: [],
+    tobacoo: null,
     total: 0,
   });
 
@@ -69,10 +73,9 @@ const NewOrderForm: React.FC = () => {
     orderData.shishaName = selectedShisha?.name;
     orderData.extras = selectedExtras;
     orderData.dateOfDelivery = dateOfDelivery;
-    //console.log(orderData);
+    orderData.tobacoo = selectedTobacoo;
 
     dispatch(postNewOrder(orderData));
-    // console.log("handlling submit");
   };
 
   const tobaccoPrice = useAppSelector((state) => state.orders.tobaccoPrice);
@@ -80,7 +83,7 @@ const NewOrderForm: React.FC = () => {
   const calcTotal = (
     arrOfExtras: Extra[],
     selectedShishaPrice: number | undefined,
-    tobaccoPrice: number
+    tobaccoPrice: number = 0
   ) => {
     return arrOfExtras.reduce(
       (total: number, extra: Extra) => (total += extra.price),

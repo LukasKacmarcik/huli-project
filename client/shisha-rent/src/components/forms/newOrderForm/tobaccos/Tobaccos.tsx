@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import {
   fetchTobaccos,
+  updateSelectedTobacco,
   updateTobaccoPrice,
 } from "../../../../app/slices/orders";
 import styles from "./Tobaccos.module.scss";
@@ -12,7 +13,7 @@ const Tobaccos: React.FC = () => {
   const { offeredTobaccos } = useAppSelector((state) => state.orders);
   const tobacoPrice =
     offeredTobaccos.length !== 0
-      ? offeredTobaccos[offeredTobaccos.length - 1].price
+      ? [...offeredTobaccos].sort((a, b) => b.price - a.price)[0].price
       : 0;
 
   const classicTobaccos = offeredTobaccos.filter(
@@ -27,14 +28,16 @@ const Tobaccos: React.FC = () => {
     (state) => state.shishas.selectedShisha
   );
 
-  const defaultTobacco = "defaultTobacco";
-  const [selectedTobacco, setSelectedTobacco] = useState(defaultTobacco);
-
-  const isTabaccoSelected = (value: string): boolean =>
-    value === selectedTobacco;
+  const defaultTobaccoId = "defaultTobaccoId";
+  const [selectedTobaccoId, setSelectedTobaccoId] = useState(defaultTobaccoId);
+  const selectedTobacco = offeredTobaccos.find(
+    (tobacco) => tobacco._id === selectedTobaccoId
+  );
+  const isTobaccoSelected = (value: string): boolean =>
+    value === selectedTobaccoId;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setSelectedTobacco(e.currentTarget.value);
+    setSelectedTobaccoId(e.currentTarget.value);
   };
 
   const listOfClassicTobaccos = classicTobaccos ? (
@@ -45,7 +48,9 @@ const Tobaccos: React.FC = () => {
           return (
             <div
               key={tobacco._id}
-              className={tobacco._id === selectedTobacco ? styles.selected : ""}
+              className={
+                tobacco._id === selectedTobaccoId ? styles.selected : ""
+              }
             >
               <label htmlFor={tobacco._id}>{tobacco.name}</label>
               <input
@@ -53,7 +58,7 @@ const Tobaccos: React.FC = () => {
                 id={tobacco._id}
                 name="tabacco"
                 value={tobacco._id}
-                checked={isTabaccoSelected(
+                checked={isTobaccoSelected(
                   tobacco._id ? tobacco._id : "tobaccoId is undefined"
                 )}
                 onChange={handleChange}
@@ -72,7 +77,9 @@ const Tobaccos: React.FC = () => {
           return (
             <div
               key={tobacco._id}
-              className={tobacco._id === selectedTobacco ? styles.selected : ""}
+              className={
+                tobacco._id === selectedTobaccoId ? styles.selected : ""
+              }
             >
               <label htmlFor={tobacco._id}>{tobacco.name}</label>
               <input
@@ -80,7 +87,7 @@ const Tobaccos: React.FC = () => {
                 id={tobacco._id}
                 name="tabacco"
                 value={tobacco._id}
-                checked={isTabaccoSelected(
+                checked={isTobaccoSelected(
                   tobacco._id ? tobacco._id : "tobaccoId is undefined"
                 )}
                 onChange={handleChange}
@@ -96,13 +103,19 @@ const Tobaccos: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setSelectedTobacco(defaultTobacco);
-  }, [selectedShisha]);
+    setSelectedTobaccoId(defaultTobaccoId);
+    dispatch(updateSelectedTobacco(null));
+    dispatch(updateTobaccoPrice(0));
+  }, [selectedShisha, dispatch]);
 
   useEffect(() => {
-    if (selectedTobacco !== defaultTobacco)
+    if (selectedTobacco) dispatch(updateSelectedTobacco(selectedTobacco));
+  }, [dispatch, selectedTobacco]);
+
+  useEffect(() => {
+    if (selectedTobaccoId !== defaultTobaccoId)
       dispatch(updateTobaccoPrice(tobacoPrice));
-  }, [dispatch, tobacoPrice, selectedTobacco]);
+  }, [dispatch, tobacoPrice, selectedTobaccoId]);
 
   return offeredTobaccos.length !== 0 ? (
     <div className={styles.listOfAllOfferedTobaccos}>
