@@ -11,6 +11,7 @@ import {
   postNewOrder,
 } from "../../../app/slices/orders";
 import Extras from "./extras/Extras";
+import Tobaccos from "./tobaccos/Tobaccos";
 
 export interface NewOrderFormData {
   shishaName: string | undefined;
@@ -111,6 +112,7 @@ const NewOrderForm: React.FC = () => {
     <div className={styles.newOrderFormWrapper}>
       <ShishasDatePicker />
       <Extras />
+      <Tobaccos />
       <div className={styles.wrapper}>
         <div className={formStyle.formWrapper}>
           <h1>Objednávka</h1>

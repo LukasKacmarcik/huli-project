@@ -14,7 +14,7 @@ const NewTobacco: React.FC = () => {
 
   const [formData, setFormData] = useState<NewTobaccoFormData>({
     name: "",
-    type: "",
+    type: "tobacco",
     price: "",
   });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,6 +25,10 @@ const NewTobacco: React.FC = () => {
   return (
     <div className={formStyles.formWrapper}>
       <h1>New Tobacco</h1>
+      <p>
+        Cena posledného tabaku bude nastavená ako cena pre vsetky tabaky a
+        zákaznik ju uvidí !!!
+      </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
@@ -41,7 +45,7 @@ const NewTobacco: React.FC = () => {
           value={formData.type}
           onChange={(e) => setFormData({ ...formData, type: e.target.value })}
         >
-          <option value="tabacco">Tabacco</option>
+          <option value="tobacco">Tobacco</option>
           <option value="molasses">Molasses</option>
         </select>
         <label htmlFor="price">Price</label>
