@@ -1,6 +1,15 @@
 .newOrderFormWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  label {
+    color: wheat;
+  }
+
+  h1,
+  h4 {
+    color: orangered;
+  }
 }
 
 .wrapper {

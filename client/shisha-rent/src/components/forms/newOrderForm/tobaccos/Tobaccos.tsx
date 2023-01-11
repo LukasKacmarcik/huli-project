@@ -119,7 +119,7 @@ const Tobaccos: React.FC = () => {
 
   return offeredTobaccos.length !== 0 ? (
     <div className={styles.listOfAllOfferedTobaccos}>
-      <h2>Tabaky {tobacoPrice} (€)</h2>
+      <h2 className={styles.tobaccoTitle}>Tabaky {tobacoPrice} (€)</h2>
       <form className={styles.tobaccosForm}>
         <div className={styles.classicTobaccosDiv}>
           <h2>Klasika</h2>

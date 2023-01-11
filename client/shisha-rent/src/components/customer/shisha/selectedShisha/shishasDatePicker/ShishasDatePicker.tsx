@@ -110,7 +110,7 @@ const ShishasDatePicker: React.FC = () => {
 
   return (
     <div className={styles.shishasDatePicker}>
-      <h1>Dátum a Čas</h1>
+      <h2>Dátum a Čas</h2>
       <div className={styles.datePickerWeapper}>
         <DatePicker
           selected={startDate}

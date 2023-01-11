@@ -181,7 +181,7 @@ const NewOrderForm: React.FC = () => {
               name="rememberMe"
               id="rememberMe"
             />
-            <h3>TOTAL: {formData.total}</h3>
+            <h4>TOTAL: {formData.total} €</h4>
             <button type="submit">Objednať</button>
           </form>
         </div>

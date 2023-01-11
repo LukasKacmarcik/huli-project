@@ -24,7 +24,13 @@
   justify-content: space-evenly;
   width: 100%;
 
+  h1,
+  h2 {
+    color: orangered;
+  }
+
   p {
+    color: wheat;
     margin: 3% 10% 3%;
   }
 }
