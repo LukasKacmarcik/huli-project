@@ -6,6 +6,7 @@ import styles from "./NewOrderForm.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   Extra,
+  fetchCities,
   fetchDeliveryHours,
   fetchExtras,
   postNewOrder,
@@ -17,6 +18,7 @@ import Tobaccos from "./tobaccos/Tobaccos";
 export interface NewOrderFormData {
   shishaName: string | undefined;
   userFullName: string;
+  userCity: string;
   userAddress: string;
   dateOfDelivery: string | null;
   userTelNumber: string;
@@ -39,6 +41,8 @@ const NewOrderForm: React.FC = () => {
   );
   const dateOfDelivery = useAppSelector((state) => state.orders.newOrderDate);
 
+  const offeredCities = useAppSelector((state) => state.orders.offeredCities);
+
   const dispatch = useAppDispatch();
 
   //// Remember me checkbox state
@@ -55,6 +59,7 @@ const NewOrderForm: React.FC = () => {
   const [formData, setFormData] = useState<NewOrderFormData>({
     shishaName: selectedShisha?.name,
     userFullName: userData?.userFullName || "",
+    userCity: userData?.userCity || "Kežmarok",
     userAddress: userData?.userAddress || "",
     dateOfDelivery: dateOfDelivery,
     userTelNumber: userData?.userTelNumber || "",
@@ -62,6 +67,14 @@ const NewOrderForm: React.FC = () => {
     extras: [],
     tobacco: null,
     total: 0,
+  });
+
+  const listOfCityOptions = offeredCities.map((city) => {
+    return (
+      <option key={city._id} value={city.name}>
+        {city.name}
+      </option>
+    );
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -80,30 +93,43 @@ const NewOrderForm: React.FC = () => {
 
   const tobaccoPrice = useAppSelector((state) => state.orders.tobaccoPrice);
 
+  const selectedCity = offeredCities.find(
+    (city) => city.name === formData.userCity
+  );
+
+  const priceOfSelectedCity = selectedCity?.price || 0;
+
   const calcTotal = (
     arrOfExtras: Extra[],
     selectedShishaPrice: number | undefined,
-    tobaccoPrice: number = 0
+    tobaccoPrice: number = 0,
+    priceOfSelectedCity: number
   ) => {
     return arrOfExtras.reduce(
       (total: number, extra: Extra) => (total += extra.price),
-      (selectedShishaPrice || 0) + tobaccoPrice
+      (selectedShishaPrice || 0) + tobaccoPrice + priceOfSelectedCity
     );
   };
 
   useEffect(() => {
     dispatch(fetchExtras());
     dispatch(fetchDeliveryHours());
+    dispatch(fetchCities());
   }, [selectedShisha, dispatch]);
 
   useEffect(() => {
     setFormData((ps) => {
       return {
         ...ps,
-        total: calcTotal(selectedExtras, selectedShishaPrice, tobaccoPrice),
+        total: calcTotal(
+          selectedExtras,
+          selectedShishaPrice,
+          tobaccoPrice,
+          priceOfSelectedCity
+        ),
       };
     });
-  }, [selectedExtras, selectedShishaPrice, tobaccoPrice]);
+  }, [selectedExtras, selectedShishaPrice, tobaccoPrice, priceOfSelectedCity]);
 
   useEffect(() => {
     if (rememberMe === true) {
@@ -133,6 +159,17 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userFullName: e.target.value })
               }
             />
+            <label htmlFor="userCity">Mesto</label>
+            <select
+              id="userCity"
+              name="userCity"
+              value={formData.userCity}
+              onChange={(e) =>
+                setFormData({ ...formData, userCity: e.target.value })
+              }
+            >
+              {listOfCityOptions}
+            </select>
             <label htmlFor="userAddress">Adresa</label>
             <input
               id="userAddress"

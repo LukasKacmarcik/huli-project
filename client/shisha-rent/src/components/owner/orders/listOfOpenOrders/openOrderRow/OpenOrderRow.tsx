@@ -47,6 +47,7 @@ const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
   return (
     <tr data-order_id={order._id}>
       <th>{order.userFullName}</th>
+      <th>{order.userCity}</th>
       <th>{order.userAddress}</th>
       <th>{order.userTelNumber}</th>
       <th>{order.shishaName}</th>

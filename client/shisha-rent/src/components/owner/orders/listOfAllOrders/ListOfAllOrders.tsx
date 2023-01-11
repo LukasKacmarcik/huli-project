@@ -20,6 +20,7 @@ const ListOfAllOrders: React.FC = () => {
         <thead>
           <tr>
             <th>Customer</th>
+            <th>City</th>
             <th>Address</th>
             <th>Tel. Number</th>
             <th>Shisha</th>

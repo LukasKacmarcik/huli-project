@@ -12,6 +12,7 @@ export interface Order {
   _id?: string;
   shishaName: string;
   userFullName: string;
+  userCity: string;
   userAddress: string;
   city: City;
   dateOfDelivery: string;
