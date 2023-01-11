@@ -17,6 +17,7 @@ export interface Order {
   userTelNumber: string;
   userEmailAddress: string;
   extras?: Extra[];
+  tobacco: Tobacco;
   total: number;
   userNote?: string;
   createdAt?: string;

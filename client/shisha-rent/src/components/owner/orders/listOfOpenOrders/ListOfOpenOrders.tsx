@@ -24,6 +24,7 @@ const ListOfOpenOrders: React.FC = () => {
             <th>Tel. Number</th>
             <th>Shisha</th>
             <th>Extras</th>
+            <th>Tobacco</th>
             <th>Total</th>
             <th>User Note</th>
             <th>Owner Note</th>

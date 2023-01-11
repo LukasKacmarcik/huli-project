@@ -22,7 +22,7 @@ export interface NewOrderFormData {
   userTelNumber: string;
   userEmailAddress: string;
   extras: Extra[];
-  tobacoo: Tobacco | null;
+  tobacco: Tobacco | null;
   total: number;
   userNote?: string;
 }
@@ -60,7 +60,7 @@ const NewOrderForm: React.FC = () => {
     userTelNumber: userData?.userTelNumber || "",
     userEmailAddress: userData?.userEmailAddress || "",
     extras: [],
-    tobacoo: null,
+    tobacco: null,
     total: 0,
   });
 
@@ -73,7 +73,7 @@ const NewOrderForm: React.FC = () => {
     orderData.shishaName = selectedShisha?.name;
     orderData.extras = selectedExtras;
     orderData.dateOfDelivery = dateOfDelivery;
-    orderData.tobacoo = selectedTobacoo;
+    orderData.tobacco = selectedTobacoo;
 
     dispatch(postNewOrder(orderData));
   };
