@@ -10,6 +10,7 @@ import ShishaUpdate from "./components/owner/shishasView/shishaUpdate/ShishaUpda
 import OrdersView from "./components/owner/orders/ordersView/OrdersView";
 import OwnerLayout from "./components/owner/ownerLayout/OwnerLayout";
 import TobaccosView from "./components/owner/tobaccosView/TobaccosView";
+import CityView from "./components/owner/citiesView/CityView";
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
         <Route path="shisha/update/:shishaId" element={<ShishaUpdate />} />
         <Route path="extras" element={<ExtrasView />} />
         <Route path="tobaccos" element={<TobaccosView />} />
+        <Route path="cities" element={<CityView />} />
         <Route path="deliveryHours" element={<DeliveryHoursView />} />
       </Route>
     </Routes>

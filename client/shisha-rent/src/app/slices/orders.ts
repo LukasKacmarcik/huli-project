@@ -6,12 +6,14 @@ import { OrderSwitchDoneBody } from "../../components/owner/orders/listOfOpenOrd
 import { NewExtraFormData } from "../../components/owner/extrasView/newExtra/NewExtra";
 import { NewDeliveryHourFormData } from "../../components/owner/deliveryHoursView/newDeliveryHour/NewDeliveryHour";
 import { NewTobaccoFormData } from "../../components/owner/tobaccosView/newTobacco/NewTobacco";
+import { NewCityFormData } from "../../components/owner/citiesView/newCity/NewCity";
 
 export interface Order {
   _id?: string;
   shishaName: string;
   userFullName: string;
   userAddress: string;
+  city: City;
   dateOfDelivery: string;
   timeOfDelivery: string;
   userTelNumber: string;
@@ -35,6 +37,7 @@ export interface OrdersState {
   offeredExtras: Extra[];
   selectedExtras: Extra[];
   offeredTobaccos: Tobacco[];
+  offeredCities: City[];
   tobaccoPrice: number;
   selectedTobacco: Tobacco | null;
   deliveryHours: DeliveryHour[];
@@ -49,6 +52,12 @@ export interface Extra {
 export interface Tobacco {
   _id?: string;
   type: string;
+  name: string;
+  price: number;
+}
+
+export interface City {
+  _id?: string;
   name: string;
   price: number;
 }
@@ -68,6 +77,7 @@ const initialState: OrdersState = {
   offeredExtras: [],
   selectedExtras: [],
   offeredTobaccos: [],
+  offeredCities: [],
   tobaccoPrice: 0,
   selectedTobacco: null,
   deliveryHours: [],
@@ -220,6 +230,45 @@ export const deleteTobacco = createAsyncThunk(
       const response = await api.delete(`/tobacco/delete/${tobaccoId}`);
       if (response.status === 200) {
         const response = await api.get("/tobaccos");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const fetchCities = createAsyncThunk("orders/fetchCities", async () => {
+  try {
+    const response = await api.get("/cities");
+    return response.data;
+  } catch (error: any) {
+    throw new Error(JSON.stringify(error.response.data));
+  }
+});
+
+export const postNewCity = createAsyncThunk(
+  "orders/postNewCity",
+  async (newCity: NewCityFormData) => {
+    try {
+      const response = await api.post(`/city/new`, newCity);
+      if (response.status === 201) {
+        const response = await api.get("/cities");
+        return response.data;
+      }
+    } catch (error: any) {
+      throw new Error(JSON.stringify(error.response.data));
+    }
+  }
+);
+
+export const deleteCity = createAsyncThunk(
+  "orders/deleteCity",
+  async (cityId: string) => {
+    try {
+      const response = await api.delete(`/city/delete/${cityId}`);
+      if (response.status === 200) {
+        const response = await api.get("/cities");
         return response.data;
       }
     } catch (error: any) {
@@ -436,6 +485,42 @@ export const ordersSlice = createSlice({
         state.offeredTobaccos = action.payload;
       })
       .addCase(deleteTobacco.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(fetchCities.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchCities.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredCities = action.payload;
+      })
+      .addCase(fetchCities.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(postNewCity.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(postNewCity.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredCities = action.payload;
+      })
+      .addCase(postNewCity.rejected, (state, action: any) => {
+        state.status = "failed";
+        state.messages = JSON.parse(action.error.message);
+      });
+    builder
+      .addCase(deleteCity.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteCity.fulfilled, (state, action) => {
+        state.status = "successful";
+        state.offeredCities = action.payload;
+      })
+      .addCase(deleteCity.rejected, (state, action: any) => {
         state.status = "failed";
         state.messages = JSON.parse(action.error.message);
       });
