@@ -1,3 +1,4 @@
+import City from "../models/cities.js";
 import DeliveryHour from "../models/deliveryHour.js";
 import Extra from "../models/extra.js";
 import Order from "../models/order.js";
@@ -182,6 +183,43 @@ export const deleteTobacco = async (req, res) => {
   try {
     const response = await Tobacco.findOneAndRemove({
       _id: req.params.tobaccoId,
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
+//// Cities ///////////////////////////////////////////
+export const getCities = async (req, res) => {
+  try {
+    const response = await City.find();
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const postCity = async (req, res) => {
+  const city = req.body;
+  const newCity = new City(city);
+
+  try {
+    await newCity.save();
+
+    res.status(201).json(newCity);
+  } catch (error) {
+    console.log(error.message);
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const deleteCity = async (req, res) => {
+  try {
+    const response = await City.findOneAndRemove({
+      _id: req.params.cityId,
     });
     res.status(200).json(response);
   } catch (error) {

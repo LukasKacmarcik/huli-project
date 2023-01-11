@@ -22,6 +22,9 @@ import {
   getTobaccos,
   postTobacco,
   deleteTobacco,
+  getCities,
+  postCity,
+  deleteCity,
 } from "../controllers/order.js";
 
 const api = express.Router();
@@ -84,10 +87,14 @@ api.get("/deliveryHours", getDeliveryHours);
 api.post("/deliveryHour/new", postDeliveryHour);
 api.delete("/deliveryHour/delete/:deliveryHourId", deleteDeliveryHour);
 
-////////Extras/////////
+////////Tobaccos/////////
 api.get("/tobaccos", getTobaccos);
 api.post("/tobacco/new", postTobacco);
 api.delete("/tobacco/delete/:tobaccoId", deleteTobacco);
 
+////////Cities/////////
+api.get("/cities", getCities);
+api.post("/city/new", postCity);
+api.delete("/city/delete/:cityId", deleteCity);
 // export the routes
 export default api;
