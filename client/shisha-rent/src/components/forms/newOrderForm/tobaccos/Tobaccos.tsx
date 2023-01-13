@@ -125,7 +125,9 @@ const Tobaccos: React.FC = () => {
         messages.ordeTobaccoError ? styles.inputError : ""
       }`}
     >
-      <h2 className={styles.tobaccoTitle}>Tabaky {tobacoPrice} €</h2>
+      <h2 className={styles.tobaccoTitle}>
+        Tabaky {tobacoPrice} <p>€</p>
+      </h2>
       <form className={styles.tobaccosForm}>
         <div className={styles.classicTobaccosDiv}>
           <h2>Klasika</h2>

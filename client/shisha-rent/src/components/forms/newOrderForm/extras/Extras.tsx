@@ -98,7 +98,7 @@ const Extras: React.FC = () => {
   return (
     <div className={styles.listOfAllOfferedExtras}>
       <h2>Doplnky </h2>
-      <p>(€)</p>
+      <p>€</p>
       {listOfAllOfferedExtras}
     </div>
   );
