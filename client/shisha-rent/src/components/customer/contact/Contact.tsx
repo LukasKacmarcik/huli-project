@@ -15,7 +15,7 @@ const Contact = () => {
         <h3>Pondelok - Štvrtok</h3>
         <h4>17:00 - 23:00</h4>
         <h3>Piatok - Sobota</h3>
-        <h4>17:00 - 24:00</h4>
+        <h4>17:00 - 00:00</h4>
         <h3>Nedeľa</h3>
         <h3>zatvorené</h3>
       </div>

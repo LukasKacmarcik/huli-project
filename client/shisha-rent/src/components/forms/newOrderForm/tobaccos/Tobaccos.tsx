@@ -28,6 +28,8 @@ const Tobaccos: React.FC = () => {
     (state) => state.shishas.selectedShisha
   );
 
+  const messages = useAppSelector((state) => state.orders.messages);
+
   const defaultTobaccoId = "defaultTobaccoId";
   const [selectedTobaccoId, setSelectedTobaccoId] = useState(defaultTobaccoId);
   const selectedTobacco = offeredTobaccos.find(
@@ -118,8 +120,12 @@ const Tobaccos: React.FC = () => {
   }, [dispatch, tobacoPrice, selectedTobaccoId]);
 
   return offeredTobaccos.length !== 0 ? (
-    <div className={styles.listOfAllOfferedTobaccos}>
-      <h2 className={styles.tobaccoTitle}>Tabaky {tobacoPrice} (€)</h2>
+    <div
+      className={`${styles.listOfAllOfferedTobaccos} ${
+        messages.ordeTobaccoError ? styles.inputError : ""
+      }`}
+    >
+      <h2 className={styles.tobaccoTitle}>Tabaky {tobacoPrice} €</h2>
       <form className={styles.tobaccosForm}>
         <div className={styles.classicTobaccosDiv}>
           <h2>Klasika</h2>
@@ -130,6 +136,7 @@ const Tobaccos: React.FC = () => {
           {listOfMolasses}
         </div>
       </form>
+      <p className={styles.error}>{messages.ordeTobaccoError}</p>
     </div>
   ) : null;
 };

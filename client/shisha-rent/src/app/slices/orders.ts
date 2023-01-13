@@ -388,6 +388,7 @@ export const ordersSlice = createSlice({
       .addCase(postNewOrder.fulfilled, (state, action) => {
         state.status = "successful";
         state.orders = action.payload;
+        state.messages = {};
       })
       .addCase(postNewOrder.rejected, (state, action: any) => {
         state.status = "failed";

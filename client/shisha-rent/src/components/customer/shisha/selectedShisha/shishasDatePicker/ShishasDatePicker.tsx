@@ -37,6 +37,8 @@ const ShishasDatePicker: React.FC = () => {
     (state) => state.shishas.selectedShisha?.amount
   );
 
+  const messages = useAppSelector((state) => state.orders.messages);
+
   //// Array of all dates when selected shisha is already ordered plus day before and day after an order
   const myDatesArr: Date[] = useAppSelector(
     (state) => state.shishas.excludedDates
@@ -72,6 +74,7 @@ const ShishasDatePicker: React.FC = () => {
 
   const hourOptions = (
     <select
+      className={messages.ordeHourError ? styles.inputError : ""}
       onChange={handleSetHours}
       defaultValue="default"
       disabled={startDate !== null ? false : true}
@@ -113,6 +116,7 @@ const ShishasDatePicker: React.FC = () => {
       <h2>Dátum a Čas</h2>
       <div className={styles.datePickerWeapper}>
         <DatePicker
+          className={messages.orderDateError ? styles.inputError : ""}
           selected={startDate}
           dateFormat="dd/MM/yyyy"
           onChange={(date: Date) => setStartDate(date)}
@@ -122,6 +126,8 @@ const ShishasDatePicker: React.FC = () => {
         />
       </div>
       {hourOptions}
+      <p className={styles.error}>{messages.orderDateError}</p>
+      <p className={styles.error}>{messages.ordeHourError}</p>
     </div>
   );
 };

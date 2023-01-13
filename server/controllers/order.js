@@ -32,6 +32,60 @@ export const getOpenOrders = async (req, res) => {
 export const postOrder = async (req, res) => {
   const order = req.body;
 
+  let isValid = true;
+  const messages = {
+    orderDateError: "",
+    ordeHourError: "",
+    ordeTobaccoError: "",
+    ordeUserFullNameError: "",
+    ordeUserAddressError: "",
+    ordeUserTelNumberError: "",
+    ordeUserEmailAddressError: "",
+  };
+
+  if (!order.dateOfDelivery) {
+    messages.orderDateError += "Je potrebné zvoliť dátum doručenia. \n";
+    isValid = false;
+  }
+
+  const hourOfDelivery = new Date(order.dateOfDelivery).getHours();
+  if (hourOfDelivery == 0) {
+    messages.ordeHourError += "Je potrebné zvoliť hodinu doručenia. \n";
+    isValid = false;
+  }
+
+  if (!order.tobacco) {
+    messages.ordeTobaccoError += "Je potrebné zvoliť tabák. \n";
+    isValid = false;
+  }
+
+  if (!order.userFullName.trim()) {
+    messages.ordeUserFullNameError +=
+      "Je potrebné zadať svoje meno a priezvisko. \n";
+    isValid = false;
+  }
+
+  if (!order.userAddress.trim()) {
+    messages.ordeUserAddressError += "Je potrebné zadať adresu. \n";
+    isValid = false;
+  }
+
+  if (!order.userTelNumber.trim()) {
+    messages.ordeUserTelNumberError += "Je potrebné zadať telefónne číslo. \n";
+    isValid = false;
+  }
+
+  if (!order.userEmailAddress.trim()) {
+    messages.ordeUserEmailAddressError +=
+      "Je potrebné zadať emailovú adresu. \n";
+    isValid = false;
+  }
+
+  if (!isValid) {
+    res.status(400).json(messages);
+    return;
+  }
+
   const newOrder = new Order(order);
 
   try {

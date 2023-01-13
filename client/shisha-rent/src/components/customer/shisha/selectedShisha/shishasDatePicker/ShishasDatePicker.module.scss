@@ -26,6 +26,16 @@
     text-align: center;
   }
 
+  .inputError {
+    border: 2px solid red !important;
+  }
+
+  .error {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: red;
+  }
+
   .datePickerWeapper {
     margin-left: 3%;
     width: 200px;

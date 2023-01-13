@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ShishasDatePicker from "../../customer/shisha/selectedShisha/shishasDatePicker/ShishasDatePicker";
-import formStyle from "../form.module.scss";
 import styles from "./NewOrderForm.module.scss";
 
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
@@ -39,6 +38,9 @@ const NewOrderForm: React.FC = () => {
   const selectedTobacoo = useAppSelector(
     (state) => state.orders.selectedTobacco
   );
+
+  const messages = useAppSelector((state) => state.orders.messages);
+
   const dateOfDelivery = useAppSelector((state) => state.orders.newOrderDate);
 
   const offeredCities = useAppSelector((state) => state.orders.offeredCities);
@@ -87,6 +89,8 @@ const NewOrderForm: React.FC = () => {
     orderData.extras = selectedExtras;
     orderData.dateOfDelivery = dateOfDelivery;
     orderData.tobacco = selectedTobacoo;
+
+    console.log(orderData);
 
     dispatch(postNewOrder(orderData));
   };
@@ -146,11 +150,14 @@ const NewOrderForm: React.FC = () => {
       <Extras />
       <Tobaccos />
       <div className={styles.wrapper}>
-        <div className={formStyle.formWrapper}>
+        <div className={styles.formWrapper}>
           <h1>Objednávka</h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="userFullName">Meno a priezvisko</label>
             <input
+              className={
+                messages.ordeUserFullNameError ? styles.inputError : ""
+              }
               id="userFullName"
               type="text"
               name="userFullName"
@@ -159,6 +166,7 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userFullName: e.target.value })
               }
             />
+            <p className={styles.error}>{messages.ordeUserFullNameError}</p>
             <label htmlFor="userCity">Mesto</label>
             <select
               id="userCity"
@@ -172,6 +180,7 @@ const NewOrderForm: React.FC = () => {
             </select>
             <label htmlFor="userAddress">Adresa</label>
             <input
+              className={messages.ordeUserAddressError ? styles.inputError : ""}
               id="userAddress"
               type="text"
               name="userAddress"
@@ -180,8 +189,12 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userAddress: e.target.value })
               }
             />
+            <p className={styles.error}>{messages.ordeUserAddressError}</p>
             <label htmlFor="userTelNumber">Tel. cislo</label>
             <input
+              className={
+                messages.ordeUserTelNumberError ? styles.inputError : ""
+              }
               id="userTelNumber"
               type="text"
               name="userTelNumber"
@@ -190,8 +203,12 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userTelNumber: e.target.value })
               }
             />
+            <p className={styles.error}>{messages.ordeUserTelNumberError}</p>
             <label htmlFor="userEmailAddress">Email</label>
             <input
+              className={
+                messages.ordeUserEmailAddressError ? styles.inputError : ""
+              }
               id="userEmailAddress"
               type="text"
               name="userEmailAddress"
@@ -200,6 +217,7 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userEmailAddress: e.target.value })
               }
             />
+            <p className={styles.error}>{messages.ordeUserEmailAddressError}</p>
             <label htmlFor="userNote">Poznámka k objednávke</label>
             <textarea
               id="userNote"
