@@ -35,9 +35,7 @@ const NewOrderForm: React.FC = () => {
   );
   const selectedShishaPrice = selectedShisha?.price;
 
-  const selectedTobacoo = useAppSelector(
-    (state) => state.orders.selectedTobacco
-  );
+  const { selectedTobacco } = useAppSelector((state) => state.orders);
 
   const messages = useAppSelector((state) => state.orders.messages);
 
@@ -88,7 +86,7 @@ const NewOrderForm: React.FC = () => {
     orderData.shishaName = selectedShisha?.name;
     orderData.extras = selectedExtras;
     orderData.dateOfDelivery = dateOfDelivery;
-    orderData.tobacco = selectedTobacoo;
+    orderData.tobacco = selectedTobacco;
 
     dispatch(postNewOrder(orderData));
   };

@@ -53,7 +53,6 @@ const Extras: React.FC = () => {
     );
     dispatch(updateSelectedExtras(filteredSelectedExtras));
   }, [extras, dispatch, allOfferedExtras]);
-
   //// On selecting of shisha or selecting another one this will reset all alredy selected extras (global state)
   //// and create new local extras state that control checkboxes.
   useEffect(() => {
@@ -71,7 +70,7 @@ const Extras: React.FC = () => {
       {allOfferedExtras.map((extra, index) => {
         return (
           <div
-            key={index}
+            key={extra.name}
             className={
               selectedExtras?.find((oneExtra) => oneExtra.name === extra.name)
                 ? styles.selected
@@ -99,7 +98,12 @@ const Extras: React.FC = () => {
     <div className={styles.listOfAllOfferedExtras}>
       <h2>Doplnky </h2>
       <p>€</p>
-      {listOfAllOfferedExtras}
+      {/* Condition below make sure that we create key/value pair for each extra that we want to render
+       and after that it can render list of inputs */}
+      {Object.keys(extras).length ===
+        offeredExtras.length +
+          (selectedShishaExtras ? selectedShishaExtras?.length : 0) &&
+        listOfAllOfferedExtras}
     </div>
   );
 };
