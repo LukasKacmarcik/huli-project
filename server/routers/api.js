@@ -27,6 +27,8 @@ import {
   deleteCity,
 } from "../controllers/order.js";
 
+import { postLogin, getCurrentUser } from "../controllers/authentication.js";
+
 const api = express.Router();
 api.use(express.json());
 
@@ -39,7 +41,7 @@ const verifyJWT = (req, res, next) => {
       if (err) {
         res.status(401).json({ message: "U failed to authenticate" });
       } else {
-        req.userId = decoded.id;
+        req.userId = decoded._id;
         next();
       }
     });
@@ -53,7 +55,7 @@ const validateOptionalJWT = (req, res, next) => {
       if (err) {
         res.json({ message: "U failed to authenticate" });
       } else {
-        req.userId = decoded.id;
+        req.userId = decoded._id;
         next();
       }
     });
@@ -62,6 +64,10 @@ const validateOptionalJWT = (req, res, next) => {
     next();
   }
 };
+
+////////AUTHENTICATION/////////
+api.get("/user", validateOptionalJWT, getCurrentUser);
+api.post("/login", postLogin);
 
 ////////SHISHAS/////////
 api.get("/shishas", getShishas);

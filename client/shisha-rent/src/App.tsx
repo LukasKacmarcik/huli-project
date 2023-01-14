@@ -11,10 +11,12 @@ import OrdersView from "./components/owner/orders/ordersView/OrdersView";
 import OwnerLayout from "./components/owner/ownerLayout/OwnerLayout";
 import TobaccosView from "./components/owner/tobaccosView/TobaccosView";
 import CityView from "./components/owner/citiesView/CityView";
+import LoginForm from "./components/owner/login/LoginForm";
 
 const App: React.FC = () => {
   return (
     <Routes>
+      <Route path="/login" element={<LoginForm />} />
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
       </Route>

@@ -1,0 +1,32 @@
+.loginForm {
+  margin-top: 10vh;
+  color: wheat;
+  text-align: center;
+
+  h2 {
+    color: red;
+  }
+
+  form {
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  input {
+    display: block;
+    margin: 0 auto 1rem;
+  }
+
+  .requiredField::after {
+    content: "*";
+    color: rgb(201, 29, 29) !important;
+    padding-left: 10px !important;
+  }
+
+  .error {
+    color: red !important;
+    margin: 0;
+  }
+}
