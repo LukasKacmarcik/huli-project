@@ -118,7 +118,6 @@ export const postNewOrder = createAsyncThunk(
       const response = await api.post("/order/new", newOrder);
       if (response.status === 201) {
         const response = await api.get("/orders");
-        // The value we return becomes the `fulfilled` action payload
         return response.data;
       }
     } catch (error: any) {

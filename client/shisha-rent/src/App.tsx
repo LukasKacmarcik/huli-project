@@ -12,6 +12,7 @@ import OwnerLayout from "./components/owner/ownerLayout/OwnerLayout";
 import TobaccosView from "./components/owner/tobaccosView/TobaccosView";
 import CityView from "./components/owner/citiesView/CityView";
 import LoginForm from "./components/owner/login/LoginForm";
+import RequireAuth from "./components/owner/requireAuth/RequireAuth";
 
 const App: React.FC = () => {
   return (
@@ -20,15 +21,17 @@ const App: React.FC = () => {
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
       </Route>
-      <Route path="/owner" element={<OwnerLayout />}>
-        <Route path="orders" element={<OrdersView />} />
-        <Route path="order/update/:orderId" element={<OrderUpdate />} />
-        <Route path="shishas" element={<ShishasView />} />
-        <Route path="shisha/update/:shishaId" element={<ShishaUpdate />} />
-        <Route path="extras" element={<ExtrasView />} />
-        <Route path="tobaccos" element={<TobaccosView />} />
-        <Route path="cities" element={<CityView />} />
-        <Route path="deliveryHours" element={<DeliveryHoursView />} />
+      <Route element={<RequireAuth allowedId={"63c124c0b0a2394b66edfb99"} />}>
+        <Route path="/owner" element={<OwnerLayout />}>
+          <Route path="orders" element={<OrdersView />} />
+          <Route path="order/update/:orderId" element={<OrderUpdate />} />
+          <Route path="shishas" element={<ShishasView />} />
+          <Route path="shisha/update/:shishaId" element={<ShishaUpdate />} />
+          <Route path="extras" element={<ExtrasView />} />
+          <Route path="tobaccos" element={<TobaccosView />} />
+          <Route path="cities" element={<CityView />} />
+          <Route path="deliveryHours" element={<DeliveryHoursView />} />
+        </Route>
       </Route>
     </Routes>
   );

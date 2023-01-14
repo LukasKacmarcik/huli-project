@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./loginForm.module.scss";
 import { loginUser } from "../../../app/slices/session";
@@ -15,9 +15,6 @@ const LoginForm: React.FC = () => {
     (state) => state.session
   );
 
-  if (id && globalUsername === "Piskes") {
-    navigate("/owner/orders");
-  }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -29,6 +26,12 @@ const LoginForm: React.FC = () => {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    if (id && globalUsername === "Piskes") {
+      navigate("/owner/orders");
+    }
+  }, [globalUsername, id, navigate]);
 
   return (
     <div className={styles.loginForm}>

@@ -90,8 +90,6 @@ const NewOrderForm: React.FC = () => {
     orderData.dateOfDelivery = dateOfDelivery;
     orderData.tobacco = selectedTobacoo;
 
-    console.log(orderData);
-
     dispatch(postNewOrder(orderData));
   };
 
