@@ -116,10 +116,18 @@ export default function Home() {
           <Map />
         </div>
         <div className={styles.icons}>
-          <a href="https://www.facebook.com/kkcajovnaaura">
+          <a
+            href="https://www.facebook.com/kkcajovnaaura"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={fb} alt="facebook"></img>
           </a>
-          <a href="https://www.instagram.com/cajovnaaurakezmarok">
+          <a
+            href="https://www.instagram.com/cajovnaaurakezmarok"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={ig} alt="instagram"></img>
           </a>
         </div>
