@@ -8,6 +8,8 @@ import { useRef } from "react";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
 import Contact from "../contact/Contact";
 import Map from "../map/Map";
+import fb from "../../../images/fb.svg";
+import ig from "../../../images/ig.svg";
 import styles from "./Home.module.scss";
 
 export default function Home() {
@@ -112,6 +114,14 @@ export default function Home() {
           }`}
         >
           <Map />
+        </div>
+        <div className={styles.icons}>
+          <a href="https://www.facebook.com/kkcajovnaaura">
+            <img src={fb} alt="facebook"></img>
+          </a>
+          <a href="https://www.instagram.com/cajovnaaurakezmarok">
+            <img src={ig} alt="instagram"></img>
+          </a>
         </div>
       </div>
     </>
