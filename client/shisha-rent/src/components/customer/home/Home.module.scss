@@ -85,6 +85,12 @@
     }
   }
 
+  .reservationWrapper {
+    grid-column: 1/3;
+    opacity: 0;
+    transition: 1s ease-in;
+  }
+
   .rentWrapper.rentWrappersInView {
     .rentImgWrapper {
       opacity: 1;
@@ -94,6 +100,10 @@
     .rentTextWrapper {
       opacity: 1;
       transform: translateX(0%);
+    }
+
+    .reservationWrapper {
+      opacity: 1;
     }
   }
 }

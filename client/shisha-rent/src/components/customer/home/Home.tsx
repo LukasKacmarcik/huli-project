@@ -86,6 +86,19 @@ export default function Home() {
               poprípade iné zaujímavé doplnky.
             </p>
           </div>
+          <div className={styles.reservationWrapper}>
+            <h1>Rezervácia</h1>
+            <p>
+              Pri objednávke zadávate orientačný čas, po spracovaní objednávky
+              vás budeme kontaktovať. Vodnú fajku je potrebné objednať minimálne
+              1 deň vopred, rozvážame nasledujúci deň do 16:00. Expresnú
+              objednávku (doručenie aktuálny deň po 16:00) treba zadať do
+              poznámky (+5 EUR). Rezervácia je po potvrdení záväzná. K
+              objednávke sa účtuje záloha 40€, ktorá bude pri spätnom
+              odovzdávaní vodnej fajky vrátená. V prípade individuálnych
+              požiadaviek nás neváhajte kontaktovať Na tel. č.: 0902664994
+            </p>
+          </div>
         </div>
       </div>
       <ListOfShishas />
