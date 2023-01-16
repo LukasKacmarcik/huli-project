@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const url = process.env.PRODUCTION_URL || "http://localhost:3001/api";
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://aura-backend-d24g.onrender.com/"
+    : "http://localhost:3001/api";
 
 export const api = axios.create({
   baseURL: url,
