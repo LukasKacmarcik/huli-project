@@ -19,8 +19,8 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() =>
-    app.listen(process.env.APP_PORT, () =>
-      console.log(`Server running at port ${process.env.APP_PORT}`)
+    app.listen(process.env.APP_PORT || 3000, () =>
+      console.log(`Server running at port ${process.env.APP_PORT || 3000}`)
     )
   )
   .catch((error) => console.log(error.message));
