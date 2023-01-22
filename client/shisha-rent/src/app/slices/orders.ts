@@ -7,6 +7,7 @@ import { NewExtraFormData } from "../../components/owner/extrasView/newExtra/New
 import { NewDeliveryHourFormData } from "../../components/owner/deliveryHoursView/newDeliveryHour/NewDeliveryHour";
 import { NewTobaccoFormData } from "../../components/owner/tobaccosView/newTobacco/NewTobacco";
 import { NewCityFormData } from "../../components/owner/citiesView/newCity/NewCity";
+import { toast } from "react-toastify";
 
 export interface Order {
   _id?: string;
@@ -115,7 +116,7 @@ export const postNewOrder = createAsyncThunk(
   "orders/postNewOrder",
   async (newOrder: NewOrderFormData) => {
     try {
-      const response = await api.post("/order/new", newOrder);
+      const response: any = await api.post("/order/new", newOrder);
       if (response.status === 201) {
         const response = await api.get("/orders");
         return response.data;
@@ -386,11 +387,21 @@ export const ordersSlice = createSlice({
       })
       .addCase(postNewOrder.fulfilled, (state, action) => {
         state.status = "successful";
+        toast.success(`Objednávka úspešne odoslaná`, {
+          position: "bottom-center",
+        });
         state.orders = action.payload;
         state.messages = {};
       })
       .addCase(postNewOrder.rejected, (state, action: any) => {
         state.status = "failed";
+        const errMsgs = Object.values(JSON.parse(action.error.message))
+          .filter((msg) => msg !== "")
+          .join("");
+        toast.error(`Objednávku sa nepodarilo odoslat pretože: ${errMsgs}`, {
+          autoClose: 10000,
+          position: "bottom-center",
+        });
         state.messages = JSON.parse(action.error.message);
       });
     builder

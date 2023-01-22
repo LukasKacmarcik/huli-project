@@ -38,7 +38,7 @@ const NewOrderForm: React.FC = () => {
   );
   const selectedShishaPrice = selectedShisha?.price;
 
-  const { selectedTobacco } = useAppSelector((state) => state.orders);
+  const { selectedTobacco, status } = useAppSelector((state) => state.orders);
 
   const messages = useAppSelector((state) => state.orders.messages);
 
@@ -268,7 +268,9 @@ const NewOrderForm: React.FC = () => {
               id="rememberMe"
             />
             <h4>TOTAL: {formData.total} €</h4>
-            <button type="submit">Objednať</button>
+            <button type="submit" disabled={status === "loading"}>
+              Objednať
+            </button>
           </form>
         </div>
       </div>
