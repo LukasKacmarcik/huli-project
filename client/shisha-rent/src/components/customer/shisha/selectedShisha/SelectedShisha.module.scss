@@ -1,7 +1,9 @@
+@import "../../../../globalStyles.scss";
+
 .selectedShisha {
-  background-color: rgba(201, 212, 201, 0.838);
+  // background-color: rgba(201, 212, 201, 0.838);
   border-radius: 25px;
-  width: 70%;
+  width: 100%;
   max-width: 1200px;
   margin: 20px auto;
   a {

@@ -1,3 +1,5 @@
+@use "../../../globalStyles" as *;
+
 .newOrderFormWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -8,7 +10,7 @@
   }
 
   .formWrapper {
-    background-color: rgb(245, 239, 239);
+    // background-color: rgb(245, 239, 239);
     background-repeat: no-repeat;
     background-size: cover;
     max-width: 1200px;
@@ -102,5 +104,31 @@
   label:not([for="userNote"]):not([for="rememberMe"])::after {
     content: " *";
     color: red;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .newOrderFormWrapper {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    .formWrapper {
+      margin-bottom: 0;
+
+      form {
+        margin-bottom: 0;
+
+        input[type="text"],
+        select,
+        textarea {
+          width: 90%;
+        }
+
+        button {
+          width: 70%;
+        }
+      }
+    }
   }
 }

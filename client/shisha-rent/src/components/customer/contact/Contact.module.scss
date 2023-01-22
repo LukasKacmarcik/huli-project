@@ -1,3 +1,5 @@
+@use "../../../globalStyles" as *;
+
 .contactWrapper {
   font-size: x-large;
   display: grid;
@@ -30,5 +32,15 @@
   }
   .telNumber {
     grid-column: 3/4;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .contactWrapper {
+    .address,
+    .hours,
+    .telNumber {
+      grid-column: 1/4;
+    }
   }
 }

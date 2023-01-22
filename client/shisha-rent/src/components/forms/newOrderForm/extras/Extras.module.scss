@@ -1,3 +1,5 @@
+@use "../../../../globalStyles" as *;
+
 .extrasForm {
   display: flex;
   flex-wrap: wrap;
@@ -43,5 +45,11 @@
     background-color: green;
     border-color: firebrick;
     color: rgba(240, 248, 255, 0.846);
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .listOfAllOfferedExtras {
+    margin-top: 0.2rem;
   }
 }
