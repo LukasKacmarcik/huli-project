@@ -101,7 +101,7 @@ const ShishaUpdate: React.FC = () => {
           ...ps.shishaExtras,
           {
             name: shishaExtrasForm.name,
-            price: parseInt(shishaExtrasForm.price),
+            price: parseFloat(shishaExtrasForm.price),
           },
         ],
       };

@@ -40,9 +40,14 @@ const NewShishaForm: React.FC = () => {
 
   const handleAddExtra = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(`name: `, shishaExtrasForm.name);
+
     setShishaExtras((ps: ShishaExtra[]) => [
       ...ps,
-      { name: shishaExtrasForm.name, price: parseInt(shishaExtrasForm.price) },
+      {
+        name: shishaExtrasForm.name,
+        price: parseFloat(shishaExtrasForm.price),
+      },
     ]);
   };
 
