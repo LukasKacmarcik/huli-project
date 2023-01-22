@@ -45,6 +45,10 @@ const NewOrderForm: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
+  //// DepositAgreement me checkbox state
+  const [depositAgreement, setDepositAgreement] = useState<boolean>(false);
+  //// Agreement me checkbox state
+  const [agreement, setAgreement] = useState<boolean>(false);
   //// Remember me checkbox state
   const [rememberMe, setRememberMe] = useState<boolean>(
     window.localStorage.getItem("rememberMe") === "true" ? true : false
@@ -79,16 +83,20 @@ const NewOrderForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (rememberMe === true) {
-      window.localStorage.setItem("userData", JSON.stringify(formData));
-    }
-    const orderData = formData;
-    orderData.shishaName = selectedShisha?.name;
-    orderData.extras = selectedExtras;
-    orderData.dateOfDelivery = dateOfDelivery;
-    orderData.tobacco = selectedTobacco;
+    if (agreement && depositAgreement) {
+      if (rememberMe === true) {
+        window.localStorage.setItem("userData", JSON.stringify(formData));
+      }
+      const orderData = formData;
+      orderData.shishaName = selectedShisha?.name;
+      orderData.extras = selectedExtras;
+      orderData.dateOfDelivery = dateOfDelivery;
+      orderData.tobacco = selectedTobacco;
 
-    dispatch(postNewOrder(orderData));
+      dispatch(postNewOrder(orderData));
+    } else {
+      console.log("have to agree with deposit and rules");
+    }
   };
 
   const tobaccoPrice = useAppSelector((state) => state.orders.tobaccoPrice);
@@ -224,6 +232,25 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userNote: e.target.value })
               }
             ></textarea>
+            <label htmlFor="agreement">Súhlasím s obchodnými podmienkamy</label>
+            <input
+              checked={agreement}
+              onChange={() => setAgreement((ps) => !ps)}
+              type="checkbox"
+              name="agreement"
+              id="agreement"
+            />
+            <label htmlFor="depositAgreement">
+              Súhlas o odovzdaní zálohy vo výške 40e pri prevzatí, ktorá bude
+              vrátená po odovzdaní a skontrolovaní.
+            </label>
+            <input
+              checked={depositAgreement}
+              onChange={() => setDepositAgreement((ps) => !ps)}
+              type="checkbox"
+              name="depositAgreement"
+              id="depositAgreement"
+            />
             <label htmlFor="rememberMe">Pametaj si ma</label>
             <input
               checked={rememberMe}
