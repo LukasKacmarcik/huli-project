@@ -13,6 +13,7 @@ import {
 } from "../../../app/slices/orders";
 import Extras from "./extras/Extras";
 import Tobaccos from "./tobaccos/Tobaccos";
+import { useNavigate } from "react-router-dom";
 
 export interface NewOrderFormData {
   shishaName: string | undefined;
@@ -29,6 +30,8 @@ export interface NewOrderFormData {
 }
 
 const NewOrderForm: React.FC = () => {
+  const navigate = useNavigate();
+
   const selectedExtras = useAppSelector((state) => state.orders.selectedExtras);
   const selectedShisha = useAppSelector(
     (state) => state.shishas.selectedShisha
@@ -81,7 +84,7 @@ const NewOrderForm: React.FC = () => {
     );
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (agreement && depositAgreement) {
       if (rememberMe === true) {
@@ -93,7 +96,12 @@ const NewOrderForm: React.FC = () => {
       orderData.dateOfDelivery = dateOfDelivery;
       orderData.tobacco = selectedTobacco;
 
-      dispatch(postNewOrder(orderData));
+      try {
+        await dispatch(postNewOrder(orderData)).unwrap();
+        navigate("/orderSent");
+      } catch (error) {
+        console.error("new order failed");
+      }
     } else {
       console.log("have to agree with deposit and rules");
     }
