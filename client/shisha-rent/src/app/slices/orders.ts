@@ -116,11 +116,13 @@ export const postNewOrder = createAsyncThunk(
   "orders/postNewOrder",
   async (newOrder: NewOrderFormData) => {
     try {
-      const response: any = await api.post("/order/new", newOrder);
-      if (response.status === 201) {
-        const response = await api.get("/orders");
-        return response.data;
-      }
+      await api.post("/order/new", newOrder);
+      // const response = await api.post("/order/new", newOrder);
+      // if (response.status === 201) {
+      //   const response = await api.get("/orders");
+      //   return response.data;
+      // }
+      return;
     } catch (error: any) {
       throw new Error(JSON.stringify(error.response.data));
     }
@@ -390,7 +392,7 @@ export const ordersSlice = createSlice({
         toast.success(`Objednávka úspešne odoslaná`, {
           position: "bottom-center",
         });
-        state.orders = action.payload;
+        // state.orders = action.payload;
         state.messages = {};
       })
       .addCase(postNewOrder.rejected, (state, action: any) => {

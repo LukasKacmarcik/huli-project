@@ -85,7 +85,7 @@ api.patch("/shisha/update", verifyJWT, updateShisha);
 api.delete("/shisha/delete/:shishaId", verifyJWT, deleteShisha);
 
 ////////ORDERS/////////
-api.get("/orders", getOrders);
+api.get("/orders", verifyJWT, getOrders);
 api.get("/orders/open", verifyJWT, getOpenOrders);
 api.post("/order/new", postOrder);
 api.patch("/order/update", verifyJWT, updateOrder);
