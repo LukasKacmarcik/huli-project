@@ -48,7 +48,9 @@ export const postOrder = async (req, res) => {
     isValid = false;
   }
 
-  const hourOfDelivery = new Date(order.dateOfDelivery).getHours();
+  const hourOfDelivery = order.dateOfDelivery
+    ? new Date(order.dateOfDelivery).getHours()
+    : 0;
   if (hourOfDelivery == 0) {
     messages.ordeHourError += "Je potrebné zvoliť hodinu doručenia. \n";
     isValid = false;

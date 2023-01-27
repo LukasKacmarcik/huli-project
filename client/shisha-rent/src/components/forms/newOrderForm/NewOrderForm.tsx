@@ -103,7 +103,7 @@ const NewOrderForm: React.FC = () => {
         console.error("new order failed");
       }
     } else {
-      console.log("have to agree with deposit and rules");
+      alert("Je potrebné súhlasiť s podmienkamy");
     }
   };
 
