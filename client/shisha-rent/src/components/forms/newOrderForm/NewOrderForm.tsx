@@ -69,7 +69,7 @@ const NewOrderForm: React.FC = () => {
   const [formData, setFormData] = useState<NewOrderFormData>({
     shishaName: selectedShisha?.name,
     userFullName: userData?.userFullName || "",
-    userCity: userData?.userCity || "Kežmarok",
+    userCity: userData?.userCity || "Osobný odber 0 €",
     userAddress: userData?.userAddress || "",
     dateOfDelivery: dateOfDelivery,
     hourOfDelivery: 0,
@@ -80,7 +80,11 @@ const NewOrderForm: React.FC = () => {
     total: 0,
   });
 
-  const listOfCityOptions = offeredCities.map((city) => {
+  const seortedOfferedCities = [...offeredCities].sort((a, b) =>
+    a.name < b.name ? -1 : 1
+  );
+
+  const listOfCityOptions = seortedOfferedCities.map((city) => {
     return (
       <option key={city._id} value={city.name}>
         {city.name}
