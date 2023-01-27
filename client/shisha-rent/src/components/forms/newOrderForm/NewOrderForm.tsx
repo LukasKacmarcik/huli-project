@@ -9,6 +9,7 @@ import {
   fetchDeliveryHours,
   fetchExtras,
   postNewOrder,
+  resetOrderMessages,
   Tobacco,
 } from "../../../app/slices/orders";
 import Extras from "./extras/Extras";
@@ -142,6 +143,7 @@ const NewOrderForm: React.FC = () => {
     dispatch(fetchExtras());
     dispatch(fetchDeliveryHours());
     dispatch(fetchCities());
+    dispatch(resetOrderMessages());
   }, [selectedShisha, dispatch]);
 
   useEffect(() => {

@@ -344,6 +344,9 @@ export const ordersSlice = createSlice({
     updateSelectedTobacco: (state, action: PayloadAction<Tobacco | null>) => {
       state.selectedTobacco = action.payload;
     },
+    resetOrderMessages: (state) => {
+      state.messages = {};
+    },
     // decrement: (state) => {
     //   state.value -= 1;
     // },
@@ -583,6 +586,7 @@ export const {
   switchShowAllOrders,
   updateTobaccoPrice,
   updateSelectedTobacco,
+  resetOrderMessages,
 } = ordersSlice.actions;
 
 // // The function below is called a selector and allows us to select a value from
