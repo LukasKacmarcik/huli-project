@@ -21,6 +21,7 @@ export interface NewOrderFormData {
   userCity: string;
   userAddress: string;
   dateOfDelivery: string | null;
+  hourOfDelivery: number;
   userTelNumber: string;
   userEmailAddress: string;
   extras: Extra[];
@@ -69,6 +70,7 @@ const NewOrderForm: React.FC = () => {
     userCity: userData?.userCity || "Kežmarok",
     userAddress: userData?.userAddress || "",
     dateOfDelivery: dateOfDelivery,
+    hourOfDelivery: 0,
     userTelNumber: userData?.userTelNumber || "",
     userEmailAddress: userData?.userEmailAddress || "",
     extras: [],
@@ -94,6 +96,9 @@ const NewOrderForm: React.FC = () => {
       orderData.shishaName = selectedShisha?.name;
       orderData.extras = selectedExtras;
       orderData.dateOfDelivery = dateOfDelivery;
+      orderData.hourOfDelivery = dateOfDelivery
+        ? new Date(dateOfDelivery).getHours()
+        : 0;
       orderData.tobacco = selectedTobacco;
 
       try {
