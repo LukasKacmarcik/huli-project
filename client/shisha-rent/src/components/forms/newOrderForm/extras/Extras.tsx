@@ -77,9 +77,7 @@ const Extras: React.FC = () => {
                 : ""
             }
           >
-            <label htmlFor={extra.name}>
-              {extra.name} {extra.price}
-            </label>
+            <label htmlFor={extra.name}>{extra.name}</label>
             <input
               type="checkbox"
               id={extra.name}
@@ -96,8 +94,7 @@ const Extras: React.FC = () => {
 
   return (
     <div className={styles.listOfAllOfferedExtras}>
-      <h2>Doplnky </h2>
-      <p>€</p>
+      <h2>Doplnky</h2>
       {/* Condition below make sure that we create key/value pair for each extra that we want to render
        and after that it can render list of inputs */}
       {Object.keys(extras).length ===
