@@ -76,6 +76,22 @@
         }
       }
     }
+
+    .agreements {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      margin: 0 auto;
+
+      div {
+        text-align: start;
+
+        label {
+          font-size: medium;
+          margin: 1rem;
+        }
+      }
+    }
   }
 
   label {
@@ -127,6 +143,10 @@
 
         button {
           width: 70%;
+        }
+
+        .agreements {
+          width: 90%;
         }
       }
     }

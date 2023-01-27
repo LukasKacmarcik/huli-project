@@ -53,6 +53,8 @@ const NewOrderForm: React.FC = () => {
   const [depositAgreement, setDepositAgreement] = useState<boolean>(false);
   //// Agreement me checkbox state
   const [agreement, setAgreement] = useState<boolean>(false);
+  //// AgeVerification me checkbox state
+  const [ageVerification, setAgeVerification] = useState<boolean>(false);
   //// Remember me checkbox state
   const [rememberMe, setRememberMe] = useState<boolean>(
     window.localStorage.getItem("rememberMe") === "true" ? true : false
@@ -88,7 +90,7 @@ const NewOrderForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (agreement && depositAgreement) {
+    if (agreement && depositAgreement && ageVerification) {
       if (rememberMe === true) {
         window.localStorage.setItem("userData", JSON.stringify(formData));
       }
@@ -245,34 +247,61 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userNote: e.target.value })
               }
             ></textarea>
-            <label htmlFor="agreement">Súhlasím s obchodnými podmienkamy</label>
-            <input
-              checked={agreement}
-              onChange={() => setAgreement((ps) => !ps)}
-              type="checkbox"
-              name="agreement"
-              id="agreement"
-            />
-            <label htmlFor="depositAgreement">
-              Súhlas o odovzdaní zálohy vo výške 40e pri prevzatí, ktorá bude
-              vrátená po odovzdaní a skontrolovaní.
-            </label>
-            <input
-              checked={depositAgreement}
-              onChange={() => setDepositAgreement((ps) => !ps)}
-              type="checkbox"
-              name="depositAgreement"
-              id="depositAgreement"
-            />
-            <label htmlFor="rememberMe">Pametaj si ma</label>
-            <input
-              checked={rememberMe}
-              onChange={() => setRememberMe((ps) => !ps)}
-              type="checkbox"
-              name="rememberMe"
-              id="rememberMe"
-            />
+            <div className={styles.agreements}>
+              <div>
+                <input
+                  checked={agreement}
+                  onChange={() => setAgreement((ps) => !ps)}
+                  type="checkbox"
+                  name="agreement"
+                  id="agreement"
+                />
+                <label htmlFor="agreement">
+                  Súhlasím s obchodnými podmienkamy
+                </label>
+              </div>
+              <div>
+                <input
+                  checked={depositAgreement}
+                  onChange={() => setDepositAgreement((ps) => !ps)}
+                  type="checkbox"
+                  name="depositAgreement"
+                  id="depositAgreement"
+                />
+                <label htmlFor="depositAgreement">
+                  Súhlas o odovzdaní zálohy vo výške 40e pri prevzatí, ktorá
+                  bude vrátená po odovzdaní a skontrolovaní.
+                </label>
+              </div>
+              <div>
+                <input
+                  checked={ageVerification}
+                  onChange={() => setAgeVerification((ps) => !ps)}
+                  type="checkbox"
+                  name="ageVerification"
+                  id="ageVerification"
+                />
+                <label htmlFor="ageVerification">
+                  Mám 18 alebo viac rokov.
+                </label>
+              </div>
+              <div>
+                <input
+                  checked={rememberMe}
+                  onChange={() => setRememberMe((ps) => !ps)}
+                  type="checkbox"
+                  name="rememberMe"
+                  id="rememberMe"
+                />
+                <label htmlFor="rememberMe">Pametaj si ma</label>
+              </div>
+            </div>
             <h4>TOTAL: {formData.total} €</h4>
+            {Object.keys(messages).length !== 0 && (
+              <p style={{ color: "red" }}>
+                Skontrolujte datum cas zvoleny tabak a formu
+              </p>
+            )}
             <button type="submit" disabled={status === "loading"}>
               Objednať
             </button>
