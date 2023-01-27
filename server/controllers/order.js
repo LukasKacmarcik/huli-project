@@ -49,7 +49,7 @@ export const postOrder = async (req, res) => {
   }
 
   const hourOfDelivery = order.dateOfDelivery
-    ? new Date(order.dateOfDelivery).getHours()
+    ? new Date(order.dateOfDelivery).getUTCHours()
     : 0;
   console.log(order.dateOfDelivery);
   console.log(new Date(order.dateOfDelivery));
