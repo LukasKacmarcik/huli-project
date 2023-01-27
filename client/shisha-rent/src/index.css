@@ -10,6 +10,7 @@ html {
 }
 
 body {
+  background-color: black;
   background-image: url("../src/images/background-smoke-small.jpg");
   background-size: cover;
   background-attachment: fixed;

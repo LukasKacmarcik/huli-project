@@ -18,10 +18,6 @@
 
   label {
     padding: 5px;
-    // border-top: 2px solid green;
-    // border-bottom: 2px solid green;
-    // border-left: 2px solid green;
-    // border-right: 2px solid green;
     line-height: 40px;
 
     &:hover {
@@ -35,10 +31,8 @@
   margin-bottom: 50px;
   text-align: center;
 
-  h2,
-  p {
-    display: inline;
-    color: orangered;
+  h2 {
+    line-height: 4rem;
   }
 }
 
