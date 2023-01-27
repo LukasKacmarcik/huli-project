@@ -12,7 +12,7 @@
     transition: 0.2s ease-in;
     padding: 5px;
     border-radius: 15px;
-    border: 1px solid green;
+    border: 1px solid orangered;
     line-height: 40px;
 
     &:hover {
@@ -22,6 +22,8 @@
 }
 
 .listOfAllOfferedTobaccos {
+  padding-bottom: 2rem;
+  border-bottom: 2px dashed orangered;
   grid-column: 1/3;
   margin-bottom: 5px;
   text-align: center;
@@ -49,11 +51,10 @@
 
 .selected {
   label {
-    -webkit-box-shadow: 0px 0px 25px -9px rgba(0, 0, 0, 1);
-    -moz-box-shadow: 0px 0px 25px -9px rgba(0, 0, 0, 1);
-    box-shadow: 0px 0px 25px -9px rgba(0, 0, 0, 1);
-    background-color: green;
-    border-color: rgb(0, 69, 0);
+    -webkit-box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
+    -moz-box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
+    box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
+    background-color: orangered;
     color: rgba(240, 248, 255, 0.846);
   }
 }
