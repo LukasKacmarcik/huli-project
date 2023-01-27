@@ -24,6 +24,7 @@ const ShishaRow: React.FC<ShishaProps> = ({ shisha }) => {
       <th>{shisha.name}</th>
       <th>{shisha.description}</th>
       <th>{shisha.price}</th>
+      <th>{shisha.deposit}</th>
       <th>{shisha.show ? "Yes" : "No"}</th>
       {/* <th>{shisha.selectedFile}</th> */}
       <th>{shisha.amount}</th>

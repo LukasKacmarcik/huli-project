@@ -269,7 +269,8 @@ const NewOrderForm: React.FC = () => {
                   id="depositAgreement"
                 />
                 <label htmlFor="depositAgreement">
-                  Súhlas o odovzdaní zálohy vo výške 40e pri prevzatí, ktorá
+                  Súhlas o odovzdaní zálohy vo výške{" "}
+                  <span>{selectedShisha?.deposit} €</span> pri prevzatí, ktorá
                   bude vrátená po odovzdaní a skontrolovaní.
                 </label>
               </div>

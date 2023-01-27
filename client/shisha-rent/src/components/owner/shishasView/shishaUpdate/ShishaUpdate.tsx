@@ -28,6 +28,7 @@ const ShishaUpdate: React.FC = () => {
     name: "",
     description: "",
     price: "",
+    deposit: "",
     amount: "0",
     show: false,
     selectedFile: "",
@@ -55,6 +56,7 @@ const ShishaUpdate: React.FC = () => {
           ? shishaToUpdate.description
           : "",
         price: shishaToUpdate.price ? shishaToUpdate.price : "",
+        deposit: shishaToUpdate.deposit ? shishaToUpdate.deposit : "",
         amount: shishaToUpdate.amount ? shishaToUpdate.amount : "0",
         show: shishaToUpdate.show === true ? shishaToUpdate.show : false,
         selectedFile: shishaToUpdate.selectedFile
@@ -158,6 +160,14 @@ const ShishaUpdate: React.FC = () => {
           id="price"
           name="price"
           value={formData.price}
+          onChange={handleChange}
+        />
+        <label htmlFor="deposit">Deposit</label>
+        <input
+          type="text"
+          id="deposit"
+          name="deposit"
+          value={formData.deposit}
           onChange={handleChange}
         />
         <label htmlFor="amount">Amount</label>

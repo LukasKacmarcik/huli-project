@@ -4,6 +4,7 @@ const shishaSchema = mongoose.Schema({
   name: String,
   description: String,
   price: Number,
+  deposit: Number,
   shishaExtras: Array,
   selectedFile: String,
   amount: Number,

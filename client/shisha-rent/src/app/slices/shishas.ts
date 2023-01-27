@@ -8,6 +8,7 @@ export interface Shisha {
   name: string;
   description: string;
   price: number;
+  deposit: number;
   selectedFile: string;
   shishaExtras: ShishaExtra[];
   amount: number;
@@ -25,7 +26,6 @@ export interface ShishasState {
   messages: { [key: string]: string };
   selectedShisha: Shisha | undefined;
   excludedDates: any;
-  //excludedDates: string[] | null;
 }
 
 const initialState: ShishasState = {

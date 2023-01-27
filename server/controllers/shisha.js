@@ -50,6 +50,7 @@ export const updateShisha = async (req, res) => {
           name: req.body.name,
           description: req.body.description,
           price: req.body.price,
+          deposit: req.body.deposit,
           show: req.body.show,
           selectedFile: req.body.selectedFile,
           amount: req.body.amount,

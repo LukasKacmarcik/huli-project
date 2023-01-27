@@ -24,6 +24,7 @@ const OwnerListOfShishas: React.FC = () => {
               <th>Name</th>
               <th>Description</th>
               <th>Price</th>
+              <th>Deposit</th>
               <th>Show</th>
               <th>Amount</th>
               <th>Actions</th>
