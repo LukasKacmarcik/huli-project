@@ -14,7 +14,7 @@ import {
 } from "../../../app/slices/orders";
 import Extras from "./extras/Extras";
 import Tobaccos from "./tobaccos/Tobaccos";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export interface NewOrderFormData {
   shishaName: string | undefined;
@@ -273,7 +273,7 @@ const NewOrderForm: React.FC = () => {
                   id="agreement"
                 />
                 <label htmlFor="agreement">
-                  Súhlasím s obchodnými podmienkami
+                  Súhlasím s <Link to="/vop">obchodnými podmienkami</Link>
                 </label>
               </div>
               <div>

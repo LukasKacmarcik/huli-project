@@ -13,8 +13,8 @@ import TobaccosView from "./components/owner/tobaccosView/TobaccosView";
 import CityView from "./components/owner/citiesView/CityView";
 import LoginForm from "./components/owner/login/LoginForm";
 import RequireAuth from "./components/owner/requireAuth/RequireAuth";
+import Terms from "./components/customer/terms/Terms";
 import OrderSentView from "./components/customer/orderSentView/OrderSentView";
-import Terms from "./components/terms/Terms";
 
 const App: React.FC = () => {
   return (

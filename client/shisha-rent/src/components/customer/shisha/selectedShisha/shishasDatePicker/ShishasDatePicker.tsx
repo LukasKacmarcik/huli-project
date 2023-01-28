@@ -80,7 +80,7 @@ const ShishasDatePicker: React.FC = () => {
       disabled={startDate !== null ? false : true}
     >
       <option id="defaultOption" value="default" disabled>
-        Zvoľ čas donášky
+        Zvol čas donášky
       </option>
       {validHourOptions.map((option: DeliveryHour) => {
         return (
@@ -122,7 +122,7 @@ const ShishasDatePicker: React.FC = () => {
           onChange={(date: Date) => setStartDate(date)}
           minDate={subDays(new Date(), -1)}
           excludeDates={reservedDates}
-          placeholderText="Zvol si svoj den"
+          placeholderText="Zvol si svoj deň"
         />
       </div>
       {hourOptions}

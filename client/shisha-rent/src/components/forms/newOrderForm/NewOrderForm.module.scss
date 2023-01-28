@@ -36,6 +36,10 @@
         font-weight: bold;
       }
 
+      label > a {
+        color: orangered;
+      }
+
       input[type="text"],
       select,
       textarea {

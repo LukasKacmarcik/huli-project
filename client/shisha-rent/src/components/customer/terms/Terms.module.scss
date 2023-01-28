@@ -1,0 +1,14 @@
+.wrapper {
+  color: wheat;
+  background-color: black;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto;
+  max-width: 1200px;
+  padding: 1rem;
+
+  p {
+    margin: 1rem 0;
+  }
+}
