@@ -4,6 +4,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0 1rem;
+  border-bottom: 2px dashed orangered;
+  border-radius: 100px;
 
   input[type="checkbox"] {
     margin: 0 auto;
