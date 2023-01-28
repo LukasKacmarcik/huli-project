@@ -176,7 +176,7 @@ const NewOrderForm: React.FC = () => {
       <Tobaccos />
       <div className={styles.wrapper}>
         <div className={styles.formWrapper}>
-          <h1>Objednávka</h1>
+          {/* <h1>Objednávka</h1> */}
           <form onSubmit={handleSubmit}>
             <label htmlFor="userFullName">Meno a priezvisko</label>
             <input
@@ -273,7 +273,7 @@ const NewOrderForm: React.FC = () => {
                   id="agreement"
                 />
                 <label htmlFor="agreement">
-                  Súhlasím s obchodnými podmienkamy
+                  Súhlasím s obchodnými podmienkami
                 </label>
               </div>
               <div>
@@ -310,13 +310,13 @@ const NewOrderForm: React.FC = () => {
                   name="rememberMe"
                   id="rememberMe"
                 />
-                <label htmlFor="rememberMe">Pametaj si ma</label>
+                <label htmlFor="rememberMe">Pamätaj si ma</label>
               </div>
             </div>
             <h4>TOTAL: {formData.total} €</h4>
             {Object.keys(messages).length !== 0 && (
               <p style={{ color: "red" }}>
-                Skontrolujte datum cas zvoleny tabak a formu
+                Skontrolujte dátum, čas, zvolený tabak a formulár
               </p>
             )}
             <button type="submit" disabled={status === "loading"}>

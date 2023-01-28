@@ -89,7 +89,7 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.reservationWrapper}>
-            <h1>Rezervácia</h1>
+            <h1>REZERVÁCIA</h1>
             <p>
               Pri objednávke zadávate orientačný čas, po spracovaní objednávky
               vás budeme kontaktovať. Vodnú fajku je potrebné objednať minimálne

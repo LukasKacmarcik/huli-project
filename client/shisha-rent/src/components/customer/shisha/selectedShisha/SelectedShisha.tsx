@@ -7,6 +7,7 @@ var Element = Scroll.Element;
 const SelectedShisha: React.FC = () => {
   return (
     <div id="selectedShisha" className={styles.selectedShisha}>
+      <h1 className={styles.title}>OBJEDNÁVKA</h1>
       <Element name="selectedShishaElement"></Element>
       <SelectedShishaPreview />
       <NewOrderForm />

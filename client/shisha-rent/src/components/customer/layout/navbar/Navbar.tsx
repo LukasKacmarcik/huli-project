@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
             offset={-100}
             duration={800}
           >
-            O NAS
+            O NÁS
           </AncorLink>
         </li>
         <li>
@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             offset={-100}
             duration={800}
           >
-            PRENAJOM
+            PRENÁJOM
           </AncorLink>
         </li>
         <li>
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
           </AncorLink>
         </li>
         <li>
-          <Link to="/owner/orders">Owner View</Link>
+          <Link to="/owner/orders"></Link>
         </li>
       </ul>
     </header>

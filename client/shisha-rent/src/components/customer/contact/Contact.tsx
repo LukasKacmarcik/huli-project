@@ -4,7 +4,7 @@ import styles from "./Contact.module.scss";
 const Contact = () => {
   return (
     <div className={styles.contactWrapper}>
-      <h1>Kontakt</h1>
+      <h1>KONTAKT</h1>
       <div className={styles.address}>
         <h2>Adresa</h2>
         <h3>Nová 418/22</h3>
@@ -21,7 +21,7 @@ const Contact = () => {
       </div>
       <div className={styles.telNumber}>
         <h2>Tel. číslo</h2>
-        <h3>0902664994</h3>
+        <h3>0902 664 994</h3>
       </div>
     </div>
   );

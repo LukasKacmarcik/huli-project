@@ -1,13 +1,23 @@
 @import "../../../../globalStyles.scss";
 
 .selectedShisha {
-  // background-color: rgba(201, 212, 201, 0.838);
+  border-top: 2px dashed orangered;
   border-radius: 25px;
   width: 100%;
   max-width: 1200px;
   margin: 20px auto;
+  text-align: center;
   a {
     text-decoration: none;
+  }
+
+  .title {
+    margin-top: 2rem;
+    color: red;
+    text-align: center;
+    // text-decoration: underline dotted rgba(21, 180, 21, 0.727);
+    text-underline-offset: 10px;
+    line-height: 50px;
   }
 
   h2 {

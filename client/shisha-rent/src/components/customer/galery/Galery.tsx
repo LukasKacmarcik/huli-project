@@ -47,7 +47,7 @@ const Galery: React.FC = () => {
 
   return (
     <div className={styles.galeryWrapper}>
-      <h1>Galéria</h1>
+      <h1>GALÉRIA</h1>
       <Slider {...settings}>{listOfImages}</Slider>
     </div>
   );

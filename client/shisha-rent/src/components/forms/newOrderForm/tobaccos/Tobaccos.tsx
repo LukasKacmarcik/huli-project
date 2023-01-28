@@ -126,16 +126,18 @@ const Tobaccos: React.FC = () => {
       }`}
     >
       <h2 className={styles.tobaccoTitle}>
-        Tabaky {tobacoPrice ? tobacoPrice : null}{" "}
+        Príchute {tobacoPrice ? tobacoPrice : null}{" "}
         {tobacoPrice ? <p>€</p> : null}
       </h2>
       <form className={styles.tobaccosForm}>
         <div className={styles.classicTobaccosDiv}>
-          <h2>Klasika</h2>
+          <h2>Tabak</h2>
+          <br></br>
           {listOfClassicTobaccos}
         </div>
         <div className={styles.molassesDiv}>
-          <h2>Melasy</h2>
+          <h2>Melasa</h2>
+          <p>(bez nikotínu)</p>
           {listOfMolasses}
         </div>
       </form>

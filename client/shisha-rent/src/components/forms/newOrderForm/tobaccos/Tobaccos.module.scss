@@ -74,6 +74,14 @@
 
 .molassesDiv {
   width: 45%;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin-bottom: 0.3rem;
+    color: orangered;
+    font-size: small;
+  }
 }
 
 .molasses {

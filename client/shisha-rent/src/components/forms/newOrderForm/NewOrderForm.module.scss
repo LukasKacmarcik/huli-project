@@ -23,13 +23,6 @@
     border-bottom-left-radius: 0px;
     text-align: center;
 
-    h1 {
-      text-align: center;
-      text-decoration: underline dotted rgba(21, 180, 21, 0.727);
-      text-underline-offset: 10px;
-      line-height: 50px;
-    }
-
     form {
       font-size: x-large;
       margin: 20px auto;
@@ -44,7 +37,7 @@
       input[type="text"],
       select,
       textarea {
-        font-family: cursive;
+        font-family: "Kalam", sans-serif;
         padding: 5px 5px 5px 15px;
         width: 70%;
         margin: 0px auto 1.5rem;

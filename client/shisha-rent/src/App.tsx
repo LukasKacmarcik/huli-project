@@ -14,6 +14,7 @@ import CityView from "./components/owner/citiesView/CityView";
 import LoginForm from "./components/owner/login/LoginForm";
 import RequireAuth from "./components/owner/requireAuth/RequireAuth";
 import OrderSentView from "./components/customer/orderSentView/OrderSentView";
+import Terms from "./components/terms/Terms";
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       <Route path="/orderSent" element={<OrderSentView />} />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/" element={<Layout />}>
+        <Route path="/vop" element={<Terms />} />
         <Route path="/" element={<Home />} />
       </Route>
       <Route element={<RequireAuth allowedId={"63c124c0b0a2394b66edfb99"} />}>
