@@ -139,7 +139,9 @@ const Tobaccos: React.FC = () => {
           {listOfMolasses}
         </div>
       </form>
-      <p className={styles.error}>{messages.ordeTobaccoError}</p>
+      {messages.ordeTobaccoError && (
+        <p className={styles.error}>{messages.ordeTobaccoError}</p>
+      )}
     </div>
   ) : null;
 };

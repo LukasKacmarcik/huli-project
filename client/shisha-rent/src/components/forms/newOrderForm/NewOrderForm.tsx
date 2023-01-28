@@ -191,7 +191,9 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userFullName: e.target.value })
               }
             />
-            <p className={styles.error}>{messages.ordeUserFullNameError}</p>
+            {messages.ordeUserFullNameError && (
+              <p className={styles.error}>{messages.ordeUserFullNameError}</p>
+            )}
             <label htmlFor="userCity">Mesto</label>
             <select
               id="userCity"
@@ -214,7 +216,9 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userAddress: e.target.value })
               }
             />
-            <p className={styles.error}>{messages.ordeUserAddressError}</p>
+            {messages.ordeUserAddressError && (
+              <p className={styles.error}>{messages.ordeUserAddressError}</p>
+            )}
             <label htmlFor="userTelNumber">Tel. cislo</label>
             <input
               className={
@@ -228,7 +232,9 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userTelNumber: e.target.value })
               }
             />
-            <p className={styles.error}>{messages.ordeUserTelNumberError}</p>
+            {messages.ordeUserTelNumberError && (
+              <p className={styles.error}>{messages.ordeUserTelNumberError}</p>
+            )}
             <label htmlFor="userEmailAddress">Email</label>
             <input
               className={
@@ -242,7 +248,11 @@ const NewOrderForm: React.FC = () => {
                 setFormData({ ...formData, userEmailAddress: e.target.value })
               }
             />
-            <p className={styles.error}>{messages.ordeUserEmailAddressError}</p>
+            {messages.ordeUserEmailAddressError && (
+              <p className={styles.error}>
+                {messages.ordeUserEmailAddressError}
+              </p>
+            )}
             <label htmlFor="userNote">Poznámka k objednávke</label>
             <textarea
               id="userNote"

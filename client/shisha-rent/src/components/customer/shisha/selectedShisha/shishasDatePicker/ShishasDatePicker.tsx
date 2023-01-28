@@ -126,8 +126,12 @@ const ShishasDatePicker: React.FC = () => {
         />
       </div>
       {hourOptions}
-      <p className={styles.error}>{messages.orderDateError}</p>
-      <p className={styles.error}>{messages.ordeHourError}</p>
+      {messages.orderDateError && (
+        <p className={styles.error}>{messages.orderDateError}</p>
+      )}
+      {messages.ordeHourError && (
+        <p className={styles.error}>{messages.ordeHourError}</p>
+      )}
     </div>
   );
 };
