@@ -13,10 +13,17 @@ const Navbar: React.FC = () => {
 
   return (
     <header className={`${styles.header} ${isOpen ? styles.open : ""}`}>
-      <div>
-        <Link to="/">
+      <div className={styles.linkWrapper}>
+        <AncorLink
+          to="aboutUs"
+          isDynamic={true}
+          smooth={true}
+          offset={-100}
+          duration={800}
+          onClick={() => setIsOpen(false)}
+        >
           <img src={brightLogo} alt="logo" />
-        </Link>
+        </AncorLink>
       </div>
 
       <input
@@ -39,6 +46,7 @@ const Navbar: React.FC = () => {
             smooth={true}
             offset={-100}
             duration={800}
+            onClick={() => setIsOpen(false)}
           >
             O NÁS
           </AncorLink>
@@ -51,6 +59,7 @@ const Navbar: React.FC = () => {
             smooth={true}
             offset={-100}
             duration={800}
+            onClick={() => setIsOpen(false)}
           >
             PRENÁJOM
           </AncorLink>
@@ -63,14 +72,15 @@ const Navbar: React.FC = () => {
             smooth={true}
             offset={-100}
             duration={800}
+            onClick={() => setIsOpen(false)}
           >
             KONTAKT
           </AncorLink>
         </li>
-        <li>
-          <Link to="/owner/orders"></Link>
-        </li>
       </ul>
+      <div className={styles.portal}>
+        <Link to="/owner/orders">.</Link>
+      </div>
     </header>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./OwnerNavbar.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import brightLogo from "../../../../images/logo-biela.png";
 
 interface Props {
@@ -9,6 +9,14 @@ interface Props {
 }
 
 const OwnerNavbar: React.FC<Props> = ({ isOpen, setIsOpen }) => {
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    window.localStorage.removeItem("jwt");
+    navigate("/");
+    window.location.reload();
+  };
+
   return (
     <header className={`${styles.header} ${isOpen ? styles.open : ""}`}>
       <div>
@@ -17,28 +25,9 @@ const OwnerNavbar: React.FC<Props> = ({ isOpen, setIsOpen }) => {
         </Link>
       </div>
 
-      <input
-        type="checkbox"
-        id="menu-btn"
-        checked={isOpen}
-        onChange={() => setIsOpen((ps: boolean) => !ps)}
-      />
-      <label htmlFor="menu-btn">
-        <span></span>
-      </label>
-
       <ul>
         <li>
-          <Link to="/owner/orders">Orders</Link>
-        </li>
-        <li>
-          <Link to="/owner/shishas">Shishas</Link>
-        </li>
-        <li>
-          <Link to="/owner/extras">Extras</Link>
-        </li>
-        <li>
-          <Link to="/owner/deliveryHours">Delivery Hours</Link>
+          <button onClick={handleLogOut}>Log Out</button>
         </li>
       </ul>
     </header>
