@@ -30,7 +30,7 @@ const ShishaRow: React.FC<ShishaProps> = ({ shisha }) => {
       <td>{shisha.amount}</td>
       <td>
         <div>
-          <button style={{ backgroundColor: "orange" }} onClick={redirect}>
+          <button style={{ backgroundColor: "orangered" }} onClick={redirect}>
             Update
           </button>
           <button style={{ backgroundColor: "red" }} onClick={handleDelete}>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { fetchOpenOrders } from "../../../../app/slices/orders";
 import OpenOrderRow from "./openOrderRow/OpenOrderRow";
-import styles from "./ListOfOpenOrders.module.scss";
+import styles from "../../../forms/tableStyle.module.scss";
 
 const ListOfOpenOrders: React.FC = () => {
   const dispatch = useAppDispatch();

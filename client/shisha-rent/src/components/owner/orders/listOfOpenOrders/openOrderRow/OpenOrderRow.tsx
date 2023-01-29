@@ -6,7 +6,6 @@ import {
   Order,
   switchOrderDoneStatus,
 } from "../../../../../app/slices/orders";
-import rowStyles from "../../../../forms/rowStyles.module.scss";
 
 interface OrderProps {
   order: Order;
@@ -60,7 +59,7 @@ const OpenOrderRow: React.FC<OrderProps> = ({ order }) => {
       <td>{new Date(order.dateOfDelivery).toLocaleDateString()}</td>
       <td>{new Date(order.dateOfDelivery).getHours()}</td>
       <td>
-        <div className={rowStyles.actionWrapper}>
+        <div>
           <button onClick={switchDoneState}>Done</button>
           <button onClick={redirect}>Update</button>
         </div>

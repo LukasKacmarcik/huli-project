@@ -26,7 +26,7 @@
       }
 
       tr:nth-child(2n -1) {
-        background-color: rgb(225, 75, 50);
+        background-color: rgb(255, 211, 168);
       }
 
       td {
@@ -46,7 +46,8 @@
           border-radius: 15%;
           cursor: pointer;
           color: wheat;
-          margin-right: 0.25rem;
+          margin: 0.25rem;
+          min-width: 3rem;
         }
 
         button:hover {
@@ -54,10 +55,10 @@
         }
 
         button:nth-child(1) {
-          background-color: green;
+          background-color: darkgreen;
         }
         button:nth-child(2) {
-          background-color: orange;
+          background-color: orangered;
         }
         button:only-child {
           background-color: red;
