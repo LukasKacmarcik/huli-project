@@ -3,6 +3,7 @@ import DeliveryHour from "../models/deliveryHour.js";
 import Extra from "../models/extra.js";
 import Order from "../models/order.js";
 import Tobacco from "../models/tobacco.js";
+import sendMail from "../mails/mailer.js";
 
 //// Orders ////////////////////////////////////////////
 export const getOrders = async (req, res) => {
@@ -91,6 +92,7 @@ export const postOrder = async (req, res) => {
     await newOrder.save();
 
     res.status(201).json(newOrder);
+    await sendMail(order).catch(console.error);
   } catch (error) {
     console.log(error.message);
     res.status(409).json({ message: error.message });
