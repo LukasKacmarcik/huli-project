@@ -117,11 +117,6 @@ export const postNewOrder = createAsyncThunk(
   async (newOrder: NewOrderFormData) => {
     try {
       await api.post("/order/new", newOrder);
-      // const response = await api.post("/order/new", newOrder);
-      // if (response.status === 201) {
-      //   const response = await api.get("/orders");
-      //   return response.data;
-      // }
       return;
     } catch (error: any) {
       throw new Error(JSON.stringify(error.response.data));

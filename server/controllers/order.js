@@ -49,7 +49,7 @@ export const postOrder = async (req, res) => {
     isValid = false;
   }
 
-  if (order.hourOfDelivery == 0) {
+  if (order.timeOfDelivery == 0) {
     messages.ordeHourError += "Je potrebné zvoliť hodinu doručenia. \n";
     isValid = false;
   }
