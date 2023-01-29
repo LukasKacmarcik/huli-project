@@ -395,7 +395,6 @@ export const ordersSlice = createSlice({
         toast.success(`Objednávka úspešne odoslaná`, {
           position: "bottom-center",
         });
-        // state.orders = action.payload;
         state.messages = {};
       })
       .addCase(postNewOrder.rejected, (state, action: any) => {

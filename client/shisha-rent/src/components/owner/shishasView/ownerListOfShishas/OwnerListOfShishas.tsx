@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { fetchShishas } from "../../../../app/slices/shishas";
-import styles from "./OwnerListOfShishas.module.scss";
+import styles from "../../../forms/tableStyle.module.scss";
 import ShishaRow from "./shishaRow/ShishaRow";
 
 const OwnerListOfShishas: React.FC = () => {

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { fetchOrders } from "../../../../app/slices/orders";
 import OrderRow from "./orderRow/OrderRow";
-import styles from "./ListOfAllOrders.module.scss";
+import styles from "../../../forms/tableStyle.module.scss";
 
 const ListOfAllOrders: React.FC = () => {
   const dispatch = useAppDispatch();

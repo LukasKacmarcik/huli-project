@@ -21,17 +21,23 @@ const ShishaRow: React.FC<ShishaProps> = ({ shisha }) => {
 
   return (
     <tr data-order_id={shisha._id}>
-      <th>{shisha.name}</th>
-      <th>{shisha.description}</th>
-      <th>{shisha.price}</th>
-      <th>{shisha.deposit}</th>
-      <th>{shisha.show ? "Yes" : "No"}</th>
-      {/* <th>{shisha.selectedFile}</th> */}
-      <th>{shisha.amount}</th>
-      <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <button onClick={redirect}>Update</button>
-        <button onClick={handleDelete}>Delete</button>
-      </th>
+      <td>{shisha.name}</td>
+      <td>{shisha.description}</td>
+      <td>{shisha.price}</td>
+      <td>{shisha.deposit}</td>
+      <td>{shisha.show ? "Yes" : "No"}</td>
+      {/* <td>{shisha.selectedFile}</td> */}
+      <td>{shisha.amount}</td>
+      <td>
+        <div>
+          <button style={{ backgroundColor: "orange" }} onClick={redirect}>
+            Update
+          </button>
+          <button style={{ backgroundColor: "red" }} onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
+      </td>
     </tr>
   );
 };

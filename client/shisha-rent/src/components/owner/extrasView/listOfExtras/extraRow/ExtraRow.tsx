@@ -15,11 +15,13 @@ const ExtraRow: React.FC<ExtraProps> = ({ extra }) => {
 
   return (
     <tr data-order_id={extra._id}>
-      <th>{extra.name}</th>
-      <th>{extra.price}</th>
-      <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <button onClick={handleDelete}>Delete</button>
-      </th>
+      <td>{extra.name}</td>
+      <td>{extra.price}</td>
+      <td>
+        <div>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+      </td>
     </tr>
   );
 };

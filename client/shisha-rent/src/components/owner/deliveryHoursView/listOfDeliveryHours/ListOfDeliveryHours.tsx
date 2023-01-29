@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { fetchDeliveryHours } from "../../../../app/slices/orders";
 import DeliveryHourRow from "./deliveryHourRow/DeliveryHourRow";
-import styles from "./ListOfDeliveryHours.module.scss";
+import styles from "../../../forms/tableStyle.module.scss";
 
 const ListOfDeliveryHours: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -46,23 +46,25 @@ const OrderRow: React.FC<OrderProps> = ({ order }) => {
 
   return (
     <tr data-order_id={order._id}>
-      <th>{order.userFullName}</th>
-      <th>{order.userCity}</th>
-      <th>{order.userAddress}</th>
-      <th>{order.userTelNumber}</th>
-      <th>{order.shishaName}</th>
-      <th>{extrasInString}</th>
-      <th>{order.tobacco.name}</th>
-      <th>{order.total}</th>
-      <th>{order.userNote}</th>
-      <th>{order.ownerNote}</th>
-      <th>{new Date(order.dateOfDelivery).toLocaleDateString()}</th>
-      <th>{new Date(order.dateOfDelivery).getHours()}</th>
-      <th>{order.done ? "Yes" : "No"}</th>
-      <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <button onClick={switchDoneState}>Switch done status</button>
-        <button onClick={redirect}>Update</button>
-      </th>
+      <td>{order.userFullName}</td>
+      <td>{order.userCity}</td>
+      <td>{order.userAddress}</td>
+      <td>{order.userTelNumber}</td>
+      <td>{order.shishaName}</td>
+      <td>{extrasInString}</td>
+      <td>{order.tobacco.name}</td>
+      <td>{order.total}</td>
+      <td>{order.userNote}</td>
+      <td>{order.ownerNote}</td>
+      <td>{new Date(order.dateOfDelivery).toLocaleDateString()}</td>
+      <td>{new Date(order.dateOfDelivery).getHours()}</td>
+      <td>{order.done ? "Yes" : "No"}</td>
+      <td>
+        <div>
+          <button onClick={switchDoneState}>Switch done status</button>
+          <button onClick={redirect}>Update</button>
+        </div>
+      </td>
     </tr>
   );
 };

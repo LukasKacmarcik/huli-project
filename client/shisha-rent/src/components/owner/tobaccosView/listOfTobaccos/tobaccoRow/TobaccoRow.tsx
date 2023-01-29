@@ -15,12 +15,14 @@ const TobaccoRow: React.FC<TobaccoProps> = ({ tobacco }) => {
 
   return (
     <tr data-order_id={tobacco._id}>
-      <th>{tobacco.name}</th>
-      <th>{tobacco.type}</th>
-      <th>{tobacco.price}</th>
-      <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <button onClick={handleDelete}>Delete</button>
-      </th>
+      <td>{tobacco.name}</td>
+      <td>{tobacco.type}</td>
+      <td>{tobacco.price}</td>
+      <td>
+        <div>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+      </td>
     </tr>
   );
 };

@@ -18,10 +18,12 @@ const DeliveryHourRow: React.FC<DeliveryHourProps> = ({ deliveryHour }) => {
 
   return (
     <tr data-order_id={deliveryHour._id}>
-      <th>{deliveryHour.hour}</th>
-      <th style={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <button onClick={handleDelete}>Delete</button>
-      </th>
+      <td>{deliveryHour.hour}</td>
+      <td>
+        <div>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+      </td>
     </tr>
   );
 };

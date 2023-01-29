@@ -1,4 +1,15 @@
 .wrapper {
   margin: 0 auto;
   max-width: 1200px;
+
+  .showAllBtn {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 25%;
+    color: wheat;
+    font-size: large;
+    background-color: rgb(255, 68, 0);
+    cursor: pointer;
+  }
 }

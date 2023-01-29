@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { fetchExtras } from "../../../../app/slices/orders";
 import ExtraRow from "./extraRow/ExtraRow";
-import styles from "./ListOfExtras.module.scss";
+import styles from "../../../forms/tableStyle.module.scss";
 
 const ListOfExtras: React.FC = () => {
   const dispatch = useAppDispatch();

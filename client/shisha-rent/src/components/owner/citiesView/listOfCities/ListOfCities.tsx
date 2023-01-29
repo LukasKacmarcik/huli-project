@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { fetchCities } from "../../../../app/slices/orders";
 import CityRow from "./cityRow/CityRow";
-import styles from "./ListOfCities.module.scss";
+import styles from "../../../forms/tableStyle.module.scss";
 
 const ListOfCities: React.FC = () => {
   const dispatch = useAppDispatch();
