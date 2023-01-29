@@ -38,7 +38,7 @@ export default async function main(reqBody) {
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: `"Čajovňa Aura" <${process.env.MAIL_USER}>`,
-    to: "kacmi41@azet.sk",
+    to: "cajovnaaura@gmail.com",
     subject: "Nová Objednávka",
     html: html,
   });
