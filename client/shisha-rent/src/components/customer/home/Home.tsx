@@ -4,18 +4,22 @@ import SelectedShisha from "../shisha/selectedShisha/SelectedShisha";
 import logo from "../../../images/logo-biela.png";
 import rentImg from "../../../images/box.png";
 import Galery from "../galery/Galery";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
 import Contact from "../contact/Contact";
 import Map from "../map/Map";
 import fb from "../../../images/fb.svg";
 import ig from "../../../images/ig.svg";
 import styles from "./Home.module.scss";
+import Modal from "../modal/Modal";
 
 export default function Home() {
   const selectedShisha = useAppSelector(
     (state) => state.shishas.selectedShisha
   );
+
+  //// Modal
+  const [openModal, setOpenModal] = useState(true);
 
   //// Observables
   const aboutUsRef = useRef(null);
@@ -35,6 +39,7 @@ export default function Home() {
 
   return (
     <>
+      <Modal openModal={openModal} setOpenModal={setOpenModal} />
       <div className={styles.hero}>
         <div id="aboutUs">
           <div className={styles.logoWrapper}>

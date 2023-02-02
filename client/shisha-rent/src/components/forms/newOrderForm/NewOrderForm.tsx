@@ -133,9 +133,13 @@ const NewOrderForm: React.FC = () => {
     tobaccoPrice: number = 0,
     priceOfSelectedCity: number
   ) => {
-    return arrOfExtras.reduce(
-      (total: number, extra: Extra) => (total += extra.price),
-      (selectedShishaPrice || 0) + tobaccoPrice + priceOfSelectedCity
+    return parseFloat(
+      arrOfExtras
+        .reduce(
+          (total: number, extra: Extra) => (total += extra.price),
+          (selectedShishaPrice || 0) + tobaccoPrice + priceOfSelectedCity
+        )
+        .toFixed(2)
     );
   };
 
