@@ -19,12 +19,8 @@ const Modal: React.FC<Props> = ({ openModal, setOpenModal }) => {
   return openModal && !ageOver ? (
     <div className={styles.modalWrapper}>
       <div className={styles.modalContainer}>
-        <h1>Služby neposkytujeme osobám mladším ako 18 rokov!</h1>
-        <p>
-          Prehlasujem, že mám 18 rokov alebo viac, a som si vedomý(á), že
-          stránka obsahuje tabakové výrobky a výrobky, ktoré sú určené na
-          fajčenie a neobsahujú tabak.
-        </p>
+        <h1>Rezervácia vodnej fajky možná od 18 rokov!</h1>
+        <p>Zakliknutím tlačidla ÁNO prehlasujem, že mám 18 a viac rokov</p>
         <div className={styles.buttons}>
           <button onClick={handleYes}>Ano</button>
           <button

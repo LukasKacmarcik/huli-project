@@ -15,7 +15,7 @@ const Map = () => {
       className={styles.map}
       target="_blank"
       rel="noreferrer"
-      href="https://www.google.com/maps/place/%C4%8Cajov%C5%88a+AurA+Ke%C5%BEmarok/@49.139452,20.431984,17z/data=!4m5!3m4!1s0x0:0x47e430b22c1ae443!8m2!3d49.1393765!4d20.4320678?hl=en-US"
+      href="https://www.google.com/maps/place/%C4%8Cajov%C5%88a+AurA+Ke%C5%BEmarok/@49.139452,20.431984,17z/data=!4m5!3m4!1s0x0:0x47e430b22c1ae443!8m2!3d49.1393765!4d20.4320678?hl=sk"
     >
       <img src={fakeMap} alt="mapa"></img>
     </a>
