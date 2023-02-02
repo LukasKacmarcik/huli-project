@@ -20,8 +20,9 @@ const Contact = () => {
         <h3>zatvorené</h3>
       </div>
       <div className={styles.telNumber}>
-        <h2>Tel. číslo</h2>
+        <h2>Tel.č./Email</h2>
         <h3>0902 664 994</h3>
+        <h3>cajovnaaura@gmail.com.</h3>
       </div>
     </div>
   );

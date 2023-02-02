@@ -9,8 +9,8 @@ const OrderSentView: React.FC = () => {
     <div className={styles.wrapper}>
       <h1>Vďaka za objednávku</h1>
       <p>
-        dakujeme za vytvorenie objednávky. Pracujeme na jej vybavení, po
-        spracovaní vas budeme kontaktovať.
+        Ďakujeme za vytvorenie objednávky. Pracujeme na jej vybavení, po
+        spracovaní Vás budeme kontaktovať.
       </p>
       <button onClick={() => navigate("/")}>Späť na hlavnu stránku</button>
     </div>

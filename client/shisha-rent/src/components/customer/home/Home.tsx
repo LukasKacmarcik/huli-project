@@ -80,30 +80,39 @@ export default function Home() {
           </div>
           <div className={styles.rentTextWrapper}>
             <p>
-              Dovezieme Vám Vami vybraný typ vodnej fajky so všetkým potrebným
-              príslušenstvom priamo k Vašim dverám. Už bude treba len rozpáliť
-              uhlíky a môžete si užiť session v pohodlí domova.
+              Vodnú fajku podľa Vášho výberu Vám dovezieme až k vám domov.
+              Shisha box obsahuje všetko potrebné príslušenstvo, ktoré budete
+              potrebovať.
             </p>
             <p>
-              Počas jedného nájmu (do 24 hod.) môžete vodnú fajku využiť hneď
-              niekoľkokrát.
+              Takže stačí zvoliť dátum, čas a vodnú fajku podľa Vašich
+              preferencií a vkusu. O všetko ostatné vrátane vyzdvihnutia vodnej
+              fajky v nasledujúci deň sa už postaráme my.
             </p>
             <p>
-              Môžete si doobjednať nápoje, snacky, extra korunky s príchuťami,
-              poprípade iné zaujímavé doplnky.
+              Vodná fajka sa objednáva na 24 hodín. Ak by ste ju chceli použiť
+              viackrát môžete si doobjednať nabitú korunku a uhlíky navyše,
+              prípadne použiť svoj vlastný tabak.
             </p>
           </div>
           <div className={styles.reservationWrapper}>
             <h1>REZERVÁCIA</h1>
             <p>
-              Pri objednávke zadávate orientačný čas, po spracovaní objednávky
-              vás budeme kontaktovať. Vodnú fajku je potrebné objednať minimálne
-              1 deň vopred, rozvážame nasledujúci deň do 16:00. Expresnú
-              objednávku (doručenie aktuálny deň po 16:00) treba zadať do
-              poznámky (+5 EUR). Rezervácia je po potvrdení záväzná. K
-              objednávke sa účtuje záloha 40€, ktorá bude pri spätnom
-              odovzdávaní vodnej fajky vrátená. V prípade individuálnych
-              požiadaviek nás neváhajte kontaktovať Na tel. č.: 0902664994
+              <p>
+                Pri objednávke zadávate orientačný čas, po spracovaní objednávky
+                vás budeme kontaktovať.
+              </p>
+              Vodnú fajku je potrebné objednať v dostatočnom predstihu,
+              rozvážame každý deň do 16:00. Od 17:00 je možné si vodnú fajku
+              prísť vyzdvihnúť na našu prevádzku Čajovňa Aura v Kežmarku.
+              Rezervácia je po potvrdení záväzná. K objednávke sa účtuje záloha
+              podľa typu vodnej fajky, ktorá bude pri spätnom odovzdávaní vodnej
+              fajky bez poškodení vrátená.
+              <p>
+                V prípade prenájmu na viac dní alebo iných individuálnych
+                požiadaviek nás neváhajte kontaktovať na tel. č.: 0902 664 994
+                alebo mailom cajovnaaura@gmail.com.
+              </p>
             </p>
           </div>
         </div>
