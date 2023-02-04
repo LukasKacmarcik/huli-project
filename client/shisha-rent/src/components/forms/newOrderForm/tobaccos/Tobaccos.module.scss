@@ -9,10 +9,7 @@
   }
 
   label {
-    transition: 0.2s ease-in;
     padding: 5px;
-    border-radius: 15px;
-    border: 1px solid orangered;
     line-height: 40px;
 
     &:hover {
@@ -52,16 +49,19 @@
 }
 
 .selected {
-  label {
-    -webkit-box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
-    -moz-box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
-    box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
-    background-color: orangered;
-    color: rgba(240, 248, 255, 0.846);
-  }
+  -webkit-box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
+  -moz-box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
+  box-shadow: 0px 0px 25px -9px rgb(255, 255, 255);
+  background-color: orangered;
+  color: rgba(240, 248, 255, 0.846);
 }
 
 .classicTobaccosDiv {
+  div > div {
+    border: 2px solid orangered;
+    border-radius: 1rem;
+    transition: 0.2s ease-in;
+  }
   width: 45%;
 }
 
@@ -73,6 +73,11 @@
 }
 
 .molassesDiv {
+  div > div {
+    border: 2px solid orangered;
+    border-radius: 1rem;
+    transition: 0.2s ease-in;
+  }
   width: 45%;
   display: flex;
   flex-direction: column;
