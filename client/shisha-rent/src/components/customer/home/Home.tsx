@@ -2,7 +2,7 @@ import { useAppSelector } from "../../../app/hooks";
 import ListOfShishas from "../listOfShishas/ListOfShishas";
 import SelectedShisha from "../shisha/selectedShisha/SelectedShisha";
 import logo from "../../../images/logo-biela.png";
-import rentImg from "../../../images/box.png";
+import rentImg from "../../../images/rent.jpg";
 import Galery from "../galery/Galery";
 import { useRef, useState } from "react";
 import useElementOnScreen from "../../../hooks/useElementOnScreen";
