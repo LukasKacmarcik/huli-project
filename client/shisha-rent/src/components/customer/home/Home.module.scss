@@ -153,7 +153,6 @@
 
       img {
         display: none;
-        max-height: 385px;
       }
     }
 
@@ -172,6 +171,7 @@
         margin: 0 0 1rem 0;
 
         img {
+          max-height: 385px;
           max-width: 100%;
         }
       }
