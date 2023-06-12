@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
           duration={800}
           onClick={() => setIsOpen(false)}
         >
-          <img src={brightLogo} alt="logo" />
+          <img src={brightLogo} alt="logo" loading="lazy"/>
         </AncorLink>
       </div>
 

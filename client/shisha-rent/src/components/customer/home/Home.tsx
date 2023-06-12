@@ -43,7 +43,7 @@ export default function Home() {
       <div className={styles.hero}>
         <div id="aboutUs">
           <div className={styles.logoWrapper}>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" loading="lazy"/>
           </div>
           <div
             className={`${styles.aboutUsWrapper} ${
@@ -76,7 +76,7 @@ export default function Home() {
         >
           <h1>PRENÁJOM VODNEJ FAJKY</h1>
           <div className={styles.rentImgWrapper}>
-            <img src={rentImg} alt="Shisha rent" />
+            <img src={rentImg} alt="Shisha rent" loading="lazy"/>
           </div>
           <div className={styles.rentTextWrapper}>
             <p>
@@ -135,14 +135,14 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            <img src={fb} alt="facebook"></img>
+            <img src={fb} alt="facebook" loading="lazy"></img>
           </a>
           <a
             href="https://www.instagram.com/cajovnaaurakezmarok"
             target="_blank"
             rel="noreferrer"
           >
-            <img src={ig} alt="instagram"></img>
+            <img src={ig} alt="instagram" loading="lazy"></img>
           </a>
         </div>
       </div>

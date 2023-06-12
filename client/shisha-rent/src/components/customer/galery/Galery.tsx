@@ -40,6 +40,7 @@ const Galery: React.FC = () => {
           style={{ width: "95%", margin: "0 auto", borderRadius: "20px" }}
           src={image}
           alt="galery pic"
+          loading="lazy"
         ></img>
       </div>
     );

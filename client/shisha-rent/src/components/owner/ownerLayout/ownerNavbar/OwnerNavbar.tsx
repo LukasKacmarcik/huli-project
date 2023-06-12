@@ -21,7 +21,7 @@ const OwnerNavbar: React.FC<Props> = ({ isOpen, setIsOpen }) => {
     <header className={`${styles.header} ${isOpen ? styles.open : ""}`}>
       <div>
         <Link to="/">
-          <img src={brightLogo} alt="logo" />
+          <img src={brightLogo} alt="logo" loading="lazy"/>
         </Link>
       </div>
 

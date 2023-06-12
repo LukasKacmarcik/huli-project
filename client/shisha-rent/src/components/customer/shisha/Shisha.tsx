@@ -32,7 +32,7 @@ const Shisha: React.FC<Props> = ({ passedShisha }) => {
       data-shishaid={passedShisha._id}
     >
       <div className={styles.imgWrapper}>
-        <img src={passedShisha.selectedFile} alt="shisha" />
+        <img src={passedShisha.selectedFile} alt="shisha" loading="lazy"/>
       </div>
       <h2>{passedShisha.name}</h2>
       <h4>{passedShisha.price} €</h4>

@@ -10,7 +10,7 @@ const SelectedShishaPreview: React.FC = () => {
   return (
     <div className={styles.selectedShishaPreview}>
       <div className={styles.imgWrapper}>
-        <img src={selectedShisha?.selectedFile} alt="selected shisha" />
+        <img src={selectedShisha?.selectedFile} alt="selected shisha" loading="lazy"/>
       </div>
       <div className={styles.shishaDetails}>
         {selectedShisha?.name && <h1>{selectedShisha?.name}</h1>}
