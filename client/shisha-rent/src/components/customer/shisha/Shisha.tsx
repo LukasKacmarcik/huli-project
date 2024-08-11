@@ -28,7 +28,7 @@ const Shisha: React.FC<Props> = ({ passedShisha }) => {
   return (
     <div
       className={styles.shisha}
-      onClick={handleClick}
+      // onClick={handleClick}
       data-shishaid={passedShisha._id}
     >
       <div className={styles.imgWrapper}>
